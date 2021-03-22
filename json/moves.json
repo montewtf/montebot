@@ -1,0 +1,1679 @@
+{
+    "absorb": {
+        "type": "grass",
+        "category": "special",
+        "power": 20,
+        "accuracy": 1.0,
+        "pp": 20,
+        "effect": {
+            "recoil": 0.5
+        }
+    },
+    "acid": {
+        "type": "poison",
+        "category": "physical",
+        "power": 40,
+        "accuracy": 1.0,
+        "pp": 30,
+        "effect": {
+            "chance": 0.332,
+            "stat": "odefense",
+            "stages": -1
+        }
+    },
+    "acid armor": {
+        "type": "poison",
+        "category": "status",
+        "power": null,
+        "accuracy": null,
+        "pp": 40,
+        "effect": {
+            "stat": "defense",
+            "stages": 2
+        }
+    },
+    "agility": {
+        "type": "psychic",
+        "category": "status",
+        "power": null,
+        "accuracy": null,
+        "pp": 30,
+        "effect": {
+            "stat": "speed",
+            "stages": 2
+        }
+    },
+    "amnesia": {
+        "type": "psychic",
+        "category": "status",
+        "power": null,
+        "accuracy": null,
+        "pp": 20,
+        "effect": {
+            "stat": "special",
+            "stages": 2
+        }
+    },
+    "aurora beam": {
+        "type": "ice",
+        "category": "special",
+        "power": 65,
+        "accuracy": 1.0,
+        "pp": 20,
+        "effect": {
+            "chance": 0.332,
+            "stat": "oattack",
+            "stages": -1
+        }
+    },
+    "barrage": {
+        "type": "normal",
+        "category": "physical",
+        "power": 15,
+        "accuracy": 0.85,
+        "pp": 20,
+        "effect": {
+            "multi": 5
+        }
+    },
+    "barrier": {
+        "type": "psychic",
+        "category": "status",
+        "power": null,
+        "accuracy": null,
+        "pp": 30,
+        "effect": {
+            "stat": "defense",
+            "stages": 2
+        }
+    },
+    "bide": {
+        "type": "normal",
+        "category": "physical",
+        "power": null,
+        "accuracy": null,
+        "pp": 10,
+        "effect": {
+            "bide": 1
+        }
+    },
+    "bind": {
+        "type": "normal",
+        "category": "physical",
+        "power": 15,
+        "accuracy": 0.85,
+        "pp": 20,
+        "effect": {
+            "wrap": 1
+        }
+    },
+    "bite": {
+        "type": "normal",
+        "category": "physical",
+        "power": 60,
+        "accuracy": 1.0,
+        "pp": 25,
+        "effect": {
+            "chance": 0.1,
+            "statusCondition": "flinch"
+        }
+    },
+    "blizzard": {
+        "type": "ice",
+        "category": "special",
+        "power": 120,
+        "accuracy": 0.9,
+        "pp": 5,
+        "effect": {
+            "chance": 0.1,
+            "statusCondition": "freeze"
+        }
+    },
+    "body slam": {
+        "type": "normal",
+        "category": "physical",
+        "power": 85,
+        "accuracy": 1.0,
+        "pp": 15,
+        "effect": {
+            "chance": 0.3,
+            "not": {
+                "type": "normal"
+            },
+            "statusCondition": "paralysis"
+        }
+    },
+    "bone club": {
+        "type": "ground",
+        "category": "physical",
+        "power": 65,
+        "accuracy": 0.85,
+        "pp": 20,
+        "effect": {
+            "chance": 0.1,
+            "statusCondition": "flinch"
+        }
+    },
+    "bonemerang": {
+        "type": "ground",
+        "category": "physical",
+        "power": 50,
+        "accuracy": 0.9,
+        "pp": 10,
+        "effect": {
+            "multi": 2
+        }
+    },
+    "bubble": {
+        "type": "water",
+        "category": "special",
+        "power": 20,
+        "accuracy": 1.0,
+        "pp": 30,
+        "effect": {
+            "chance": 0.332,
+            "stat": "ospeed",
+            "stages": -1
+        }
+    },
+    "bubble beam": {
+        "type": "water",
+        "category": "special",
+        "power": 65,
+        "accuracy": 1.0,
+        "pp": 20,
+        "effect": {
+            "chance": 0.332,
+            "stat": "ospeed",
+            "stages": -1
+        }
+    },
+    "clamp": {
+        "type": "water",
+        "category": "special",
+        "power": 35,
+        "accuracy": 0.85,
+        "pp": 10,
+        "effect": {
+            "wrap": 1
+        }
+    },
+    "comet punch": {
+        "type": "normal",
+        "category": "physical",
+        "power": 18,
+        "accuracy": 0.85,
+        "pp": 15,
+        "effect": {
+            "multi": 5
+        }
+    },
+    "confuse ray": {
+        "type": "ghost",
+        "category": "status",
+        "power": null,
+        "accuracy": 1.0,
+        "pp": 10,
+        "effect": {
+            "statusCondition": "confused"
+        }
+    },
+    "confusion": {
+        "type": "psychic",
+        "category": "special",
+        "power": 50,
+        "accuracy": 1.0,
+        "pp": 25,
+        "effect": {
+            "chance": 0.1,
+            "statusCondition": "confused"
+        }
+    },
+    "constrict": {
+        "type": "normal",
+        "category": "physical",
+        "power": 10,
+        "accuracy": 1.0,
+        "pp": 35,
+        "effect": {
+            "chance": 0.332,
+            "stat": "ospeed",
+            "stages": -1
+        }
+    },
+    "conversion": {
+        "type": "normal",
+        "category": "status",
+        "power": null,
+        "accuracy": null,
+        "pp": 30,
+        "effect": {
+            "conversion": 1
+        }
+    },
+    "counter": {
+        "type": "fighting",
+        "category": "physical",
+        "power": null,
+        "accuracy": 1.0,
+        "pp": 20,
+        "priority": -1,
+        "effect": {
+            "counter": "physical"
+        }
+    },
+    "crabhammer": {
+        "type": "water",
+        "category": "special",
+        "power": 90,
+        "accuracy": 0.85,
+        "pp": 10,
+        "effect": {
+            "crit": 1
+        }
+    },
+    "cut": {
+        "type": "normal",
+        "category": "physical",
+        "power": 50,
+        "accuracy": 0.95,
+        "pp": 30
+    },
+    "defense curl": {
+        "type": "normal",
+        "category": "status",
+        "power": null,
+        "accuracy": null,
+        "pp": 40,
+        "effect": {
+            "stat": "defense",
+            "stages": 1
+        }
+    },
+    "dig": {
+        "type": "ground",
+        "category": "physical",
+        "power": 60,
+        "accuracy": 1.0,
+        "pp": 10,
+        "effect": {
+            "duration": 2
+        }
+    },
+    "disable": {
+        "type": "normal",
+        "category": "status",
+        "power": null,
+        "accuracy": 0.55,
+        "pp": 20,
+        "effect": {
+            "disable": 1
+        }
+    },
+    "dizzy punch": {
+        "type": "normal",
+        "category": "physical",
+        "power": 70,
+        "accuracy": 1.0,
+        "pp": 10
+    },
+    "double kick": {
+        "type": "fighting",
+        "category": "physical",
+        "power": 30,
+        "accuracy": 1.0,
+        "pp": 30,
+        "effect": {
+            "multi": 2
+        }
+    },
+    "double slap": {
+        "type": "normal",
+        "category": "physical",
+        "power": 15,
+        "accuracy": 0.85,
+        "pp": 10,
+        "effect": {
+            "multi": 5
+        }
+    },
+    "double team": {
+        "type": "normal",
+        "category": "status",
+        "power": null,
+        "accuracy": null,
+        "pp": 15,
+        "effect": {
+            "stat": "evasiveness",
+            "stages": 1
+        }
+    },
+    "double-edge": {
+        "type": "normal",
+        "category": "physical",
+        "power": 100,
+        "accuracy": 1.0,
+        "pp": 15,
+        "effect": {
+            "recoil": -0.25
+        }
+    },
+    "dragon rage": {
+        "type": "dragon",
+        "category": "special",
+        "power": null,
+        "accuracy": 1.0,
+        "pp": 10,
+        "effect": {
+            "fixed": 40
+        }
+    },
+    "dream eater": {
+        "type": "psychic",
+        "category": "special",
+        "power": 100,
+        "accuracy": 1.0,
+        "pp": 15,
+        "effect": {
+            "dream": 1,
+            "recoil": 0.5
+        }
+    },
+    "drill peck": {
+        "type": "flying",
+        "category": "physical",
+        "power": 80,
+        "accuracy": 1.0,
+        "pp": 20
+    },
+    "earthquake": {
+        "type": "ground",
+        "category": "physical",
+        "power": 100,
+        "accuracy": 1.0,
+        "pp": 10
+    },
+    "egg bomb": {
+        "type": "normal",
+        "category": "physical",
+        "power": 100,
+        "accuracy": 0.75,
+        "pp": 10
+    },
+    "ember": {
+        "type": "fire",
+        "category": "special",
+        "power": 40,
+        "accuracy": 1.0,
+        "pp": 25,
+        "effect": {
+            "chance": 0.1,
+            "statusCondition": "burn"
+        }
+    },
+    "explosion": {
+        "type": "normal",
+        "category": "physical",
+        "power": 340,
+        "accuracy": 1.0,
+        "pp": 5,
+        "effect": {
+            "heal": 1
+        }
+    },
+    "fire blast": {
+        "type": "fire",
+        "category": "special",
+        "power": 120,
+        "accuracy": 0.85,
+        "pp": 5,
+        "effect": {
+            "chance": 0.3,
+            "statusCondition": "burn"
+        }
+    },
+    "fire punch": {
+        "type": "fire",
+        "category": "special",
+        "power": 75,
+        "accuracy": 1.0,
+        "pp": 15,
+        "effect": {
+            "chance": 0.1,
+            "statusCondition": "burn"
+        }
+    },
+    "fire spin": {
+        "type": "fire",
+        "category": "special",
+        "power": 35,
+        "accuracy": 0.85,
+        "pp": 15,
+        "effect": {
+            "wrap": 1
+        }
+    },
+    "fissure": {
+        "type": "ground",
+        "category": "physical",
+        "power": null,
+        "accuracy": 30,
+        "pp": 5,
+        "effect": {
+            "ohko": 1
+        }
+    },
+    "flamethrower": {
+        "type": "fire",
+        "category": "special",
+        "power": 95,
+        "accuracy": 1.0,
+        "pp": 15,
+        "effect": {
+            "chance": 0.1,
+            "statusCondition": "burn"
+        }
+    },
+    "flash": {
+        "type": "normal",
+        "category": "status",
+        "power": null,
+        "accuracy": 0.7,
+        "pp": 20,
+        "effect": {
+            "stat": "oaccuracy",
+            "stages": -1
+        }
+    },
+    "fly": {
+        "type": "flying",
+        "category": "physical",
+        "power": 70,
+        "accuracy": 0.95,
+        "pp": 15,
+        "effect": {
+            "duration": 2
+        }
+    },
+    "focus energy": {
+        "type": "normal",
+        "category": "status",
+        "power": null,
+        "accuracy": null,
+        "pp": 30,
+        "effect": {
+            "focus": 1
+        }
+    },
+    "fury attack": {
+        "type": "normal",
+        "category": "physical",
+        "power": 15,
+        "accuracy": 0.85,
+        "pp": 20,
+        "effect": {
+            "multi": 5
+        }
+    },
+    "fury swipes": {
+        "type": "normal",
+        "category": "physical",
+        "power": 18,
+        "accuracy": 0.8,
+        "pp": 15,
+        "effect": {
+            "multi": 5
+        }
+    },
+    "glare": {
+        "type": "normal",
+        "category": "status",
+        "power": null,
+        "accuracy": 0.75,
+        "pp": 30,
+        "effect": {
+            "statusCondition": "paralysis"
+        }
+    },
+    "growl": {
+        "type": "normal",
+        "category": "status",
+        "power": null,
+        "accuracy": 1.0,
+        "pp": 40,
+        "effect": {
+            "stat": "oattack",
+            "stages": -1
+        }
+    },
+    "growth": {
+        "type": "normal",
+        "category": "status",
+        "power": null,
+        "accuracy": null,
+        "pp": 40,
+        "effect": {
+            "stat": "special",
+            "stages": 1
+        }
+    },
+    "guillotine": {
+        "type": "normal",
+        "category": "physical",
+        "power": null,
+        "accuracy": 30,
+        "pp": 5,
+        "effect": {
+            "ohko": 1
+        }
+    },
+    "gust": {
+        "type": "normal",
+        "category": "physical",
+        "power": 40,
+        "accuracy": 1.0,
+        "pp": 35
+    },
+    "harden": {
+        "type": "normal",
+        "category": "status",
+        "power": null,
+        "accuracy": null,
+        "pp": 30,
+        "effect": {
+            "stat": "defense",
+            "stages": 1
+        }
+    },
+    "haze": {
+        "type": "ice",
+        "category": "status",
+        "power": null,
+        "accuracy": null,
+        "pp": 30,
+        "effect": {
+            "haze": 1
+        }
+    },
+    "headbutt": {
+        "type": "normal",
+        "category": "physical",
+        "power": 70,
+        "accuracy": 1.0,
+        "pp": 15,
+        "effect": {
+            "chance": 0.3,
+            "statusCondition": "flinch"
+        }
+    },
+    "high jump kick": {
+        "type": "fighting",
+        "category": "physical",
+        "power": 85,
+        "accuracy": 0.9,
+        "pp": 20,
+        "effect": {
+            "missrecoil": 1
+        }
+    },
+    "horn attack": {
+        "type": "normal",
+        "category": "physical",
+        "power": 65,
+        "accuracy": 1.0,
+        "pp": 25
+    },
+    "horn drill": {
+        "type": "normal",
+        "category": "physical",
+        "power": null,
+        "accuracy": null,
+        "pp": 5,
+        "effect": {
+            "ohko": 1
+        }
+    },
+    "hydro pump": {
+        "type": "water",
+        "category": "special",
+        "power": 120,
+        "accuracy": 0.8,
+        "pp": 5
+    },
+    "hyper beam": {
+        "type": "normal",
+        "category": "physical",
+        "power": 150,
+        "accuracy": 0.9,
+        "pp": 5,
+        "effect": {
+            "duration": 0.5
+        }
+    },
+    "hyper fang": {
+        "type": "normal",
+        "category": "physical",
+        "power": 80,
+        "accuracy": 0.9,
+        "pp": 15,
+        "effect": {
+            "chance": 0.1,
+            "statusCondition": "flinch"
+        }
+    },
+    "hypnosis": {
+        "type": "psychic",
+        "category": "status",
+        "power": null,
+        "accuracy": 0.6,
+        "pp": 20,
+        "effect": {
+            "statusCondition": "sleep"
+        }
+    },
+    "ice beam": {
+        "type": "ice",
+        "category": "special",
+        "power": 95,
+        "accuracy": 1.0,
+        "pp": 10,
+        "effect": {
+            "chance": 0.1,
+            "statusCondition": "freeze"
+        }
+    },
+    "ice punch": {
+        "type": "ice",
+        "category": "special",
+        "power": 75,
+        "accuracy": 1.0,
+        "pp": 15,
+        "effect": {
+            "chance": 0.1,
+            "statusCondition": "freeze"
+        }
+    },
+    "jump kick": {
+        "type": "fighting",
+        "category": "physical",
+        "power": 70,
+        "accuracy": 0.95,
+        "pp": 25,
+        "effect": {
+            "missrecoil": 1
+        }
+    },
+    "karate chop": {
+        "type": "normal",
+        "category": "physical",
+        "power": 50,
+        "accuracy": 1.0,
+        "pp": 25,
+        "effect": {
+            "crit": 1
+        }
+    },
+    "kinesis": {
+        "type": "psychic",
+        "category": "status",
+        "power": null,
+        "accuracy": 0.8,
+        "pp": 15,
+        "effect": {
+            "stat": "oaccuracy",
+            "stages": -1
+        }
+    },
+    "leech life": {
+        "type": "bug",
+        "category": "physical",
+        "power": 20,
+        "accuracy": 1.0,
+        "pp": 15,
+        "effect": {
+            "recoil": 0.5
+        }
+    },
+    "leech seed": {
+        "type": "grass",
+        "category": "status",
+        "power": null,
+        "accuracy": 0.9,
+        "pp": 10,
+        "effect": {
+            "status": "seeded"
+        }
+    },
+    "leer": {
+        "type": "normal",
+        "category": "status",
+        "power": null,
+        "accuracy": 1.0,
+        "pp": 30,
+        "effect": {
+            "stat": "odefense",
+            "stages": -1
+        }
+    },
+    "lick": {
+        "type": "ghost",
+        "category": "physical",
+        "power": 20,
+        "accuracy": 1.0,
+        "pp": 30,
+        "effect": {
+            "chance": 0.3,
+            "not": {
+                "type": "ghost"
+            },
+            "statusCondition": "paralysis"
+        }
+    },
+    "light screen": {
+        "type": "psychic",
+        "category": "status",
+        "power": null,
+        "accuracy": null,
+        "pp": 30,
+        "effect": {
+            "reflect": "special"
+        }
+    },
+    "lovely kiss": {
+        "type": "normal",
+        "category": "status",
+        "power": null,
+        "accuracy": 0.75,
+        "pp": 10,
+        "effect": {
+            "statusCondition": "sleep"
+        }
+    },
+    "low kick": {
+        "type": "fighting",
+        "category": "physical",
+        "power": 50,
+        "accuracy": 0.9,
+        "pp": 20,
+        "effect": {
+            "chance": 0.3,
+            "statusCondition": "flinch"
+        }
+    },
+    "meditate": {
+        "type": "psychic",
+        "category": "status",
+        "power": null,
+        "accuracy": null,
+        "pp": 40,
+        "effect": {
+            "stat": "attack",
+            "stages": 1
+        }
+    },
+    "mega drain": {
+        "type": "grass",
+        "category": "special",
+        "power": 40,
+        "accuracy": 1.0,
+        "pp": 10,
+        "effect": [
+            "Mega Drain deals damage and the user will recover 50% of the HP drained.",
+            "If the user is holding a Big Root, the move instead recovers 65% of the damage dealt (30% more than normal). If used on a Pokemon with the ability Liquid Ooze, the user instead loses the HP it would have otherwise gained."
+        ]
+    },
+    "mega kick": {
+        "type": "normal",
+        "category": "physical",
+        "power": 120,
+        "accuracy": 0.75,
+        "pp": 5
+    },
+    "mega punch": {
+        "type": "normal",
+        "category": "physical",
+        "power": 80,
+        "accuracy": 0.85,
+        "pp": 20
+    },
+    "metronome": {
+        "type": "normal",
+        "category": "status",
+        "power": null,
+        "accuracy": null,
+        "pp": 10,
+        "effect": [
+            "User performs any move in the game at random."
+        ]
+    },
+    "mimic": {
+        "type": "normal",
+        "category": "status",
+        "power": null,
+        "accuracy": null,
+        "pp": 10,
+        "changes": [
+            "In Generation 1, Mimic allows the user to choose any of the opponent's moves to copy."
+        ],
+        "effect": [
+            "Mimic copies the last move used by the target (replacing Mimic). The copied move always has 5 PP. The effect only lasts while the user is in battle: if the user switches out or when the battle ends, the move becomes Mimic again.",
+            "Mimic cannot copy Chatter, Metronome, Sketch or Struggle."
+        ]
+    },
+    "minimize": {
+        "type": "normal",
+        "category": "status",
+        "power": null,
+        "accuracy": null,
+        "pp": 20,
+        "effect": {
+            "stat": "evasiveness",
+            "stages": 1
+        }
+    },
+    "mirror move": {
+        "type": "flying",
+        "category": "status",
+        "power": null,
+        "accuracy": null,
+        "pp": 20,
+        "effect": [
+            "User performs the opponent's last move."
+        ]
+    },
+    "mist": {
+        "type": "ice",
+        "category": "status",
+        "power": null,
+        "accuracy": null,
+        "pp": 30,
+        "effect": [
+            "User's stats cannot be changed for a period of time."
+        ]
+    },
+    "night shade": {
+        "type": "ghost",
+        "category": "physical",
+        "power": null,
+        "accuracy": 1.0,
+        "pp": 15,
+        "changes": [
+            "In Generation 1, Night Shade also hits Normal- and Psychic-type Pok\u00e9mon despite their immunity to Ghost-type attacks."
+        ],
+        "effect": [
+            "The damage of Night Shade is equal to the user's level. So at level 100 the Pok\u00e9mon will inflict 100 HP damage."
+        ]
+    },
+    "pay day": {
+        "type": "normal",
+        "category": "physical",
+        "power": 40,
+        "accuracy": 1.0,
+        "pp": 20
+    },
+    "peck": {
+        "type": "flying",
+        "category": "physical",
+        "power": 35,
+        "accuracy": 1.0,
+        "pp": 35
+    },
+    "petal dance": {
+        "type": "grass",
+        "category": "special",
+        "power": 120,
+        "accuracy": 1.0,
+        "pp": 10,
+        "changes": [
+            "In Generations 1-3 Petal Dance has a base power of 70. In Generation 4 its base power is 90.",
+            "In Generations 1-4, Petal Dance has 20 PP. Furthermore, sleep, freezing and flinching will pause but not disrupt Petal Dance.",
+            "In Generation 1, Petal Dance lasts for 3-4 turns."
+        ],
+        "effect": [
+            "The user of Petal Dance attacks for 2-3 turns, during which it cannot switch out, and then becomes confused. Confused Pok\u00e9mon have a 50% chance of hurting themselves each turn, for 1-4 turns. The damage received is as if the Pok\u00e9mon attacks itself with a typeless 40 base power Physical attack.",
+            "If Petal Dance is disrupted (e.g. if the move misses or the user cannot attack due to paralysis) then it will stop and not cause confusion.",
+            "Pok\u00e9mon with the ability Own Tempo or those behind a Substitute cannot be confused."
+        ]
+    },
+    "pin missile": {
+        "type": "bug",
+        "category": "physical",
+        "power": 14,
+        "accuracy": 0.85,
+        "pp": 20,
+        "changes": [
+            "In Generations 1-3, Pin Missile ends immediately if any hit breaks a Substitute.",
+            "In Generation 1, each hit will always deal the same damage - if the first critical hits, so will the rest."
+        ]
+    },
+    "poison gas": {
+        "type": "poison",
+        "category": "status",
+        "power": null,
+        "accuracy": 0.55,
+        "pp": 40,
+        "effect": {
+            "statusCondition": "poison"
+        }
+    },
+    "poison powder": {
+        "type": "poison",
+        "category": "status",
+        "power": null,
+        "accuracy": 0.75,
+        "pp": 35,
+        "effect": {
+            "statusCondition": "poison"
+        }
+    },
+    "poison sting": {
+        "type": "poison",
+        "category": "physical",
+        "power": 15,
+        "accuracy": 1.0,
+        "pp": 35,
+        "effect": {
+            "chance": 0.3,
+            "statusCondition": "poison"
+        }
+    },
+    "pound": {
+        "type": "normal",
+        "category": "physical",
+        "power": 40,
+        "accuracy": 1.0,
+        "pp": 35
+    },
+    "psybeam": {
+        "type": "psychic",
+        "category": "special",
+        "power": 65,
+        "accuracy": 1.0,
+        "pp": 20,
+        "effect": {
+            "chance": 0.1,
+            "statusCondition": "confused"
+        }
+    },
+    "psychic": {
+        "type": "psychic",
+        "category": "special",
+        "power": 90,
+        "accuracy": 1.0,
+        "pp": 10,
+        "effect": {
+            "chance": 0.3,
+            "stat": "special",
+            "stages": -1
+        }
+    },
+    "psywave": {
+        "type": "psychic",
+        "category": "special",
+        "power": null,
+        "accuracy": 0.8,
+        "pp": 15,
+        "effect": [
+            "Psywave inflicts a random amount of HP damage, varying between 50% and 150% of the user's level. In other words, at level 100 the damage will be 50-150 HP.",
+            "The damage is typeless (not affected by type advantages/disadvantages) but it still does not affect Dark type Pokemon."
+        ]
+    },
+    "quick attack": {
+        "type": "normal",
+        "category": "physical",
+        "power": 40,
+        "accuracy": 1.0,
+        "pp": 30,
+        "priority": 1
+    },
+    "rage": {
+        "type": "normal",
+        "category": "physical",
+        "power": 20,
+        "accuracy": 1.0,
+        "pp": 20,
+        "changes": [
+            "In Generation 1, after Rage is selected it will continue to be used until the end of the battle or the user faints.",
+            "In Generations 2-3, if the user is slower than the opponent, the Attack rise only occurs if Rage is selected in that turn - if a different move is selected (or an item used) and the Pokemon is hit before it uses the new move, its Attack does not increase."
+        ],
+        "effect": [
+            "Rage deals damage, and if the user is hit by a direct attack - any time after Rage is first used but before a different move is used - the user's Attack is raised by one stage. The game will state the Pokemon's rage is building rather than explicitly assert the stat increase. Stats can be raised to a maximum of +6 stages each.",
+            "The Attack increases will continue as long as Rage is the last move used, even if it misses, the user is incapacitated (paralyzed, sleeping, etc) or the player uses an item. The Attack increase activates for every blow of multi-hit moves such as DoubleSlap or Fury Swipes.",
+            "As an example, if a Pokemon uses Rage then the opponent hits the user in the same turn, the user's Attack increases. If the user moves last it will not increase that turn, but will in the next turn if the opponent hits the user again."
+        ]
+    },
+    "razor leaf": {
+        "type": "grass",
+        "category": "special",
+        "power": 55,
+        "accuracy": 0.95,
+        "pp": 25,
+        "highCriticalHitRatio": true
+    },
+    "razor wind": {
+        "type": "normal",
+        "category": "physical",
+        "power": 80,
+        "accuracy": 0.75,
+        "pp": 10,
+        "effect": [
+            "The user of Razor Wind will whip up a whirlwind on the first turn. On the second turn, Razor Wind deals damage."
+        ]
+    },
+    "recover": {
+        "type": "normal",
+        "category": "status",
+        "power": null,
+        "accuracy": null,
+        "pp": 20,
+        "effect": [
+            "Recover restores up to 50% of the user's maximum HP."
+        ]
+    },
+    "reflect": {
+        "type": "psychic",
+        "category": "status",
+        "power": null,
+        "accuracy": null,
+        "pp": 20,
+        "effect": [
+            "Reflect reduces damage from Physical attacks by 50%, for 5 turns. Its effects apply to all Pok\u00e9mon on the user's side of the field."
+        ]
+    },
+    "rest": {
+        "type": "psychic",
+        "category": "status",
+        "power": null,
+        "accuracy": null,
+        "pp": 10,
+        "effect": [
+            "User sleeps for 2 turns, but user is fully healed."
+        ]
+    },
+    "roar": {
+        "type": "normal",
+        "category": "status",
+        "power": null,
+        "accuracy": 1.0,
+        "pp": 20
+    },
+    "rock slide": {
+        "type": "rock",
+        "category": "physical",
+        "power": 75,
+        "accuracy": 0.9,
+        "pp": 10,
+        "effect": {
+            "chance": 0.3,
+            "statusCondition": "flinch"
+        }
+    },
+    "rock throw": {
+        "type": "rock",
+        "category": "physical",
+        "power": 50,
+        "accuracy": 0.65,
+        "pp": 15
+    },
+    "rolling kick": {
+        "type": "fighting",
+        "category": "physical",
+        "power": 60,
+        "accuracy": 0.85,
+        "pp": 15,
+        "effect": {
+            "chance": 0.3,
+            "statusCondition": "flinch"
+        }
+    },
+    "sand attack": {
+        "type": "normal",
+        "category": "status",
+        "power": null,
+        "accuracy": 1.0,
+        "pp": 15,
+        "effect": {
+            "stat": "accuracy",
+            "stages": -1
+        }
+    },
+    "scratch": {
+        "type": "normal",
+        "category": "physical",
+        "power": 40,
+        "accuracy": 1.0,
+        "pp": 35
+    },
+    "screech": {
+        "type": "normal",
+        "category": "status",
+        "power": null,
+        "accuracy": 0.85,
+        "pp": 40,
+        "effect": {
+            "stat": "defense",
+            "stages": -2
+        }
+    },
+    "seismic toss": {
+        "type": "fighting",
+        "category": "physical",
+        "power": null,
+        "accuracy": 1.0,
+        "pp": 20,
+        "changes": [
+            "In Generation 1 Seismic Toss can hit Ghost-type Pok\u00e9mon despite their immunity to Fighting-type attacks."
+        ],
+        "effect": [
+            "The damage of Seismic Toss is equal to the user's level. So at level 100 the Pok\u00e9mon will inflict 100 HP damage."
+        ]
+    },
+    "self-destruct": {
+        "type": "normal",
+        "category": "physical",
+        "power": 200,
+        "accuracy": 1.0,
+        "pp": 5,
+        "effect": [
+            "Self-Destruct deals high damage, but causes the user to faint."
+        ]
+    },
+    "sharpen": {
+        "type": "normal",
+        "category": "status",
+        "power": null,
+        "accuracy": null,
+        "pp": 30,
+        "effect": {
+            "stat": "attack",
+            "stages": 1
+        }
+    },
+    "sing": {
+        "type": "normal",
+        "category": "status",
+        "power": null,
+        "accuracy": 0.55,
+        "pp": 15,
+        "effect": {
+            "statusCondition": "sleep"
+        }
+    },
+    "skull bash": {
+        "type": "normal",
+        "category": "physical",
+        "power": 100,
+        "accuracy": 1.0,
+        "pp": 15,
+        "changes": [
+            "In Generation 1, Skull Bash does not raise the user's Defense."
+        ],
+        "effect": [
+            "The user of Skull Bash will tuck in its head on the first turn and raise its Defense by one stage. On the second turn, Skull Bash deals damage."
+        ]
+    },
+    "sky attack": {
+        "type": "flying",
+        "category": "physical",
+        "power": 140,
+        "accuracy": 0.9,
+        "pp": 5,
+        "effect": [
+            "The user of Sky Attack will become cloaked in a harsh light on the first turn. On the second turn, Sky Attack deals damage."
+        ]
+    },
+    "slam": {
+        "type": "normal",
+        "category": "physical",
+        "power": 80,
+        "accuracy": 0.75,
+        "pp": 20
+    },
+    "slash": {
+        "type": "normal",
+        "category": "physical",
+        "power": 70,
+        "accuracy": 1.0,
+        "pp": 20,
+        "highCriticalHitRatio": true
+    },
+    "sleep powder": {
+        "type": "grass",
+        "category": "status",
+        "power": null,
+        "accuracy": 0.75,
+        "pp": 15,
+        "effect": {
+            "statusCondition": "sleep"
+        }
+    },
+    "sludge": {
+        "type": "poison",
+        "category": "physical",
+        "power": 65,
+        "accuracy": 1.0,
+        "pp": 20,
+        "effect": {
+            "chance": 0.3,
+            "statusCondition": "poison"
+        }
+    },
+    "smog": {
+        "type": "poison",
+        "category": "physical",
+        "power": 20,
+        "accuracy": 0.7,
+        "pp": 20,
+        "effect": {
+            "chance": 0.4,
+            "statusCondition": "poison"
+        }
+    },
+    "smokescreen": {
+        "type": "normal",
+        "category": "status",
+        "power": null,
+        "accuracy": 1.0,
+        "pp": 20,
+        "effect": {
+            "stat": "accuracy",
+            "stages": -1
+        }
+    },
+    "soft-boiled": {
+        "type": "normal",
+        "category": "status",
+        "power": null,
+        "accuracy": null,
+        "pp": 10,
+        "effect": [
+            "Soft-Boiled recovers up to 50% of the user's maximum HP."
+        ]
+    },
+    "solar beam": {
+        "type": "grass",
+        "category": "special",
+        "power": 120,
+        "accuracy": 1.0,
+        "pp": 10,
+        "effect": [
+            "The user of Solar Beam will absorb light on the first turn. On the second turn, Solar Beam deals damage."
+        ]
+    },
+    "sonic boom": {
+        "type": "normal",
+        "category": "physical",
+        "power": null,
+        "accuracy": 0.9,
+        "pp": 20,
+        "changes": [
+            "In Generation 1, Sonic Boom hits Ghost types regardless of their immunity to Normal type moves."
+        ],
+        "effect": [
+            "Sonic Boom always deals 20 HP damage to the target, regardless of typing (although Ghost type Pok\u00e9mon are still immune). It has no additional effect."
+        ]
+    },
+    "spike cannon": {
+        "type": "normal",
+        "category": "physical",
+        "power": 20,
+        "accuracy": 1.0,
+        "pp": 15,
+        "changes": [
+            "In Generations 1-3, Spike Cannon ends immediately if any hit breaks a Substitute.",
+            "In Generation 1, each hit will always deal the same damage - if the first critical hits, so will the rest."
+        ],
+        "effect": []
+    },
+    "splash": {
+        "type": "normal",
+        "category": "status",
+        "power": null,
+        "accuracy": null,
+        "pp": 40
+    },
+    "spore": {
+        "type": "grass",
+        "category": "status",
+        "power": null,
+        "accuracy": 1.0,
+        "pp": 15,
+        "effect": {
+            "statusCondition": "sleep"
+        }
+    },
+    "stomp": {
+        "type": "normal",
+        "category": "physical",
+        "power": 65,
+        "accuracy": 1.0,
+        "pp": 20,
+        "effect": {
+            "chance": 0.3,
+            "statusCondition": "flinch"
+        }
+    },
+    "strength": {
+        "type": "normal",
+        "category": "physical",
+        "power": 80,
+        "accuracy": 1.0,
+        "pp": 15
+    },
+    "string shot": {
+        "type": "bug",
+        "category": "status",
+        "power": null,
+        "accuracy": 0.95,
+        "pp": 40,
+        "effect": {
+            "stat": "speed",
+            "stages": -1
+        }
+    },
+    "struggle": {
+        "type": "normal",
+        "category": "physical",
+        "power": 50,
+        "accuracy": 1.0,
+        "pp": null,
+        "effect": [
+            "Only usable when all PP are gone. Hurts the user."
+        ]
+    },
+    "stun spore": {
+        "type": "grass",
+        "category": "status",
+        "power": null,
+        "accuracy": 0.75,
+        "pp": 30,
+        "effect": {
+            "statusCondition": "paralysis"
+        }
+    },
+    "submission": {
+        "type": "fighting",
+        "category": "physical",
+        "power": 80,
+        "accuracy": 0.8,
+        "pp": 25,
+        "effect": [
+            "Submission deals damage, but the user receives 1\u20444 of the damage it inflicts in recoil. In other words, if the attack does 100 HP damage to the opponent, the user will lose 25 HP."
+        ]
+    },
+    "substitute": {
+        "type": "normal",
+        "category": "status",
+        "power": null,
+        "accuracy": null,
+        "pp": 10,
+        "effect": [
+            "Uses HP to creates a decoy that takes hits."
+        ]
+    },
+    "super fang": {
+        "type": "normal",
+        "category": "physical",
+        "power": null,
+        "accuracy": 0.9,
+        "pp": 10,
+        "effect": [
+            "Always takes off half of the opponent's HP."
+        ]
+    },
+    "supersonic": {
+        "type": "normal",
+        "category": "status",
+        "power": null,
+        "accuracy": 0.55,
+        "pp": 20,
+        "effect": {
+            "statusCondition": "confused"
+        }
+    },
+    "surf": {
+        "type": "water",
+        "category": "special",
+        "power": 95,
+        "accuracy": 1.0,
+        "pp": 15
+    },
+    "swift": {
+        "type": "normal",
+        "category": "physical",
+        "power": 60,
+        "accuracy": null,
+        "pp": 20,
+        "changes": [
+            "In Generation 1, Swift can hit Pok\u00e9mon during the invulnerable stage of Dig and Fly."
+        ]
+    },
+    "swords dance": {
+        "type": "normal",
+        "category": "status",
+        "power": null,
+        "accuracy": null,
+        "pp": 30,
+        "effect": {
+            "stat": "attack",
+            "stages": 2
+        }
+    },
+    "tackle": {
+        "type": "normal",
+        "category": "physical",
+        "power": 35,
+        "accuracy": 0.95,
+        "pp": 35
+    },
+    "tail whip": {
+        "type": "normal",
+        "category": "status",
+        "power": null,
+        "accuracy": 1.0,
+        "pp": 30,
+        "effect": {
+            "stat": "odefense",
+            "stages": -1
+        }
+    },
+    "take down": {
+        "type": "normal",
+        "category": "physical",
+        "power": 90,
+        "accuracy": 0.85,
+        "pp": 20,
+        "effect": [
+            "Take Down deals damage, but the user receives 1\u20444 of the damage it inflicted in recoil. In other words, if the attack does 100 HP damage to the opponent, the user will lose 25 HP."
+        ]
+    },
+    "teleport": {
+        "type": "psychic",
+        "category": "status",
+        "power": null,
+        "accuracy": null,
+        "pp": 20
+    },
+    "thrash": {
+        "type": "normal",
+        "category": "physical",
+        "power": 120,
+        "accuracy": 1.0,
+        "pp": 10,
+        "changes": [
+            "In Generations 1-4, Thrash has 20 PP and a base power of 90. Furthermore, sleep, freezing and flinching will pause but not disrupt Thrash.",
+            "In Generation 1, Thrash lasts for 3-4 turns."
+        ],
+        "effect": [
+            "The user of Thrash attacks for 2-3 turns, during which it cannot switch out, and then becomes confused. Confused Pok\u00e9mon have a 50% chance of hurting themselves each turn, for 1-4 turns. The damage received is as if the Pok\u00e9mon attacks itself with a typeless 40 base power Physical attack.",
+            "If Thrash is disrupted (e.g. if the move misses or the user cannot attack due to paralysis) then it will stop and not cause confusion.",
+            "Pok\u00e9mon with the ability Own Tempo or those behind a Substitute cannot be confused."
+        ]
+    },
+    "thunder": {
+        "type": "electric",
+        "category": "special",
+        "power": 120,
+        "accuracy": 0.7,
+        "pp": 10,
+        "effect": {
+            "chance": 0.1,
+            "statusCondition": "paralysis"
+        }
+    },
+    "thunder punch": {
+        "type": "electric",
+        "category": "special",
+        "power": 75,
+        "accuracy": 1.0,
+        "pp": 15,
+        "effect": {
+            "chance": 0.1,
+            "statusCondition": "paralysis"
+        }
+    },
+    "thunder shock": {
+        "type": "electric",
+        "category": "special",
+        "power": 40,
+        "accuracy": 1.0,
+        "pp": 30,
+        "effect": {
+            "chance": 0.1,
+            "statusCondition": "paralysis"
+        }
+    },
+    "thunder wave": {
+        "type": "electric",
+        "category": "status",
+        "power": null,
+        "accuracy": 1.0,
+        "pp": 20,
+        "effect": {
+            "statusCondition": "paralysis"
+        }
+    },
+    "thunderbolt": {
+        "type": "electric",
+        "category": "special",
+        "power": 95,
+        "accuracy": 1.0,
+        "pp": 15,
+        "effect": {
+            "chance": 0.1,
+            "statusCondition": "paralysis"
+        }
+    },
+    "toxic": {
+        "type": "poison",
+        "category": "status",
+        "power": null,
+        "accuracy": 0.85,
+        "pp": 10,
+        "changes": [
+            "In Generation 1, Toxic also increases the damage taken by Leech Seed."
+        ],
+        "effect": {
+            "statusCondition": "badly poison"
+        }
+    },
+    "transform": {
+        "type": "normal",
+        "category": "status",
+        "power": null,
+        "accuracy": null,
+        "pp": 10,
+        "effect": [
+            "User takes on the form and attacks of the opponent."
+        ]
+    },
+    "tri attack": {
+        "type": "normal",
+        "category": "physical",
+        "power": 80,
+        "accuracy": 1.0,
+        "pp": 10
+    },
+    "twineedle": {
+        "type": "bug",
+        "category": "physical",
+        "power": 25,
+        "accuracy": 1.0,
+        "pp": 20,
+        "changes": [
+            "In Generations 1-2, Twineedle can poison Poison and Steel types.\nIn Generations 2-4, if a Focus Sash or Focus Band activates before the final hit, subsequent hits do not cause the holder to faint.",
+            "In Generations 1-3, Twineedle ends immediately if any hit breaks a Substitute.",
+            "In Generation 1, each hit will always deal the same damage - if the first critical hits, so will the rest."
+        ],
+        "effect": [
+            "Twineedle deals damage and will strike twice (with 25 base power each time). It has a 20% chance of poisoning the target. Poison or Steel type Pok\u00e9mon, those with the ability Immunity or those behind a Substitute cannot be poisoned.\nEach strike of Twineedle is treated like a separate attack:"
+        ]
+    },
+    "vice grip": {
+        "type": "normal",
+        "category": "physical",
+        "power": 55,
+        "accuracy": 1.0,
+        "pp": 30
+    },
+    "vine whip": {
+        "type": "grass",
+        "category": "special",
+        "power": 35,
+        "accuracy": 1.0,
+        "pp": 10
+    },
+    "water gun": {
+        "type": "water",
+        "category": "special",
+        "power": 40,
+        "accuracy": 1.0,
+        "pp": 25
+    },
+    "waterfall": {
+        "type": "water",
+        "category": "special",
+        "power": 80,
+        "accuracy": 1.0,
+        "pp": 15
+    },
+    "whirlwind": {
+        "type": "normal",
+        "category": "status",
+        "power": null,
+        "accuracy": 0.85,
+        "pp": 20
+    },
+    "wing attack": {
+        "type": "flying",
+        "category": "physical",
+        "power": 35,
+        "accuracy": 1.0,
+        "pp": 35
+    },
+    "withdraw": {
+        "type": "water",
+        "category": "status",
+        "power": null,
+        "accuracy": null,
+        "pp": 40,
+        "effect": {
+            "stat": "defense",
+            "stages": 1
+        }
+    },
+    "wrap": {
+        "type": "normal",
+        "category": "physical",
+        "power": 15,
+        "accuracy": 0.9,
+        "pp": 20,
+        "changes": [
+            "In Generations 1-4, Wrap has 85% accuracy. Its after-effects last for 2-5 turns instead of 4-5.",
+            "In Generation 1, Wrap simply inflicts its base power damage for 2-5 turns. While in effect, the target is unable to attack."
+        ],
+        "effect": [
+            "Wrap inflicts damage on the first turn then traps the opponent, causing them to lose 1\u204416 of their maximum HP after each turn, for 4-5 turns. If the user holds a Grip Claw then it is always 5 turns."
+        ]
+    }
+}
