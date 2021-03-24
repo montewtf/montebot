@@ -12,7 +12,8 @@
             "Defense": 49,
             "Speed": 45,
             "Special": 65
-        }
+        },
+        "catch": 45
     },
     {
         "id": "002",
@@ -27,7 +28,8 @@
             "Defense": 63,
             "Speed": 60,
             "Special": 80
-        }
+        },
+        "catch": 45
     },
     {
         "id": "003",
@@ -42,7 +44,8 @@
             "Defense": 83,
             "Speed": 80,
             "Special": 100
-        }
+        },
+        "catch": 45
     },
     {
         "id": "004",
@@ -56,7 +59,8 @@
             "Defense": 43,
             "Speed": 65,
             "Special": 50
-        }
+        },
+        "catch": 45
     },
     {
         "id": "005",
@@ -70,7 +74,8 @@
             "Defense": 58,
             "Speed": 80,
             "Special": 65
-        }
+        },
+        "catch": 45
     },
     {
         "id": "006",
@@ -85,7 +90,8 @@
             "Defense": 78,
             "Speed": 100,
             "Special": 85
-        }
+        },
+        "catch": 45
     },
     {
         "id": "007",
@@ -99,7 +105,8 @@
             "Defense": 65,
             "Speed": 43,
             "Special": 50
-        }
+        },
+        "catch": 45
     },
     {
         "id": "008",
@@ -113,7 +120,8 @@
             "Defense": 80,
             "Speed": 58,
             "Special": 65
-        }
+        },
+        "catch": 45
     },
     {
         "id": "009",
@@ -127,7 +135,8 @@
             "Defense": 100,
             "Speed": 78,
             "Special": 85
-        }
+        },
+        "catch": 45
     },
     {
         "id": "010",
@@ -141,7 +150,8 @@
             "Defense": 35,
             "Speed": 45,
             "Special": 20
-        }
+        },
+        "catch": 255
     },
     {
         "id": "011",
@@ -155,7 +165,8 @@
             "Defense": 55,
             "Speed": 30,
             "Special": 25
-        }
+        },
+        "catch": 120
     },
     {
         "id": "012",
@@ -170,7 +181,8 @@
             "Defense": 50,
             "Speed": 70,
             "Special": 80
-        }
+        },
+        "catch": 45
     },
     {
         "id": "013",
@@ -185,7 +197,8 @@
             "Defense": 30,
             "Speed": 50,
             "Special": 20
-        }
+        },
+        "catch": 255
     },
     {
         "id": "014",
@@ -200,7 +213,8 @@
             "Defense": 50,
             "Speed": 35,
             "Special": 25
-        }
+        },
+        "catch": 120
     },
     {
         "id": "015",
@@ -215,7 +229,8 @@
             "Defense": 40,
             "Speed": 75,
             "Special": 45
-        }
+        },
+        "catch": 45
     },
     {
         "id": "016",
@@ -230,7 +245,8 @@
             "Defense": 40,
             "Speed": 56,
             "Special": 35
-        }
+        },
+        "catch": 255
     },
     {
         "id": "017",
@@ -245,7 +261,8 @@
             "Defense": 55,
             "Speed": 71,
             "Special": 50
-        }
+        },
+        "catch": 120
     },
     {
         "id": "018",
@@ -260,7 +277,8 @@
             "Defense": 75,
             "Speed": 911,
             "Special": 70
-        }
+        },
+        "catch": 45
     },
     {
         "id": "019",
@@ -274,7 +292,8 @@
             "Defense": 35,
             "Speed": 72,
             "Special": 25
-        }
+        },
+        "catch": 255
     },
     {
         "id": "020",
@@ -288,7 +307,8 @@
             "Defense": 60,
             "Speed": 97,
             "Special": 50
-        }
+        },
+        "catch": 127
     },
     {
         "id": "021",
@@ -303,7 +323,8 @@
             "Defense": 30,
             "Speed": 70,
             "Special": 31
-        }
+        },
+        "catch": 255
     },
     {
         "id": "022",
@@ -318,7 +339,8 @@
             "Defense": 65,
             "Speed": 100,
             "Special": 61
-        }
+        },
+        "catch": 90
     },
     {
         "id": "023",
@@ -332,7 +354,8 @@
             "Defense": 44,
             "Speed": 55,
             "Special": 40
-        }
+        },
+        "catch": 255
     },
     {
         "id": "024",
@@ -346,7 +369,8 @@
             "Defense": 69,
             "Speed": 80,
             "Special": 65
-        }
+        },
+        "catch": 90
     },
     {
         "id": "025",
@@ -360,7 +384,8 @@
             "Defense": 30,
             "Speed": 90,
             "Special": 50
-        }
+        },
+        "catch": 190
     },
     {
         "id": "026",
@@ -374,7 +399,8 @@
             "Defense": 55,
             "Speed": 100,
             "Special": 90
-        }
+        },
+        "catch": 75
     },
     {
         "id": "027",
@@ -388,7 +414,8 @@
             "Defense": 85,
             "Speed": 40,
             "Special": 30
-        }
+        },
+        "catch": 255
     },
     {
         "id": "028",
@@ -402,7 +429,8 @@
             "Defense": 110,
             "Speed": 65,
             "Special": 55
-        }
+        },
+        "catch": 90
     },
     {
         "id": "029",
@@ -416,7 +444,8 @@
             "Defense": 52,
             "Speed": 41,
             "Special": 40
-        }
+        },
+        "catch": 235
     },
     {
         "id": "030",
@@ -430,7 +459,8 @@
             "Defense": 67,
             "Speed": 56,
             "Special": 55
-        }
+        },
+        "catch": 120
     },
     {
         "id": "031",
@@ -445,7 +475,8 @@
             "Defense": 87,
             "Speed": 76,
             "Special": 75
-        }
+        },
+        "catch": 45
     },
     {
         "id": "032",
@@ -459,7 +490,8 @@
             "Defense": 40,
             "Speed": 50,
             "Special": 40
-        }
+        },
+        "catch": 235
     },
     {
         "id": "033",
@@ -473,7 +505,8 @@
             "Defense": 57,
             "Speed": 65,
             "Special": 55
-        }
+        },
+        "catch": 120
     },
     {
         "id": "034",
@@ -488,7 +521,8 @@
             "Defense": 77,
             "Speed": 85,
             "Special": 75
-        }
+        },
+        "catch": 45
     },
     {
         "id": "035",
@@ -502,7 +536,8 @@
             "Defense": 48,
             "Speed": 35,
             "Special": 60
-        }
+        },
+        "catch": 150
     },
     {
         "id": "036",
@@ -516,7 +551,8 @@
             "Defense": 73,
             "Speed": 60,
             "Special": 85
-        }
+        },
+        "catch": 25
     },
     {
         "id": "037",
@@ -530,7 +566,8 @@
             "Defense": 40,
             "Speed": 65,
             "Special": 65
-        }
+        },
+        "catch": 190
     },
     {
         "id": "038",
@@ -544,7 +581,8 @@
             "Defense": 75,
             "Speed": 100,
             "Special": 100
-        }
+        },
+        "catch": 75
     },
     {
         "id": "039",
@@ -559,7 +597,8 @@
             "Defense": 20,
             "Speed": 20,
             "Special": 25
-        }
+        },
+        "catch": 170
     },
     {
         "id": "040",
@@ -574,7 +613,8 @@
             "Defense": 45,
             "Speed": 45,
             "Special": 50
-        }
+        },
+        "catch": 50
     },
     {
         "id": "041",
@@ -589,7 +629,8 @@
             "Defense": 35,
             "Speed": 55,
             "Special": 40
-        }
+        },
+        "catch": 255
     },
     {
         "id": "042",
@@ -604,7 +645,8 @@
             "Defense": 70,
             "Speed": 90,
             "Special": 75
-        }
+        },
+        "catch": 90
     },
     {
         "id": "043",
@@ -619,7 +661,8 @@
             "Defense": 55,
             "Speed": 30,
             "Special": 75
-        }
+        },
+        "catch": 255
     },
     {
         "id": "044",
@@ -634,7 +677,8 @@
             "Defense": 70,
             "Speed": 40,
             "Special": 85
-        }
+        },
+        "catch": 120
     },
     {
         "id": "045",
@@ -649,7 +693,8 @@
             "Defense": 85,
             "Speed": 50,
             "Special": 100
-        }
+        },
+        "catch": 45
     },
     {
         "id": "046",
@@ -664,7 +709,8 @@
             "Defense": 55,
             "Speed": 25,
             "Special": 55
-        }
+        },
+        "catch": 190
     },
     {
         "id": "047",
@@ -679,7 +725,8 @@
             "Defense": 80,
             "Speed": 30,
             "Special": 80
-        }
+        },
+        "catch": 75
     },
     {
         "id": "048",
@@ -694,7 +741,8 @@
             "Defense": 50,
             "Speed": 45,
             "Special": 40
-        }
+        },
+        "catch": 190
     },
     {
         "id": "049",
@@ -709,7 +757,8 @@
             "Defense": 60,
             "Speed": 90,
             "Special": 90
-        }
+        },
+        "catch": 75
     },
     {
         "id": "050",
@@ -723,7 +772,8 @@
             "Defense": 25,
             "Speed": 95,
             "Special": 45
-        }
+        },
+        "catch": 255
     },
     {
         "id": "051",
@@ -737,7 +787,8 @@
             "Defense": 50,
             "Speed": 120,
             "Special": 70
-        }
+        },
+        "catch": 50
     },
     {
         "id": "052",
@@ -751,7 +802,8 @@
             "Defense": 35,
             "Speed": 90,
             "Special": 40
-        }
+        },
+        "catch": 255
     },
     {
         "id": "053",
@@ -765,7 +817,8 @@
             "Defense": 60,
             "Speed": 115,
             "Special": 65
-        }
+        },
+        "catch": 90
     },
     {
         "id": "054",
@@ -779,7 +832,8 @@
             "Defense": 48,
             "Speed": 55,
             "Special": 50
-        }
+        },
+        "catch": 190
     },
     {
         "id": "055",
@@ -793,7 +847,8 @@
             "Defense": 78,
             "Speed": 85,
             "Special": 80
-        }
+        },
+        "catch": 75
     },
     {
         "id": "056",
@@ -807,7 +862,8 @@
             "Defense": 35,
             "Speed": 70,
             "Special": 35
-        }
+        },
+        "catch": 190
     },
     {
         "id": "057",
@@ -821,7 +877,8 @@
             "Defense": 60,
             "Speed": 95,
             "Special": 60
-        }
+        },
+        "catch": 75
     },
     {
         "id": "058",
@@ -835,7 +892,8 @@
             "Defense": 45,
             "Speed": 60,
             "Special": 50
-        }
+        },
+        "catch": 190
     },
     {
         "id": "059",
@@ -849,7 +907,8 @@
             "Defense": 80,
             "Speed": 95,
             "Special": 80
-        }
+        },
+        "catch": 75
     },
     {
         "id": "060",
@@ -863,7 +922,8 @@
             "Defense": 40,
             "Speed": 90,
             "Special": 40
-        }
+        },
+        "catch": 255
     },
     {
         "id": "061",
@@ -877,7 +937,8 @@
             "Defense": 65,
             "Speed": 90,
             "Special": 50
-        }
+        },
+        "catch": 120
     },
     {
         "id": "062",
@@ -892,7 +953,8 @@
             "Defense": 95,
             "Speed": 70,
             "Special": 70
-        }
+        },
+        "catch": 45
     },
     {
         "id": "063",
@@ -906,7 +968,8 @@
             "Defense": 15,
             "Speed": 90,
             "Special": 105
-        }
+        },
+        "catch": 200
     },
     {
         "id": "064",
@@ -920,7 +983,8 @@
             "Defense": 30,
             "Speed": 105,
             "Special": 120
-        }
+        },
+        "catch": 100
     },
     {
         "id": "065",
@@ -934,7 +998,8 @@
             "Defense": 45,
             "Speed": 120,
             "Special": 135
-        }
+        },
+        "catch": 50
     },
     {
         "id": "066",
@@ -948,7 +1013,8 @@
             "Defense": 50,
             "Speed": 35,
             "Special": 35
-        }
+        },
+        "catch": 180
     },
     {
         "id": "067",
@@ -962,7 +1028,8 @@
             "Defense": 70,
             "Speed": 45,
             "Special": 50
-        }
+        },
+        "catch": 90
     },
     {
         "id": "068",
@@ -976,7 +1043,8 @@
             "Defense": 80,
             "Speed": 55,
             "Special": 65
-        }
+        },
+        "catch": 45
     },
     {
         "id": "069",
@@ -991,7 +1059,8 @@
             "Defense": 35,
             "Speed": 40,
             "Special": 70
-        }
+        },
+        "catch": 255
     },
     {
         "id": "070",
@@ -1006,7 +1075,8 @@
             "Defense": 50,
             "Speed": 55,
             "Special": 85
-        }
+        },
+        "catch": 120
     },
     {
         "id": "071",
@@ -1021,7 +1091,8 @@
             "Defense": 65,
             "Speed": 70,
             "Special": 100
-        }
+        },
+        "catch": 45
     },
     {
         "id": "072",
@@ -1036,7 +1107,8 @@
             "Defense": 35,
             "Speed": 70,
             "Special": 100
-        }
+        },
+        "catch": 190
     },
     {
         "id": "073",
@@ -1051,7 +1123,8 @@
             "Defense": 65,
             "Speed": 100,
             "Special": 120
-        }
+        },
+        "catch": 60
     },
     {
         "id": "074",
@@ -1066,7 +1139,8 @@
             "Defense": 100,
             "Speed": 20,
             "Special": 30
-        }
+        },
+        "catch": 255
     },
     {
         "id": "075",
@@ -1081,7 +1155,8 @@
             "Defense": 115,
             "Speed": 35,
             "Special": 45
-        }
+        },
+        "catch": 120
     },
     {
         "id": "076",
@@ -1096,7 +1171,8 @@
             "Defense": 130,
             "Speed": 45,
             "Special": 55
-        }
+        },
+        "catch": 45
     },
     {
         "id": "077",
@@ -1110,7 +1186,8 @@
             "Defense": 55,
             "Speed": 90,
             "Special": 65
-        }
+        },
+        "catch": 190
     },
     {
         "id": "078",
@@ -1124,7 +1201,8 @@
             "Defense": 70,
             "Speed": 105,
             "Special": 80
-        }
+        },
+        "catch": 60
     },
     {
         "id": "079",
@@ -1139,7 +1217,8 @@
             "Defense": 65,
             "Speed": 15,
             "Special": 40
-        }
+        },
+        "catch": 190
     },
     {
         "id": "080",
@@ -1154,7 +1233,8 @@
             "Defense": 110,
             "Speed": 30,
             "Special": 80
-        }
+        },
+        "catch": 75
     },
     {
         "id": "081",
@@ -1169,7 +1249,8 @@
             "Defense": 70,
             "Speed": 45,
             "Special": 95
-        }
+        },
+        "catch": 190
     },
     {
         "id": "082",
@@ -1184,7 +1265,8 @@
             "Defense": 95,
             "Speed": 70,
             "Special": 120
-        }
+        },
+        "catch": 60
     },
     {
         "id": "083",
@@ -1199,7 +1281,8 @@
             "Defense": 55,
             "Speed": 60,
             "Special": 58
-        }
+        },
+        "catch": 45
     },
     {
         "id": "084",
@@ -1214,7 +1297,8 @@
             "Defense": 45,
             "Speed": 75,
             "Special": 35
-        }
+        },
+        "catch": 190
     },
     {
         "id": "085",
@@ -1229,7 +1313,8 @@
             "Defense": 70,
             "Speed": 100,
             "Special": 60
-        }
+        },
+        "catch": 45
     },
     {
         "id": "086",
@@ -1243,7 +1328,8 @@
             "Defense": 55,
             "Speed": 45,
             "Special": 70
-        }
+        },
+        "catch": 190
     },
     {
         "id": "087",
@@ -1258,7 +1344,8 @@
             "Defense": 80,
             "Speed": 70,
             "Special": 95
-        }
+        },
+        "catch": 75
     },
     {
         "id": "088",
@@ -1272,7 +1359,8 @@
             "Defense": 50,
             "Speed": 25,
             "Special": 40
-        }
+        },
+        "catch": 190
     },
     {
         "id": "089",
@@ -1286,7 +1374,8 @@
             "Defense": 75,
             "Speed": 50,
             "Special": 65
-        }
+        },
+        "catch": 75
     },
     {
         "id": "090",
@@ -1300,7 +1389,8 @@
             "Defense": 100,
             "Speed": 40,
             "Special": 45
-        }
+        },
+        "catch": 190
     },
     {
         "id": "091",
@@ -1315,7 +1405,8 @@
             "Defense": 180,
             "Speed": 70,
             "Special": 85
-        }
+        },
+        "catch": 60
     },
     {
         "id": "092",
@@ -1330,7 +1421,8 @@
             "Defense": 30,
             "Speed": 80,
             "Special": 100
-        }
+        },
+        "catch": 190
     },
     {
         "id": "093",
@@ -1345,7 +1437,8 @@
             "Defense": 45,
             "Speed": 95,
             "Special": 115
-        }
+        },
+        "catch": 90
     },
     {
         "id": "094",
@@ -1360,7 +1453,8 @@
             "Defense": 60,
             "Speed": 110,
             "Special": 130
-        }
+        },
+        "catch": 45
     },
     {
         "id": "095",
@@ -1375,7 +1469,8 @@
             "Defense": 160,
             "Speed": 70,
             "Special": 30
-        }
+        },
+        "catch": 45
     },
     {
         "id": "096",
@@ -1389,7 +1484,8 @@
             "Defense": 45,
             "Speed": 42,
             "Special": 90
-        }
+        },
+        "catch": 190
     },
     {
         "id": "097",
@@ -1403,7 +1499,8 @@
             "Defense": 70,
             "Speed": 67,
             "Special": 115
-        }
+        },
+        "catch": 75
     },
     {
         "id": "098",
@@ -1417,7 +1514,8 @@
             "Defense": 90,
             "Speed": 50,
             "Special": 25
-        }
+        },
+        "catch": 225
     },
     {
         "id": "099",
@@ -1431,7 +1529,8 @@
             "Defense": 115,
             "Speed": 75,
             "Special": 50
-        }
+        },
+        "catch": 60
     },
     {
         "id": "100",
@@ -1445,7 +1544,8 @@
             "Defense": 50,
             "Speed": 100,
             "Special": 55
-        }
+        },
+        "catch": 190
     },
     {
         "id": "101",
@@ -1459,7 +1559,8 @@
             "Defense": 70,
             "Speed": 140,
             "Special": 80
-        }
+        },
+        "catch": 60
     },
     {
         "id": "102",
@@ -1474,7 +1575,8 @@
             "Defense": 80,
             "Speed": 40,
             "Special": 60
-        }
+        },
+        "catch": 90
     },
     {
         "id": "103",
@@ -1489,7 +1591,8 @@
             "Defense": 85,
             "Speed": 55,
             "Special": 125
-        }
+        },
+        "catch": 45
     },
     {
         "id": "104",
@@ -1503,7 +1606,8 @@
             "Defense": 95,
             "Speed": 35,
             "Special": 40
-        }
+        },
+        "catch": 190
     },
     {
         "id": "105",
@@ -1517,7 +1621,8 @@
             "Defense": 110,
             "Speed": 45,
             "Special": 50
-        }
+        },
+        "catch": 75
     },
     {
         "id": "106",
@@ -1531,7 +1636,8 @@
             "Defense": 53,
             "Speed": 87,
             "Special": 35
-        }
+        },
+        "catch": 45
     },
     {
         "id": "107",
@@ -1545,7 +1651,8 @@
             "Defense": 79,
             "Speed": 76,
             "Special": 35
-        }
+        },
+        "catch": 45
     },
     {
         "id": "108",
@@ -1559,7 +1666,8 @@
             "Defense": 75,
             "Speed": 30,
             "Special": 60
-        }
+        },
+        "catch": 45
     },
     {
         "id": "109",
@@ -1573,7 +1681,8 @@
             "Defense": 95,
             "Speed": 35,
             "Special": 60
-        }
+        },
+        "catch": 190
     },
     {
         "id": "110",
@@ -1587,7 +1696,8 @@
             "Defense": 120,
             "Speed": 60,
             "Special": 85
-        }
+        },
+        "catch": 60
     },
     {
         "id": "111",
@@ -1602,7 +1712,8 @@
             "Defense": 95,
             "Speed": 25,
             "Special": 30
-        }
+        },
+        "catch": 120
     },
     {
         "id": "112",
@@ -1617,7 +1728,8 @@
             "Defense": 120,
             "Speed": 40,
             "Special": 45
-        }
+        },
+        "catch": 60
     },
     {
         "id": "113",
@@ -1631,7 +1743,8 @@
             "Defense": 5,
             "Speed": 50,
             "Special": 105
-        }
+        },
+        "catch": 30
     },
     {
         "id": "114",
@@ -1645,7 +1758,8 @@
             "Defense": 115,
             "Speed": 60,
             "Special": 100
-        }
+        },
+        "catch": 45
     },
     {
         "id": "115",
@@ -1659,7 +1773,8 @@
             "Defense": 80,
             "Speed": 90,
             "Special": 40
-        }
+        },
+        "catch": 45
     },
     {
         "id": "116",
@@ -1673,7 +1788,8 @@
             "Defense": 70,
             "Speed": 60,
             "Special": 70
-        }
+        },
+        "catch": 225
     },
     {
         "id": "117",
@@ -1687,7 +1803,8 @@
             "Defense": 95,
             "Speed": 85,
             "Special": 95
-        }
+        },
+        "catch": 75
     },
     {
         "id": "118",
@@ -1701,7 +1818,8 @@
             "Defense": 60,
             "Speed": 63,
             "Special": 50
-        }
+        },
+        "catch": 225
     },
     {
         "id": "119",
@@ -1715,7 +1833,8 @@
             "Defense": 65,
             "Speed": 68,
             "Special": 80
-        }
+        },
+        "catch": 60
     },
     {
         "id": "120",
@@ -1729,7 +1848,8 @@
             "Defense": 55,
             "Speed": 85,
             "Special": 70
-        }
+        },
+        "catch": 225
     },
     {
         "id": "121",
@@ -1744,7 +1864,8 @@
             "Defense": 85,
             "Speed": 115,
             "Special": 100
-        }
+        },
+        "catch": 60
     },
     {
         "id": "122",
@@ -1759,7 +1880,8 @@
             "Defense": 65,
             "Speed": 90,
             "Special": 100
-        }
+        },
+        "catch": 45
     },
     {
         "id": "123",
@@ -1774,7 +1896,8 @@
             "Defense": 80,
             "Speed": 105,
             "Special": 55
-        }
+        },
+        "catch": 45
     },
     {
         "id": "124",
@@ -1789,7 +1912,8 @@
             "Defense": 35,
             "Speed": 95,
             "Special": 95
-        }
+        },
+        "catch": 45
     },
     {
         "id": "125",
@@ -1803,7 +1927,8 @@
             "Defense": 57,
             "Speed": 105,
             "Special": 85
-        }
+        },
+        "catch": 45
     },
     {
         "id": "126",
@@ -1817,7 +1942,8 @@
             "Defense": 57,
             "Speed": 93,
             "Special": 85
-        }
+        },
+        "catch": 45
     },
     {
         "id": "127",
@@ -1831,7 +1957,8 @@
             "Defense": 100,
             "Speed": 85,
             "Special": 55
-        }
+        },
+        "catch": 45
     },
     {
         "id": "128",
@@ -1845,7 +1972,8 @@
             "Defense": 95,
             "Speed": 110,
             "Special": 70
-        }
+        },
+        "catch": 45
     },
     {
         "id": "129",
@@ -1859,7 +1987,8 @@
             "Defense": 55,
             "Speed": 80,
             "Special": 20
-        }
+        },
+        "catch": 255
     },
     {
         "id": "130",
@@ -1874,7 +2003,8 @@
             "Defense": 79,
             "Speed": 81,
             "Special": 100
-        }
+        },
+        "catch": 45
     },
     {
         "id": "131",
@@ -1889,7 +2019,8 @@
             "Defense": 80,
             "Speed": 60,
             "Special": 95
-        }
+        },
+        "catch": 45
     },
     {
         "id": "132",
@@ -1903,7 +2034,8 @@
             "Defense": 48,
             "Speed": 48,
             "Special": 48
-        }
+        },
+        "catch": 35
     },
     {
         "id": "133",
@@ -1917,7 +2049,8 @@
             "Defense": 50,
             "Speed": 55,
             "Special": 65
-        }
+        },
+        "catch": 45
     },
     {
         "id": "134",
@@ -1931,7 +2064,8 @@
             "Defense": 60,
             "Speed": 65,
             "Special": 110
-        }
+        },
+        "catch": 45
     },
     {
         "id": "135",
@@ -1945,7 +2079,8 @@
             "Defense": 60,
             "Speed": 130,
             "Special": 110
-        }
+        },
+        "catch": 45
     },
     {
         "id": "136",
@@ -1959,7 +2094,8 @@
             "Defense": 60,
             "Speed": 65,
             "Special": 110
-        }
+        },
+        "catch": 45
     },
     {
         "id": "137",
@@ -1973,7 +2109,8 @@
             "Defense": 70,
             "Speed": 40,
             "Special": 75
-        }
+        },
+        "catch": 45
     },
     {
         "id": "138",
@@ -1988,7 +2125,8 @@
             "Defense": 100,
             "Speed": 35,
             "Special": 90
-        }
+        },
+        "catch": 45
     },
     {
         "id": "139",
@@ -2003,7 +2141,8 @@
             "Defense": 125,
             "Speed": 55,
             "Special": 115
-        }
+        },
+        "catch": 45
     },
     {
         "id": "140",
@@ -2018,7 +2157,8 @@
             "Defense": 90,
             "Speed": 55,
             "Special": 45
-        }
+        },
+        "catch": 45
     },
     {
         "id": "141",
@@ -2033,7 +2173,8 @@
             "Defense": 105,
             "Speed": 80,
             "Special": 70
-        }
+        },
+        "catch": 45
     },
     {
         "id": "142",
@@ -2048,7 +2189,8 @@
             "Defense": 65,
             "Speed": 130,
             "Special": 60
-        }
+        },
+        "catch": 45
     },
     {
         "id": "143",
@@ -2062,7 +2204,8 @@
             "Defense": 65,
             "Speed": 30,
             "Special": 65
-        }
+        },
+        "catch": 25
     },
     {
         "id": "144",
@@ -2077,7 +2220,8 @@
             "Defense": 100,
             "Speed": 85,
             "Special": 125
-        }
+        },
+        "catch": 3
     },
     {
         "id": "145",
@@ -2092,7 +2236,8 @@
             "Defense": 85,
             "Speed": 100,
             "Special": 125
-        }
+        },
+        "catch": 3
     },
     {
         "id": "146",
@@ -2107,7 +2252,8 @@
             "Defense": 90,
             "Speed": 90,
             "Special": 125
-        }
+        },
+        "catch": 3
     },
     {
         "id": "147",
@@ -2121,7 +2267,8 @@
             "Defense": 45,
             "Speed": 50,
             "Special": 50
-        }
+        },
+        "catch": 45
     },
     {
         "id": "148",
@@ -2135,7 +2282,8 @@
             "Defense": 65,
             "Speed": 70,
             "Special": 70
-        }
+        },
+        "catch": 45
     },
     {
         "id": "149",
@@ -2150,7 +2298,8 @@
             "Defense": 95,
             "Speed": 80,
             "Special": 100
-        }
+        },
+        "catch": 45
     },
     {
         "id": "150",
@@ -2164,7 +2313,8 @@
             "Defense": 90,
             "Speed": 130,
             "Special": 154
-        }
+        },
+        "catch": 3
     },
     {
         "id": "151",
@@ -2178,6 +2328,7 @@
             "Defense": 100,
             "Speed": 100,
             "Special": 100
-        }
+        },
+        "catch": 45
     }
 ]
