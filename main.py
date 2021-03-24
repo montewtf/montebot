@@ -17,6 +17,18 @@ def are_u_monte(ctx):
 
 @bot.command(hidden=True)
 @commands.check(are_u_monte)
+async def load(ctx, extension):
+    bot.load_extension(extension)
+    print(extension+" loaded")
+    
+@bot.command(hidden=True)
+@commands.check(are_u_monte)
+async def unload(ctx, extension):
+    bot.unload_extension(extension)
+    print(extension+" unloaded")
+    
+@bot.command(hidden=True)
+@commands.check(are_u_monte)
 async def reload(ctx, extension):
     bot.reload_extension(extension)
     print(extension+" reloaded")

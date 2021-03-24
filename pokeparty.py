@@ -59,35 +59,47 @@ class party:
             i+=1
 
 class pokemon:
-    def __init__(self, species, level, hploss=0, iv={}, moves={}, name=None):
-        self.id = species["id"]
-        self.species = species["name"]
-        self.types = species["type"]
-        self.base = species["base"]
-        self.level = int(level)
-        self.name = name
-        if iv=={}:
+    def __init__(self, poke={}, species={}, level=0, hploss=0, name=None):
+        if poke == {}:
+            self.id = species["id"]
+            self.species = species["name"]
+            self.types = species["type"]
+            self.base = species["base"]
+            self.level = int(level)
+            self.name = name
+            self.status = None
             self.genIV()
-        else:
-            self.ivhp = iv["HP"]
-            self.ivattack = iv["Attack"]
-            self.ivdefense = iv["Defense"]
-            self.ivspeed = iv["Speed"]
-            self.ivspecial = iv["Special"]
-        self.hploss = hploss
-        self.getStats()
-        if moves=={}:
+            self.getStats()
+            self.curhp = self.hp - hploss
             self.move1 = None
             self.move2 = None
             self.move3 = None
             self.move4 = None
             self.getMoves()
         else:
-            self.move1 = moves.get["1"]
-            self.move2 = moves.get["2"]
-            self.move3 = moves.get["3"]
-            self.move4 = moves.get["4"]
-
+            self.id = poke["id"]
+            self.species = poke["species"]
+            self.types = poke["types"]
+            self.base = poke["base"]
+            self.level = poke["level"]
+            self.name = poke["name"]
+            self.status = poke["status"]
+            iv = poke["iv"]
+            self.ivattack = iv["Attack"]
+            self.ivdefense = iv["Defense"]
+            self.ivspeed = iv["Speed"]
+            self.ivspecial = iv["Special"]
+            self.ivhp = iv["HP"]
+            self.getStats()
+            self.curhp = poke["stats"].get("CurHP") - hploss
+            moves = poke["moves"]
+            self.move1 = moves["move1"]
+            self.move2 = moves["move2"]
+            self.move3 = moves["move3"]
+            self.move4 = moves["move4"]
+            if "catch" in poke:
+                self.catch=poke["catch"]
+            
     def genIV(self):
         self.ivattack = random.randint(0,15)
         self.ivdefense = random.randint(0,15)
@@ -97,7 +109,6 @@ class pokemon:
 
     def getStats(self):
         self.hp = math.floor((((self.base["HP"]+self.ivhp)*2+(math.sqrt(65535)/4))*(self.level/100))+self.level+10)
-        self.curhp = self.hp - self.hploss
         self.attack = math.floor((((self.base["Attack"]+self.ivattack)*2+(math.sqrt(65535)/4))*(self.level/100))+5)
         self.defense = math.floor((((self.base["Defense"]+self.ivdefense)*2+(math.sqrt(65535)/4))*(self.level/100))+5)
         self.speed = math.floor((((self.base["Speed"]+self.ivspeed)*2+(math.sqrt(65535)/4))*(self.level/100))+5)
@@ -111,11 +122,19 @@ class pokemon:
         while i>0:
             if i==1 and isinstance(moves.get("1"), list):
                 level1 = moves.get("1")
+                if self.move1 in level1:
+                    level1.pop(level1.index(self.move1))
+                if self.move2 in level1:
+                    level1.pop(level1.index(self.move2))
+                if self.move3 in level1:
+                    level1.pop(level1.index(self.move3))
+                if self.move4 in level1:
+                    level1.pop(level1.index(self.move4))
                 while len(level1)>0:
                     if self.addMoves(level1.pop(0)):
                         break                    
             elif str(i) in moves:
-                if self.addmoves(moves.get(str(i))):
+                if self.addMoves(moves.get(str(i))):
                     break
             i-=1
 
@@ -134,6 +153,7 @@ class pokemon:
             return 0
         else:
             return 1
+        
     def export(self):
         summary = {
         "id" : self.id,
@@ -141,8 +161,9 @@ class pokemon:
         "species" : self.species,
         "level" : self.level,
         "types" : self.types,
+        "status" : self.status,
         "stats" : {
-            "Current HP" : self.curhp,
+            "CurHP" : self.curhp,
             "HP" : self.hp,
             "Attack" : self.attack,
             "Defense" : self.defense,
@@ -162,5 +183,6 @@ class pokemon:
             "Speed" : self.ivspeed,
             "Special" : self.ivspecial,
             },
+        "base" : self.base 
         }
         return summary
