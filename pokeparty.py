@@ -13,7 +13,9 @@ class party:
         self.p4 = party["4"]
         self.p5 = party["5"]
         self.p6 = party["6"]
-        self.__p7 = {}
+        if "7" in party:
+            self.p7 = party["7"]
+        else: self.p7 = None
         
     def recon(self):
         party = {"1":self.p1,
@@ -21,30 +23,36 @@ class party:
                  "3":self.p3,
                  "4":self.p4,
                  "5":self.p5,
-                 "6":self.p6,}
+                 "6":self.p6,
+                 }
+        if self.p7 != None:
+            party["7"] = self.p7
         return party
     
-    def swap(self, s1, s2):
+    def swap(self, s1:int, s2:int):
         if s1>6 or s2>6:
             return 1
         party = self.recon()
         if not party.get(str(s1)) or not party.get(str(s2)):
             return 1
-        self.__p7 = party.get(str(s1))
+        swap = party.get(str(s1))
         party[str(s1)] = party[str(s2)]
-        party[str(s2)] = self.__p7
+        party[str(s2)] = swap
         self.decon(party)
+        return 0
     
     def remove(self, r1):
         if r1>6:
             return 1
-        party = self.recon()
-        party[str(r1)] = None
-        self.decon(party)
         i=r1
         while i<6:
-            self.swap(i, i+1)
+            if self.swap(i, i+1):
+                break
             i+=1
+        party=self.recon()
+        party[str(i)] = None
+        self.decon(party)
+        return 0
     
     def add(self, a1):
         party = self.recon()
@@ -76,6 +84,7 @@ class pokemon:
             self.move3 = None
             self.move4 = None
             self.getMoves()
+            self.catch = None
         else:
             self.id = poke["id"]
             self.species = poke["species"]
@@ -99,6 +108,7 @@ class pokemon:
             self.move4 = moves["move4"]
             if "catch" in poke:
                 self.catch=poke["catch"]
+            else: self.catch = None
             
     def genIV(self):
         self.ivattack = random.randint(0,15)
@@ -185,4 +195,44 @@ class pokemon:
             },
         "base" : self.base 
         }
+        if self.catch != None:
+            summary["catch"] = self.catch
+            summary["run"] = 1
         return summary
+    
+class battle:
+    def __init__(self, poke1, poke2):
+        self.user = poke1
+        self.target = poke2
+        
+    def attacks2(self, move1, move2):
+        if True:#self.user.speed > self.target.speed:
+            if move1["category"]=="special":
+                if move1["type"] in self.user.types:stab=1.5
+                else:stab=1
+                if False:
+                    typee="this is where type effectiveness goes"
+                else:typee=1
+                modifier=stab*typee*(random.randint(85,100)/100)
+                damage=math.floor(((2*self.user.level/5+2)*move1["power"]*self.user.special/self.target.special/50+2)*modifier)
+                self.target.curhp-=damage
+                if self.target.curhp<0:self.target.curhp=0
+            elif move1["category"]=="physical":
+                if move1["type"] in self.user.types:stab=1.5
+                else:stab=1
+                if False:
+                    typee="this is where type effectiveness goes"
+                else:typee=1
+                modifier=stab*typee*(random.randint(85,100)/100)
+                damage=math.floor(((2*self.user.level/5+2)*move1["power"]*self.user.attack/self.target.defense/50+2)*modifier)
+                self.target.curhp-=damage
+                if self.target.curhp<0:self.target.curhp=0
+            else:
+                pass
+            return(self.target)
+    
+    def attacks1(self, move2):
+        pass
+    
+    def attacks0(self):
+        pass
