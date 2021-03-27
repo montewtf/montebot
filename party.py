@@ -9,7 +9,17 @@ class Pokemon(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         
-    @commands.command()
+    def in_fight(ctx):
+        with open("json/parties.json") as f_obj:
+            fights = json.load(f_obj)
+        return "7" not in fights.get(str(ctx.author.id))
+    
+    async def cog_command_error(self, ctx, error):
+        if isinstance(error, commands.errors.CheckFailure):
+            await ctx.send("You can't do that during a battle")
+            
+    @commands.command(brief="Display's your party of Pokemon", description="Display's your party of Pokemon", help="Can't be used during battle")
+    @commands.check(in_fight)
     async def party(self, ctx):
         with open("json/parties.json") as f_obj:
             dic = json.load(f_obj)
@@ -32,7 +42,7 @@ class Pokemon(commands.Cog):
             i+=1
         await ctx.send(embed=embed)
 
-    @commands.command()
+    @commands.command(brief="Checks your Pokemon's summary", description="Checks your Pokemon's summary", help="slot has to be 1-6 and has to have a Pokemon in it. Can be used during battles.")
     async def summary(self, ctx, slot):
         with open("json/parties.json") as f_obj:
             dic = json.load(f_obj)
@@ -57,19 +67,27 @@ class Pokemon(commands.Cog):
             embed.add_field(name="Types", value=poke.types[0]+", "+poke.types[1], inline=False)
         else:
             embed.add_field(name="Type", value=poke.types[0], inline=False)
-        with open("json/moves.json") as f_obj:
-            moves2 = json.load(f_obj)
+        
         embed.add_field(name="HP", value=str(poke.curhp)+"/"+str(poke.hp), inline=False)
         embed.add_field(name="Attack", value=poke.attack, inline=True)
         embed.add_field(name="Defense", value=poke.defense, inline=True)
         embed.add_field(name="Special", value=poke.special, inline=True)
         embed.add_field(name="Speed", value=poke.speed, inline=True)
-        embed2=discord.Embed(title="Moves")
-        embed2.add_field(name=poke.move1, value="-", inline=True)
-        embed2.add_field(name=poke.move2, value="-", inline=True)
+        with open("json/moves.json") as f_obj:
+            moves = json.load(f_obj)
+        move1=moves[poke.move1.lower()]
+        if poke.move2 != None: move2=moves[poke.move2.lower()]
+        if poke.move3 != None: move3=moves[poke.move3.lower()]
+        if poke.move4 != None: move4=moves[poke.move4.lower()]
+        embed2=discord.Embed(title="Moves", color=discord.Color.blue())
+        embed2.add_field(name=poke.move1+" ("+move1["type"].capitalize()+")", value="Power: "+str(move1["power"]), inline=True)
+        if poke.move2 != None: embed2.add_field(name=poke.move2+" ("+move2["type"].capitalize()+")", value="Power: "+str(move2["power"]), inline=True)
+        else: embed2.add_field(name="Empty", value="\u200B", inline=True)
         embed2.add_field(name="\u200B", value="\u200B", inline=True)
-        embed2.add_field(name=poke.move3, value="-", inline=True)
-        embed2.add_field(name=poke.move4, value="-", inline=True)
+        if poke.move3 != None: embed2.add_field(name=poke.move3+" ("+move3["type"].capitalize()+")", value="Power: "+str(move3["power"]), inline=True)
+        else: embed2.add_field(name="Empty", value="\u200B", inline=True)
+        if poke.move4 != None: embed2.add_field(name=poke.move4+" ("+move4["type"].capitalize()+")", value="Power: "+str(move4["power"]), inline=True)
+        else: embed2.add_field(name="Empty", value="\u200B", inline=True)
         embed2.add_field(name="\u200B", value="\u200B", inline=True)
         await ctx.send(file=file, embed=embed)
         await ctx.send(embed=embed2)
@@ -105,7 +123,8 @@ class Pokemon(commands.Cog):
         with open("json/parties.json", "w") as f_obj:
             json.dump(dic, f_obj, indent=4)
 
-    @commands.command()
+    @commands.command(brief="Releases Pokemon", description="Releases Pokemon", help="Slot has to be 1-6 and have a pokemon in it. Gives you a chance to confirm before it releases. Can't be used in battle")
+    @commands.check(in_fight)
     async def release(self, ctx, slot):
         with open("json/parties.json") as f_obj:
             dic = json.load(f_obj)
@@ -116,7 +135,7 @@ class Pokemon(commands.Cog):
         if currentp.remove(int(slot)):
             await ctx.send("Invalid slot")
             return
-        msg = await ctx.send("Are you sure you want to delete the pokemon in slot "+slot+"? (y/n)")
+        await ctx.send("Are you sure you want to delete the pokemon in slot "+slot+"? (y/n)")
         def yes(m):
             return m.author == ctx.author
         try:
@@ -133,7 +152,8 @@ class Pokemon(commands.Cog):
         else:
             await ctx.send("Invalid answer")
         
-    @commands.command()
+    @commands.command(brief="Swaps Pokemon", description="Swaps Pokemon", help="Slot1 and slot2 has to be 1-6 and have pokemon in them. Slot1 and slot2 can be in any order. Can't be used in battle")
+    @commands.check(in_fight)
     async def swap(self, ctx, slot1, slot2):
         with open("json/parties.json") as f_obj:
             dic = json.load(f_obj)
@@ -149,7 +169,7 @@ class Pokemon(commands.Cog):
         with open("json/parties.json", "w") as f_obj:
             json.dump(dic, f_obj, indent=4)
 
-    @commands.command()
+    @commands.command(brief="Picks a starter", description="Picks a starter", help="Starter has to be one of the kanto starters. Name is optional nickname. Can't be used with pokemon in your party")
     async def starter(self, ctx, starter, name=None):
         with open("json/parties.json") as f_obj:
             dic = json.load(f_obj)
@@ -169,7 +189,7 @@ class Pokemon(commands.Cog):
                 json.dump(dic, f_obj, indent=4)
             await ctx.send("You have obtained "+str(starter).capitalize()+"!")
             
-    @commands.command()
+    @commands.command(brief="Generates a wild pokemon battle", description="Generates a wild pokemon battle", help="Wild pokemon can be any of 151 and a random level 1-100")
     async def wild(self, ctx):
         with open("json/parties.json") as f_obj:
             parties = json.load(f_obj)
