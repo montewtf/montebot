@@ -360,7 +360,7 @@
     },
     "dragon rage": {
         "type": "dragon",
-        "category": "special",
+        "category": "status",
         "power": null,
         "accuracy": 1.0,
         "pp": 10,
@@ -893,7 +893,7 @@
     },
     "night shade": {
         "type": "ghost",
-        "category": "physical",
+        "category": "status",
         "power": null,
         "accuracy": 1.0,
         "pp": 15,
@@ -1157,7 +1157,7 @@
     },
     "seismic toss": {
         "type": "fighting",
-        "category": "physical",
+        "category": "status",
         "power": null,
         "accuracy": 1.0,
         "pp": 20,
