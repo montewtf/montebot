@@ -80,15 +80,13 @@ class Pokemon(commands.Cog):
         if poke.move3 != None: move3=moves[poke.move3.lower()]
         if poke.move4 != None: move4=moves[poke.move4.lower()]
         embed2=discord.Embed(title="Moves", color=discord.Color.blue())
-        embed2.add_field(name=poke.move1+" ("+move1["type"].capitalize()+")", value="Power: "+str(move1["power"]), inline=True)
-        if poke.move2 != None: embed2.add_field(name=poke.move2+" ("+move2["type"].capitalize()+")", value="Power: "+str(move2["power"]), inline=True)
-        else: embed2.add_field(name="Empty", value="\u200B", inline=True)
-        embed2.add_field(name="\u200B", value="\u200B", inline=True)
-        if poke.move3 != None: embed2.add_field(name=poke.move3+" ("+move3["type"].capitalize()+")", value="Power: "+str(move3["power"]), inline=True)
-        else: embed2.add_field(name="Empty", value="\u200B", inline=True)
-        if poke.move4 != None: embed2.add_field(name=poke.move4+" ("+move4["type"].capitalize()+")", value="Power: "+str(move4["power"]), inline=True)
-        else: embed2.add_field(name="Empty", value="\u200B", inline=True)
-        embed2.add_field(name="\u200B", value="\u200B", inline=True)
+        embed2.add_field(name=poke.move1+" ("+move1["type"].capitalize()+")", value="Power: "+str(move1["power"]), inline=False)
+        if poke.move2 != None: embed2.add_field(name=poke.move2+" ("+move2["type"].capitalize()+")", value="Power: "+str(move2["power"]), inline=False)
+        else: embed2.add_field(name="Empty", value="\u200B", inline=False)
+        if poke.move3 != None: embed2.add_field(name=poke.move3+" ("+move3["type"].capitalize()+")", value="Power: "+str(move3["power"]), inline=False)
+        else: embed2.add_field(name="Empty", value="\u200B", inline=False)
+        if poke.move4 != None: embed2.add_field(name=poke.move4+" ("+move4["type"].capitalize()+")", value="Power: "+str(move4["power"]), inline=False)
+        else: embed2.add_field(name="Empty", value="\u200B", inline=False)
         await ctx.send(file=file, embed=embed)
         await ctx.send(embed=embed2)
     
@@ -154,7 +152,7 @@ class Pokemon(commands.Cog):
         
     @commands.command(brief="Swaps Pokemon", description="Swaps Pokemon", help="Slot1 and slot2 has to be 1-6 and have pokemon in them. Slot1 and slot2 can be in any order. Can't be used in battle")
     @commands.check(in_fight)
-    async def swap(self, ctx, slot1, slot2):
+    async def swap(self, ctx, slot1, slot2="1"):
         with open("json/parties.json") as f_obj:
             dic = json.load(f_obj)
         if dic.get(str(ctx.author.id)) == None:
@@ -189,6 +187,25 @@ class Pokemon(commands.Cog):
                 json.dump(dic, f_obj, indent=4)
             await ctx.send("You have obtained "+str(starter).capitalize()+"!")
             
+    @commands.command(brief="Heals Pokemon", description="Heals Pokemon", help="Can't be used in battle")
+    @commands.check(in_fight)
+    async def heal(self, ctx):
+        with open("json/parties.json") as f_obj:
+            parties = json.load(f_obj)
+        party = parties.get(str(ctx.author.id))
+        for key in party:
+            if party[key]!=None:
+                poke = party[key]
+                stats = poke["stats"]
+                poke["status"] = None
+                stats["CurHP"] = stats["HP"]
+                poke["stats"] = stats
+                party[key] = poke
+        await ctx.send("We hope to see you again")
+        parties[str(ctx.author.id)]=party
+        with open("json/parties.json", "w") as f_obj:
+            json.dump(parties, f_obj, indent=4)
+            
     @commands.command(brief="Generates a wild pokemon battle", description="Generates a wild pokemon battle", help="Wild pokemon can be any of 151 and a random level 1-100")
     async def wild(self, ctx):
         with open("json/parties.json") as f_obj:
@@ -218,25 +235,15 @@ class Pokemon(commands.Cog):
             parties[str(ctx.author.id)] = party
             with open("json/parties.json", "w") as f_obj:
                 json.dump(parties, f_obj, indent=4)
-        battle=pokeparty.pokemon(poke=party.get("7"))
-        file=discord.File("thumbnails/"+battle.id+".png", filename="image.png")
-        embed=discord.Embed(title=battle.species+" Lv."+str(battle.level), description=str(battle.curhp)+"/"+str(battle.hp))
-        embed.set_thumbnail(url="attachment://image.png")
-        embed.add_field(name="!fight", value="\u200B", inline=False)
-        embed.add_field(name="!pokemon", value="\u200B", inline=False)
-        embed.add_field(name="!catch", value="\u200B", inline=False)
-        embed.add_field(name="!run", value="\u200B", inline=False)
-        first = pokeparty.pokemon(party.get("1"))  
-        file2=discord.File("thumbnails/"+first.id+".png", filename="image2.png")
-        embed.set_image(url="attachment://image2.png")
-        if first.name==None:
-            embed.set_footer(text=first.species+" Lv."+str(first.level)+" "+str(first.curhp)+"/"+str(first.hp))
-        else:
-            embed.set_footer(text=first.name+" Lv."+str(first.level)+" "+str(first.curhp)+"/"+str(first.hp))
+        with open("json/parties.json") as f_obj:
+            parties = json.load(f_obj)
+        party = parties.get(str(ctx.author.id))
+        fight=self.bot.get_cog("Fight")
+        result=fight.battleBox(party)
         if checker:
-            await ctx.send("Wild "+battle.species+" appeared!", files=[file, file2], embed=embed)
+            await ctx.send("Wild "+battle.species+" appeared!", files=[result[1], result[2]], embed=result[0])
         else:
-            await ctx.send("Already in battle", files=[file, file2], embed=embed)
+            await ctx.send("Already in battle", files=[result[1], result[2]], embed=result[0])
         
 def setup(bot):
     bot.add_cog(Pokemon(bot))
