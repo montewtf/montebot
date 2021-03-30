@@ -206,33 +206,61 @@ class battle:
         self.target = poke2
         
     def attacks2(self, move1, move2):
-        if True:#self.user.speed > self.target.speed:
-            if move1["category"]=="special":
-                if move1["type"] in self.user.types:stab=1.5
-                else:stab=1
-                if False:
-                    typee="this is where type effectiveness goes"
-                else:typee=1
-                modifier=stab*typee*(random.randint(85,100)/100)
-                damage=math.floor(((2*self.user.level/5+2)*move1["power"]*self.user.special/self.target.special/50+2)*modifier)
-                self.target.curhp-=damage
-                if self.target.curhp<0:self.target.curhp=0
-            elif move1["category"]=="physical":
-                if move1["type"] in self.user.types:stab=1.5
-                else:stab=1
-                if False:
-                    typee="this is where type effectiveness goes"
-                else:typee=1
-                modifier=stab*typee*(random.randint(85,100)/100)
-                damage=math.floor(((2*self.user.level/5+2)*move1["power"]*self.user.attack/self.target.defense/50+2)*modifier)
-                self.target.curhp-=damage
-                if self.target.curhp<0:self.target.curhp=0
+        if self.user.speed > self.target.speed:
+            self.attacks1(move1=move1)
+            if self.target.curhp==0: return 0
+            self.attacks1(move2=move2)
+            return 1
+        elif self.user.speed < self.target.speed:
+            self.attacks1(move2=move2)
+            if self.user.curhp==0: return 0
+            self.attacks1(move1=move1)
+            return 2
+        else:
+            if random.randint(0,1):
+                self.attacks1(move1=move1)
+                if self.target.curhp==0: return 0
+                self.attacks1(move2=move2)
+                return 1
             else:
-                pass
-            return(self.target)
+                self.attacks1(move2=move2)
+                if self.user.curhp==0: return 0
+                self.attacks1(move1=move1)
+                return 2
     
-    def attacks1(self, move2):
-        pass
+    def attacks1(self, move1=None, move2=None):
+        if move1 != None:
+            if move1["type"] in self.user.types:stab=1.5
+            else:stab=1
+            if False:
+                typee="this is where type effectiveness goes"
+            else:typee=1
+            modifier=stab*typee*(random.randint(85,100)/100)
+            if move1["category"]=="special":
+                damage=math.floor(((2*self.user.level/5+2)*move1["power"]*self.user.special/self.target.special/50+2)*modifier)
+                if damage==0: damage=1
+            elif move1["category"]=="physical":
+                damage=math.floor(((2*self.user.level/5+2)*move1["power"]*self.user.attack/self.target.defense/50+2)*modifier)
+                if damage==0: damage=1
+            else: damage=0
+            self.target.curhp-=damage
+            if self.target.curhp<0:self.target.curhp=0
+        elif move2 != None:
+            if move2["type"] in self.target.types:stab=1.5
+            else:stab=1
+            if False:
+                typee="this is where type effectiveness goes"
+            else:typee=1
+            modifier=stab*typee*(random.randint(85,100)/100)
+            if move2["category"]=="special":
+                damage=math.floor(((2*self.target.level/5+2)*move2["power"]*self.target.special/self.user.special/50+2)*modifier)
+                if damage==0: damage=1
+            elif move2["category"]=="physical":
+                damage=math.floor(((2*self.target.level/5+2)*move2["power"]*self.target.attack/self.user.defense/50+2)*modifier)
+                if damage==0: damage=1
+            else: damage=0
+            self.user.curhp-=damage
+            if self.user.curhp<0:self.user.curhp=0
     
     def attacks0(self):
         pass
