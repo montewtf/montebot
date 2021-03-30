@@ -120,7 +120,19 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
             move=poke1.move4
         else:   
             return await ctx.send("Invalid move", files=[result[1], result[2]], embed=result[0])
-        val=battle.attacks2(moves[move.lower()],move5)
+        rlist=battle.attacks2(moves[move.lower()],move5)
+        val=rlist[0]
+        t1=rlist[1]
+        t2=1
+        if len(rlist)>2:t2=rlist[2]
+        if t1==0:effective1="It's not effective. "
+        elif t1<1:effective1="It's not very effective. "
+        elif t1>1:effective1="It's super effective. "
+        else:effective1=""
+        if t2==0:effective2="It's not effective. "
+        elif t2<1:effective2="It's not very effective. "
+        elif t2>1:effective2="It's super effective. "
+        else:effective2=""
         poke1=battle.user
         poke2=battle.target
         party["1"]=poke1.export()
@@ -129,22 +141,22 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
         if val==0:
             if poke2.curhp == 0:
                 del party["7"]
-                await ctx.send(poke1.species+" used "+move.title()+". "+poke2.species+" fainted")
+                await ctx.send(poke1.species+" used "+move.title()+". "+effective1+poke2.species+" fainted")
                 win = 1
             else:
-                await ctx.send(poke2.species+" used "+omove.title()+". "+poke1.species+" fainted", files=[result[1], result[2]], embed=result[0])
+                await ctx.send(poke2.species+" used "+omove.title()+". "+effective1+poke1.species+" fainted", files=[result[1], result[2]], embed=result[0])
         else:        
             if poke2.curhp == 0:
                 del party["7"]
-                await ctx.send(poke2.species+" used "+omove.title()+".\n"+poke1.species+" used "+move.title()+". "+poke2.species+" fainted")
+                await ctx.send(poke2.species+" used "+omove.title()+". "+effective1+"\n"+poke1.species+" used "+move.title()+". "+effective2+poke2.species+" fainted")
                 win = 1
             if poke1.curhp == 0:
-                await ctx.send(poke1.species+" used "+move.title()+".\n"+poke2.species+" used "+omove.title()+". "+poke1.species+" fainted", files=[result[1], result[2]], embed=result[0])
+                await ctx.send(poke1.species+" used "+move.title()+". "+effective1+"\n"+poke2.species+" used "+omove.title()+". "+effective2+poke1.species+" fainted", files=[result[1], result[2]], embed=result[0])
             else:
                 if val==1:
-                    await ctx.send(poke1.species+" used "+move.title()+".\n"+poke2.species+" used "+omove.title(), files=[result[1], result[2]], embed=result[0])
+                    await ctx.send(poke1.species+" used "+move.title()+". "+effective1+"\n"+poke2.species+" used "+omove.title()+effective2, files=[result[1], result[2]], embed=result[0])
                 else:
-                    await ctx.send(poke2.species+" used "+omove.title()+".\n"+poke1.species+" used "+move.title(), files=[result[1], result[2]], embed=result[0])
+                    await ctx.send(poke2.species+" used "+omove.title()+". "+effective1+"\n"+poke1.species+" used "+move.title()+effective2, files=[result[1], result[2]], embed=result[0])
         with open("json/parties.json") as f_obj:
             dic = json.load(f_obj)
         dic[str(ctx.author.id)] = party
@@ -233,21 +245,21 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
             result = self.battleBox(party)
             await ctx.send("Can't have more than 6 pokemon", files=[result[1], result[2]], embed=result[0])
             return
-        poke = pokeparty.pokemon(party.get("7"))
+        poke2 = pokeparty.pokemon(party.get("7"))
         r1 = random.randint(0,255)
-        if poke.status in ["sleep", "freeze"]:
+        if poke2.status in ["sleep", "freeze"]:
             s=25
-        elif poke.status in ["poison", "burn", "paralysis"]:
+        elif poke2.status in ["poison", "burn", "paralysis"]:
             s=12
         else: s=0
         r = r1-s
-        f = math.floor(poke.hp*255/12)
-        h = math.floor(poke.curhp/4)
+        f = math.floor(poke2.hp*255/12)
+        h = math.floor(poke2.curhp/4)
         if h==0:h=1
         f = math.floor(f/h)
         if r < 0:
             caught = True
-        elif poke.catch < r:
+        elif poke2.catch < r:
             caught = False
         else:
             r2 = random.randint(0,255)
@@ -259,9 +271,9 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
             await ctx.send("wobble...")
             await ctx.send("wobble...")
             await ctx.send("Click!")
-            await ctx.send("You caught a "+poke.species+"!")
+            await ctx.send("You caught a "+poke2.species+"!")
             party = pokeparty.party(party)
-            add=poke.export()
+            add=poke2.export()
             del add["catch"]
             del add["run"]
             party.add(add)
@@ -271,11 +283,11 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
             with open("json/parties.json", "w") as f_obj:
                 json.dump(parties, f_obj, indent=4)
         else:
-            w = math.floor(100*poke.catch/255)
+            w = math.floor(100*poke2.catch/255)
             w = math.floor(w*f/255)
-            if poke.status in ["sleep", "freeze"]:
+            if poke2.status in ["sleep", "freeze"]:
                 w+=10
-            elif poke.status in ["poison", "burn", "paralysis"]:
+            elif poke2.status in ["poison", "burn", "paralysis"]:
                 w+=5
             if w<10:
                 await ctx.send("The ball missed the Pokemon")
@@ -291,8 +303,8 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
                 await ctx.send("wobble...")
                 await ctx.send("wobble...")
                 await ctx.send("Shoot! It was so close too!")
-            poke1 = party["1"]
-            battle = pokeparty.battle(poke1,poke)
+            poke1 = pokeparty.pokemon(party["1"])
+            battle = pokeparty.battle(poke1,poke2)
             with open("json/moves.json") as f_obj:
                 moves = json.load(f_obj)
             if poke2.move4 != None:omove=random.choice([poke2.move1,poke2.move2,poke2.move3,poke2.move4])
@@ -305,6 +317,9 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
             else:
                 await ctx.send(poke2.species+" used "+omove.title())
             party["1"]=battle.user.export()
+            parties[str(ctx.author.id)]=party
+            with open("json/parties.json", "w") as f_obj:
+                json.dump(parties, f_obj, indent=4)
             result = self.battleBox(party)
             await ctx.send(files=[result[1], result[2]], embed=result[0])
         
