@@ -13,7 +13,9 @@
             "Speed": 45,
             "Special": 65
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 64,
+        "xptype": "MedSlow"
     },
     {
         "id": "002",
@@ -29,7 +31,9 @@
             "Speed": 60,
             "Special": 80
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 141,
+        "xptype": "MedSlow"
     },
     {
         "id": "003",
@@ -45,7 +49,9 @@
             "Speed": 80,
             "Special": 100
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 208,
+        "xptype": "MedSlow"
     },
     {
         "id": "004",
@@ -60,7 +66,9 @@
             "Speed": 65,
             "Special": 50
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 65,
+        "xptype": "MedSlow"
     },
     {
         "id": "005",
@@ -75,7 +83,9 @@
             "Speed": 80,
             "Special": 65
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 142,
+        "xptype": "MedSlow"
     },
     {
         "id": "006",
@@ -91,7 +101,9 @@
             "Speed": 100,
             "Special": 85
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 209,
+        "xptype": "MedSlow"
     },
     {
         "id": "007",
@@ -106,7 +118,9 @@
             "Speed": 43,
             "Special": 50
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 66,
+        "xptype": "MedSlow"
     },
     {
         "id": "008",
@@ -121,7 +135,9 @@
             "Speed": 58,
             "Special": 65
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 143,
+        "xptype": "MedSlow"
     },
     {
         "id": "009",
@@ -136,7 +152,9 @@
             "Speed": 78,
             "Special": 85
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 210,
+        "xptype": "MedSlow"
     },
     {
         "id": "010",
@@ -151,7 +169,9 @@
             "Speed": 45,
             "Special": 20
         },
-        "catch": 255
+        "catch": 255,
+        "xpyield": 53,
+        "xptype": "MedFast"
     },
     {
         "id": "011",
@@ -166,7 +186,9 @@
             "Speed": 30,
             "Special": 25
         },
-        "catch": 120
+        "catch": 120,
+        "xpyield": 72,
+        "xptype": "MedFast"
     },
     {
         "id": "012",
@@ -182,7 +204,9 @@
             "Speed": 70,
             "Special": 80
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 160,
+        "xptype": "MedFast"
     },
     {
         "id": "013",
@@ -198,7 +222,9 @@
             "Speed": 50,
             "Special": 20
         },
-        "catch": 255
+        "catch": 255,
+        "xpyield": 52,
+        "xptype": "MedFast"
     },
     {
         "id": "014",
@@ -214,7 +240,9 @@
             "Speed": 35,
             "Special": 25
         },
-        "catch": 120
+        "catch": 120,
+        "xpyield": 71,
+        "xptype": "MedFast"
     },
     {
         "id": "015",
@@ -230,7 +258,9 @@
             "Speed": 75,
             "Special": 45
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 159,
+        "xptype": "MedFast"
     },
     {
         "id": "016",
@@ -246,7 +276,9 @@
             "Speed": 56,
             "Special": 35
         },
-        "catch": 255
+        "catch": 255,
+        "xpyield": 55,
+        "xptype": "MedSlow"
     },
     {
         "id": "017",
@@ -262,7 +294,9 @@
             "Speed": 71,
             "Special": 50
         },
-        "catch": 120
+        "catch": 120,
+        "xpyield": 113,
+        "xptype": "MedSlow"
     },
     {
         "id": "018",
@@ -278,7 +312,9 @@
             "Speed": 911,
             "Special": 70
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 172,
+        "xptype": "MedSlow"
     },
     {
         "id": "019",
@@ -293,7 +329,9 @@
             "Speed": 72,
             "Special": 25
         },
-        "catch": 255
+        "catch": 255,
+        "xpyield": 57,
+        "xptype": "MedFast"
     },
     {
         "id": "020",
@@ -308,7 +346,9 @@
             "Speed": 97,
             "Special": 50
         },
-        "catch": 127
+        "catch": 127,
+        "xpyield": 116,
+        "xptype": "MedFast"
     },
     {
         "id": "021",
@@ -324,7 +364,9 @@
             "Speed": 70,
             "Special": 31
         },
-        "catch": 255
+        "catch": 255,
+        "xpyield": 58,
+        "xptype": "MedFast"
     },
     {
         "id": "022",
@@ -340,7 +382,9 @@
             "Speed": 100,
             "Special": 61
         },
-        "catch": 90
+        "catch": 90,
+        "xpyield": 162,
+        "xptype": "MedFast"
     },
     {
         "id": "023",
@@ -355,7 +399,9 @@
             "Speed": 55,
             "Special": 40
         },
-        "catch": 255
+        "catch": 255,
+        "xpyield": 62,
+        "xptype": "MedFast"
     },
     {
         "id": "024",
@@ -370,7 +416,9 @@
             "Speed": 80,
             "Special": 65
         },
-        "catch": 90
+        "catch": 90,
+        "xpyield": 147,
+        "xptype": "MedFast"
     },
     {
         "id": "025",
@@ -385,7 +433,9 @@
             "Speed": 90,
             "Special": 50
         },
-        "catch": 190
+        "catch": 190,
+        "xpyield": 82,
+        "xptype": "MedFast"
     },
     {
         "id": "026",
@@ -400,7 +450,9 @@
             "Speed": 100,
             "Special": 90
         },
-        "catch": 75
+        "catch": 75,
+        "xpyield": 122,
+        "xptype": "MedFast"
     },
     {
         "id": "027",
@@ -415,7 +467,9 @@
             "Speed": 40,
             "Special": 30
         },
-        "catch": 255
+        "catch": 255,
+        "xpyield": 93,
+        "xptype": "MedFast"
     },
     {
         "id": "028",
@@ -430,7 +484,9 @@
             "Speed": 65,
             "Special": 55
         },
-        "catch": 90
+        "catch": 90,
+        "xpyield": 163,
+        "xptype": "MedFast"
     },
     {
         "id": "029",
@@ -445,7 +501,9 @@
             "Speed": 41,
             "Special": 40
         },
-        "catch": 235
+        "catch": 235,
+        "xpyield": 59,
+        "xptype": "MedSlow"
     },
     {
         "id": "030",
@@ -460,7 +518,9 @@
             "Speed": 56,
             "Special": 55
         },
-        "catch": 120
+        "catch": 120,
+        "xpyield": 117,
+        "xptype": "MedSlow"
     },
     {
         "id": "031",
@@ -476,7 +536,9 @@
             "Speed": 76,
             "Special": 75
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 194,
+        "xptype": "MedSlow"
     },
     {
         "id": "032",
@@ -491,7 +553,9 @@
             "Speed": 50,
             "Special": 40
         },
-        "catch": 235
+        "catch": 235,
+        "xpyield": 60,
+        "xptype": "MedSlow"
     },
     {
         "id": "033",
@@ -506,7 +570,9 @@
             "Speed": 65,
             "Special": 55
         },
-        "catch": 120
+        "catch": 120,
+        "xpyield": 118,
+        "xptype": "MedSlow"
     },
     {
         "id": "034",
@@ -522,7 +588,9 @@
             "Speed": 85,
             "Special": 75
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 195,
+        "xptype": "MedSlow"
     },
     {
         "id": "035",
@@ -537,7 +605,9 @@
             "Speed": 35,
             "Special": 60
         },
-        "catch": 150
+        "catch": 150,
+        "xpyield": 68,
+        "xptype": "Fast"
     },
     {
         "id": "036",
@@ -552,7 +622,9 @@
             "Speed": 60,
             "Special": 85
         },
-        "catch": 25
+        "catch": 25,
+        "xpyield": 129,
+        "xptype": "Fast"
     },
     {
         "id": "037",
@@ -567,7 +639,9 @@
             "Speed": 65,
             "Special": 65
         },
-        "catch": 190
+        "catch": 190,
+        "xpyield": 63,
+        "xptype": "MedFast"
     },
     {
         "id": "038",
@@ -582,7 +656,9 @@
             "Speed": 100,
             "Special": 100
         },
-        "catch": 75
+        "catch": 75,
+        "xpyield": 178,
+        "xptype": "MedFast"
     },
     {
         "id": "039",
@@ -598,7 +674,9 @@
             "Speed": 20,
             "Special": 25
         },
-        "catch": 170
+        "catch": 170,
+        "xpyield": 76,
+        "xptype": "Fast"
     },
     {
         "id": "040",
@@ -614,7 +692,9 @@
             "Speed": 45,
             "Special": 50
         },
-        "catch": 50
+        "catch": 50,
+        "xpyield": 109,
+        "xptype": "Fast"
     },
     {
         "id": "041",
@@ -630,7 +710,9 @@
             "Speed": 55,
             "Special": 40
         },
-        "catch": 255
+        "catch": 255,
+        "xpyield": 54,
+        "xptype": "MedFast"
     },
     {
         "id": "042",
@@ -646,7 +728,9 @@
             "Speed": 90,
             "Special": 75
         },
-        "catch": 90
+        "catch": 90,
+        "xpyield": 171,
+        "xptype": "MedFast"
     },
     {
         "id": "043",
@@ -662,7 +746,9 @@
             "Speed": 30,
             "Special": 75
         },
-        "catch": 255
+        "catch": 255,
+        "xpyield": 78,
+        "xptype": "MedSlow"
     },
     {
         "id": "044",
@@ -678,7 +764,9 @@
             "Speed": 40,
             "Special": 85
         },
-        "catch": 120
+        "catch": 120,
+        "xpyield": 132,
+        "xptype": "MedSlow"
     },
     {
         "id": "045",
@@ -694,7 +782,9 @@
             "Speed": 50,
             "Special": 100
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 184,
+        "xptype": "MedSlow"
     },
     {
         "id": "046",
@@ -710,7 +800,9 @@
             "Speed": 25,
             "Special": 55
         },
-        "catch": 190
+        "catch": 190,
+        "xpyield": 70,
+        "xptype": "MedFast"
     },
     {
         "id": "047",
@@ -726,7 +818,9 @@
             "Speed": 30,
             "Special": 80
         },
-        "catch": 75
+        "catch": 75,
+        "xpyield": 128,
+        "xptype": "MedFast"
     },
     {
         "id": "048",
@@ -742,7 +836,9 @@
             "Speed": 45,
             "Special": 40
         },
-        "catch": 190
+        "catch": 190,
+        "xpyield": 75,
+        "xptype": "MedFast"
     },
     {
         "id": "049",
@@ -758,7 +854,9 @@
             "Speed": 90,
             "Special": 90
         },
-        "catch": 75
+        "catch": 75,
+        "xpyield": 138,
+        "xptype": "MedFast"
     },
     {
         "id": "050",
@@ -773,7 +871,9 @@
             "Speed": 95,
             "Special": 45
         },
-        "catch": 255
+        "catch": 255,
+        "xpyield": 81,
+        "xptype": "MedFast"
     },
     {
         "id": "051",
@@ -788,7 +888,9 @@
             "Speed": 120,
             "Special": 70
         },
-        "catch": 50
+        "catch": 50,
+        "xpyield": 153,
+        "xptype": "MedFast"
     },
     {
         "id": "052",
@@ -803,7 +905,9 @@
             "Speed": 90,
             "Special": 40
         },
-        "catch": 255
+        "catch": 255,
+        "xpyield": 69,
+        "xptype": "MedFast"
     },
     {
         "id": "053",
@@ -818,7 +922,9 @@
             "Speed": 115,
             "Special": 65
         },
-        "catch": 90
+        "catch": 90,
+        "xpyield": 148,
+        "xptype": "MedFast"
     },
     {
         "id": "054",
@@ -833,7 +939,9 @@
             "Speed": 55,
             "Special": 50
         },
-        "catch": 190
+        "catch": 190,
+        "xpyield": 80,
+        "xptype": "MedFast"
     },
     {
         "id": "055",
@@ -848,7 +956,9 @@
             "Speed": 85,
             "Special": 80
         },
-        "catch": 75
+        "catch": 75,
+        "xpyield": 174,
+        "xptype": "MedFast"
     },
     {
         "id": "056",
@@ -863,7 +973,9 @@
             "Speed": 70,
             "Special": 35
         },
-        "catch": 190
+        "catch": 190,
+        "xpyield": 74,
+        "xptype": "MedFast"
     },
     {
         "id": "057",
@@ -878,7 +990,9 @@
             "Speed": 95,
             "Special": 60
         },
-        "catch": 75
+        "catch": 75,
+        "xpyield": 149,
+        "xptype": "MedFast"
     },
     {
         "id": "058",
@@ -893,7 +1007,9 @@
             "Speed": 60,
             "Special": 50
         },
-        "catch": 190
+        "catch": 190,
+        "xpyield": 91,
+        "xptype": "Slow"
     },
     {
         "id": "059",
@@ -908,7 +1024,9 @@
             "Speed": 95,
             "Special": 80
         },
-        "catch": 75
+        "catch": 75,
+        "xpyield": 213,
+        "xptype": "Slow"
     },
     {
         "id": "060",
@@ -923,7 +1041,9 @@
             "Speed": 90,
             "Special": 40
         },
-        "catch": 255
+        "catch": 255,
+        "xpyield": 77,
+        "xptype": "MedSlow"
     },
     {
         "id": "061",
@@ -938,7 +1058,9 @@
             "Speed": 90,
             "Special": 50
         },
-        "catch": 120
+        "catch": 120,
+        "xpyield": 131,
+        "xptype": "MedSlow"
     },
     {
         "id": "062",
@@ -954,7 +1076,9 @@
             "Speed": 70,
             "Special": 70
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 185,
+        "xptype": "MedSlow"
     },
     {
         "id": "063",
@@ -969,7 +1093,9 @@
             "Speed": 90,
             "Special": 105
         },
-        "catch": 200
+        "catch": 200,
+        "xpyield": 73,
+        "xptype": "MedSlow"
     },
     {
         "id": "064",
@@ -984,7 +1110,9 @@
             "Speed": 105,
             "Special": 120
         },
-        "catch": 100
+        "catch": 100,
+        "xpyield": 145,
+        "xptype": "MedSlow"
     },
     {
         "id": "065",
@@ -999,7 +1127,9 @@
             "Speed": 120,
             "Special": 135
         },
-        "catch": 50
+        "catch": 50,
+        "xpyield": 186,
+        "xptype": "MedSlow"
     },
     {
         "id": "066",
@@ -1014,7 +1144,9 @@
             "Speed": 35,
             "Special": 35
         },
-        "catch": 180
+        "catch": 180,
+        "xpyield": 88,
+        "xptype": "MedSlow"
     },
     {
         "id": "067",
@@ -1029,7 +1161,9 @@
             "Speed": 45,
             "Special": 50
         },
-        "catch": 90
+        "catch": 90,
+        "xpyield": 146,
+        "xptype": "MedSlow"
     },
     {
         "id": "068",
@@ -1044,7 +1178,9 @@
             "Speed": 55,
             "Special": 65
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 193,
+        "xptype": "MedSlow"
     },
     {
         "id": "069",
@@ -1060,7 +1196,9 @@
             "Speed": 40,
             "Special": 70
         },
-        "catch": 255
+        "catch": 255,
+        "xpyield": 84,
+        "xptype": "MedSlow"
     },
     {
         "id": "070",
@@ -1076,7 +1214,9 @@
             "Speed": 55,
             "Special": 85
         },
-        "catch": 120
+        "catch": 120,
+        "xpyield": 151,
+        "xptype": "MedSlow"
     },
     {
         "id": "071",
@@ -1092,7 +1232,9 @@
             "Speed": 70,
             "Special": 100
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 191,
+        "xptype": "MedSlow"
     },
     {
         "id": "072",
@@ -1108,7 +1250,9 @@
             "Speed": 70,
             "Special": 100
         },
-        "catch": 190
+        "catch": 190,
+        "xpyield": 105,
+        "xptype": "Slow"
     },
     {
         "id": "073",
@@ -1124,7 +1268,9 @@
             "Speed": 100,
             "Special": 120
         },
-        "catch": 60
+        "catch": 60,
+        "xpyield": 205,
+        "xptype": "Slow"
     },
     {
         "id": "074",
@@ -1140,7 +1286,9 @@
             "Speed": 20,
             "Special": 30
         },
-        "catch": 255
+        "catch": 255,
+        "xpyield": 86,
+        "xptype": "MedSlow"
     },
     {
         "id": "075",
@@ -1156,7 +1304,9 @@
             "Speed": 35,
             "Special": 45
         },
-        "catch": 120
+        "catch": 120,
+        "xpyield": 134,
+        "xptype": "MedSlow"
     },
     {
         "id": "076",
@@ -1172,7 +1322,9 @@
             "Speed": 45,
             "Special": 55
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 177,
+        "xptype": "MedSlow"
     },
     {
         "id": "077",
@@ -1187,7 +1339,9 @@
             "Speed": 90,
             "Special": 65
         },
-        "catch": 190
+        "catch": 190,
+        "xpyield": 152,
+        "xptype": "MedFast"
     },
     {
         "id": "078",
@@ -1202,7 +1356,9 @@
             "Speed": 105,
             "Special": 80
         },
-        "catch": 60
+        "catch": 60,
+        "xpyield": 192,
+        "xptype": "MedFast"
     },
     {
         "id": "079",
@@ -1218,7 +1374,9 @@
             "Speed": 15,
             "Special": 40
         },
-        "catch": 190
+        "catch": 190,
+        "xpyield": 99,
+        "xptype": "MedFast"
     },
     {
         "id": "080",
@@ -1234,7 +1392,9 @@
             "Speed": 30,
             "Special": 80
         },
-        "catch": 75
+        "catch": 75,
+        "xpyield": 164,
+        "xptype": "MedFast"
     },
     {
         "id": "081",
@@ -1250,7 +1410,9 @@
             "Speed": 45,
             "Special": 95
         },
-        "catch": 190
+        "catch": 190,
+        "xpyield": 89,
+        "xptype": "MedFast"
     },
     {
         "id": "082",
@@ -1266,7 +1428,9 @@
             "Speed": 70,
             "Special": 120
         },
-        "catch": 60
+        "catch": 60,
+        "xpyield": 161,
+        "xptype": "MedFast"
     },
     {
         "id": "083",
@@ -1282,7 +1446,9 @@
             "Speed": 60,
             "Special": 58
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 94,
+        "xptype": "MedFast"
     },
     {
         "id": "084",
@@ -1298,7 +1464,9 @@
             "Speed": 75,
             "Special": 35
         },
-        "catch": 190
+        "catch": 190,
+        "xpyield": 96,
+        "xptype": "MedFast"
     },
     {
         "id": "085",
@@ -1314,7 +1482,9 @@
             "Speed": 100,
             "Special": 60
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 158,
+        "xptype": "MedFast"
     },
     {
         "id": "086",
@@ -1329,7 +1499,9 @@
             "Speed": 45,
             "Special": 70
         },
-        "catch": 190
+        "catch": 190,
+        "xpyield": 100,
+        "xptype": "MedFast"
     },
     {
         "id": "087",
@@ -1345,7 +1517,9 @@
             "Speed": 70,
             "Special": 95
         },
-        "catch": 75
+        "catch": 75,
+        "xpyield": 176,
+        "xptype": "MedFast"
     },
     {
         "id": "088",
@@ -1360,7 +1534,9 @@
             "Speed": 25,
             "Special": 40
         },
-        "catch": 190
+        "catch": 190,
+        "xpyield": 90,
+        "xptype": "MedFast"
     },
     {
         "id": "089",
@@ -1375,7 +1551,9 @@
             "Speed": 50,
             "Special": 65
         },
-        "catch": 75
+        "catch": 75,
+        "xpyield": 157,
+        "xptype": "MedFast"
     },
     {
         "id": "090",
@@ -1390,7 +1568,9 @@
             "Speed": 40,
             "Special": 45
         },
-        "catch": 190
+        "catch": 190,
+        "xpyield": 97,
+        "xptype": "Slow"
     },
     {
         "id": "091",
@@ -1406,7 +1586,9 @@
             "Speed": 70,
             "Special": 85
         },
-        "catch": 60
+        "catch": 60,
+        "xpyield": 203,
+        "xptype": "Slow"
     },
     {
         "id": "092",
@@ -1422,7 +1604,9 @@
             "Speed": 80,
             "Special": 100
         },
-        "catch": 190
+        "catch": 190,
+        "xpyield": 95,
+        "xptype": "MedSlow"
     },
     {
         "id": "093",
@@ -1438,7 +1622,9 @@
             "Speed": 95,
             "Special": 115
         },
-        "catch": 90
+        "catch": 90,
+        "xpyield": 126,
+        "xptype": "MedSlow"
     },
     {
         "id": "094",
@@ -1454,7 +1640,9 @@
             "Speed": 110,
             "Special": 130
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 190,
+        "xptype": "MedSlow"
     },
     {
         "id": "095",
@@ -1470,7 +1658,9 @@
             "Speed": 70,
             "Special": 30
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 108,
+        "xptype": "MedFast"
     },
     {
         "id": "096",
@@ -1485,7 +1675,9 @@
             "Speed": 42,
             "Special": 90
         },
-        "catch": 190
+        "catch": 190,
+        "xpyield": 102,
+        "xptype": "MedFast"
     },
     {
         "id": "097",
@@ -1500,7 +1692,9 @@
             "Speed": 67,
             "Special": 115
         },
-        "catch": 75
+        "catch": 75,
+        "xpyield": 165,
+        "xptype": "MedFast"
     },
     {
         "id": "098",
@@ -1515,7 +1709,9 @@
             "Speed": 50,
             "Special": 25
         },
-        "catch": 225
+        "catch": 225,
+        "xpyield": 115,
+        "xptype": "MedFast"
     },
     {
         "id": "099",
@@ -1530,7 +1726,9 @@
             "Speed": 75,
             "Special": 50
         },
-        "catch": 60
+        "catch": 60,
+        "xpyield": 206,
+        "xptype": "MedFast"
     },
     {
         "id": "100",
@@ -1545,7 +1743,9 @@
             "Speed": 100,
             "Special": 55
         },
-        "catch": 190
+        "catch": 190,
+        "xpyield": 103,
+        "xptype": "MedFast"
     },
     {
         "id": "101",
@@ -1560,7 +1760,9 @@
             "Speed": 140,
             "Special": 80
         },
-        "catch": 60
+        "catch": 60,
+        "xpyield": 150,
+        "xptype": "MedFast"
     },
     {
         "id": "102",
@@ -1576,7 +1778,9 @@
             "Speed": 40,
             "Special": 60
         },
-        "catch": 90
+        "catch": 90,
+        "xpyield": 98,
+        "xptype": "Slow"
     },
     {
         "id": "103",
@@ -1592,7 +1796,9 @@
             "Speed": 55,
             "Special": 125
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 212,
+        "xptype": "Slow"
     },
     {
         "id": "104",
@@ -1607,7 +1813,9 @@
             "Speed": 35,
             "Special": 40
         },
-        "catch": 190
+        "catch": 190,
+        "xpyield": 87,
+        "xptype": "MedFast"
     },
     {
         "id": "105",
@@ -1622,7 +1830,9 @@
             "Speed": 45,
             "Special": 50
         },
-        "catch": 75
+        "catch": 75,
+        "xpyield": 124,
+        "xptype": "MedFast"
     },
     {
         "id": "106",
@@ -1637,7 +1847,9 @@
             "Speed": 87,
             "Special": 35
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 139,
+        "xptype": "MedFast"
     },
     {
         "id": "107",
@@ -1652,7 +1864,9 @@
             "Speed": 76,
             "Special": 35
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 140,
+        "xptype": "MedFast"
     },
     {
         "id": "108",
@@ -1667,7 +1881,9 @@
             "Speed": 30,
             "Special": 60
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 127,
+        "xptype": "MedFast"
     },
     {
         "id": "109",
@@ -1682,7 +1898,9 @@
             "Speed": 35,
             "Special": 60
         },
-        "catch": 190
+        "catch": 190,
+        "xpyield": 114,
+        "xptype": "MedFast"
     },
     {
         "id": "110",
@@ -1697,7 +1915,9 @@
             "Speed": 60,
             "Special": 85
         },
-        "catch": 60
+        "catch": 60,
+        "xpyield": 173,
+        "xptype": "MedFast"
     },
     {
         "id": "111",
@@ -1713,7 +1933,9 @@
             "Speed": 25,
             "Special": 30
         },
-        "catch": 120
+        "catch": 120,
+        "xpyield": 135,
+        "xptype": "Slow"
     },
     {
         "id": "112",
@@ -1729,7 +1951,9 @@
             "Speed": 40,
             "Special": 45
         },
-        "catch": 60
+        "catch": 60,
+        "xpyield": 204,
+        "xptype": "Slow"
     },
     {
         "id": "113",
@@ -1744,7 +1968,9 @@
             "Speed": 50,
             "Special": 105
         },
-        "catch": 30
+        "catch": 30,
+        "xpyield": 255,
+        "xptype": "Fast"
     },
     {
         "id": "114",
@@ -1759,7 +1985,9 @@
             "Speed": 60,
             "Special": 100
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 166,
+        "xptype": "MedFast"
     },
     {
         "id": "115",
@@ -1774,7 +2002,9 @@
             "Speed": 90,
             "Special": 40
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 175,
+        "xptype": "MedFast"
     },
     {
         "id": "116",
@@ -1789,7 +2019,9 @@
             "Speed": 60,
             "Special": 70
         },
-        "catch": 225
+        "catch": 225,
+        "xpyield": 83,
+        "xptype": "MedFast"
     },
     {
         "id": "117",
@@ -1804,7 +2036,9 @@
             "Speed": 85,
             "Special": 95
         },
-        "catch": 75
+        "catch": 75,
+        "xpyield": 155,
+        "xptype": "MedFast"
     },
     {
         "id": "118",
@@ -1819,7 +2053,9 @@
             "Speed": 63,
             "Special": 50
         },
-        "catch": 225
+        "catch": 225,
+        "xpyield": 111,
+        "xptype": "MedFast"
     },
     {
         "id": "119",
@@ -1834,7 +2070,9 @@
             "Speed": 68,
             "Special": 80
         },
-        "catch": 60
+        "catch": 60,
+        "xpyield": 170,
+        "xptype": "MedFast"
     },
     {
         "id": "120",
@@ -1849,7 +2087,9 @@
             "Speed": 85,
             "Special": 70
         },
-        "catch": 225
+        "catch": 225,
+        "xpyield": 106,
+        "xptype": "Slow"
     },
     {
         "id": "121",
@@ -1865,7 +2105,9 @@
             "Speed": 115,
             "Special": 100
         },
-        "catch": 60
+        "catch": 60,
+        "xpyield": 207,
+        "xptype": "Slow"
     },
     {
         "id": "122",
@@ -1881,7 +2123,9 @@
             "Speed": 90,
             "Special": 100
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 136,
+        "xptype": "MedFast"
     },
     {
         "id": "123",
@@ -1897,7 +2141,9 @@
             "Speed": 105,
             "Special": 55
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 187,
+        "xptype": "MedFast"
     },
     {
         "id": "124",
@@ -1913,7 +2159,9 @@
             "Speed": 95,
             "Special": 95
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 137,
+        "xptype": "MedFast"
     },
     {
         "id": "125",
@@ -1928,7 +2176,9 @@
             "Speed": 105,
             "Special": 85
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 156,
+        "xptype": "MedFast"
     },
     {
         "id": "126",
@@ -1943,7 +2193,9 @@
             "Speed": 93,
             "Special": 85
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 167,
+        "xptype": "MedFast"
     },
     {
         "id": "127",
@@ -1958,7 +2210,9 @@
             "Speed": 85,
             "Special": 55
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 200,
+        "xptype": "Slow"
     },
     {
         "id": "128",
@@ -1973,7 +2227,9 @@
             "Speed": 110,
             "Special": 70
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 211,
+        "xptype": "Slow"
     },
     {
         "id": "129",
@@ -1988,7 +2244,9 @@
             "Speed": 80,
             "Special": 20
         },
-        "catch": 255
+        "catch": 255,
+        "xpyield": 20,
+        "xptype": "Slow"
     },
     {
         "id": "130",
@@ -2004,7 +2262,9 @@
             "Speed": 81,
             "Special": 100
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 214,
+        "xptype": "Slow"
     },
     {
         "id": "131",
@@ -2020,7 +2280,9 @@
             "Speed": 60,
             "Special": 95
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 219,
+        "xptype": "Slow"
     },
     {
         "id": "132",
@@ -2035,7 +2297,9 @@
             "Speed": 48,
             "Special": 48
         },
-        "catch": 35
+        "catch": 35,
+        "xpyield": 61,
+        "xptype": "MedFast"
     },
     {
         "id": "133",
@@ -2050,7 +2314,9 @@
             "Speed": 55,
             "Special": 65
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 92,
+        "xptype": "MedFast"
     },
     {
         "id": "134",
@@ -2065,7 +2331,9 @@
             "Speed": 65,
             "Special": 110
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 196,
+        "xptype": "MedFast"
     },
     {
         "id": "135",
@@ -2080,7 +2348,9 @@
             "Speed": 130,
             "Special": 110
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 197,
+        "xptype": "MedFast"
     },
     {
         "id": "136",
@@ -2095,7 +2365,9 @@
             "Speed": 65,
             "Special": 110
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 198,
+        "xptype": "MedFast"
     },
     {
         "id": "137",
@@ -2110,7 +2382,9 @@
             "Speed": 40,
             "Special": 75
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 130,
+        "xptype": "MedFast"
     },
     {
         "id": "138",
@@ -2126,7 +2400,9 @@
             "Speed": 35,
             "Special": 90
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 120,
+        "xptype": "MedFast"
     },
     {
         "id": "139",
@@ -2142,7 +2418,9 @@
             "Speed": 55,
             "Special": 115
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 199,
+        "xptype": "MedFast"
     },
     {
         "id": "140",
@@ -2158,7 +2436,9 @@
             "Speed": 55,
             "Special": 45
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 119,
+        "xptype": "MedFast"
     },
     {
         "id": "141",
@@ -2174,7 +2454,9 @@
             "Speed": 80,
             "Special": 70
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 201,
+        "xptype": "MedFast"
     },
     {
         "id": "142",
@@ -2190,7 +2472,9 @@
             "Speed": 130,
             "Special": 60
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 202,
+        "xptype": "Slow"
     },
     {
         "id": "143",
@@ -2205,7 +2489,9 @@
             "Speed": 30,
             "Special": 65
         },
-        "catch": 25
+        "catch": 25,
+        "xpyield": 154,
+        "xptype": "Slow"
     },
     {
         "id": "144",
@@ -2221,7 +2507,9 @@
             "Speed": 85,
             "Special": 125
         },
-        "catch": 3
+        "catch": 3,
+        "xpyield": 215,
+        "xptype": "Slow"
     },
     {
         "id": "145",
@@ -2237,7 +2525,9 @@
             "Speed": 100,
             "Special": 125
         },
-        "catch": 3
+        "catch": 3,
+        "xpyield": 216,
+        "xptype": "Slow"
     },
     {
         "id": "146",
@@ -2253,7 +2543,9 @@
             "Speed": 90,
             "Special": 125
         },
-        "catch": 3
+        "catch": 3,
+        "xpyield": 217,
+        "xptype": "Slow"
     },
     {
         "id": "147",
@@ -2268,7 +2560,9 @@
             "Speed": 50,
             "Special": 50
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 67,
+        "xptype": "Slow"
     },
     {
         "id": "148",
@@ -2283,7 +2577,9 @@
             "Speed": 70,
             "Special": 70
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 144,
+        "xptype": "Slow"
     },
     {
         "id": "149",
@@ -2299,7 +2595,9 @@
             "Speed": 80,
             "Special": 100
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 218,
+        "xptype": "Slow"
     },
     {
         "id": "150",
@@ -2314,7 +2612,9 @@
             "Speed": 130,
             "Special": 154
         },
-        "catch": 3
+        "catch": 3,
+        "xpyield": 220,
+        "xptype": "Slow"
     },
     {
         "id": "151",
@@ -2329,6 +2629,8 @@
             "Speed": 100,
             "Special": 100
         },
-        "catch": 45
+        "catch": 45,
+        "xpyield": 64,
+        "xptype": "MedSlow"
     }
 ]
