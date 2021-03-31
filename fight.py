@@ -11,9 +11,9 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
         self.bot = bot
         
     def cog_check(self, ctx):
-        with open("json/parties.json") as f_obj:
-            parties = json.load(f_obj)
-        return parties.get(str(ctx.author.id)).get("7") != None
+        with open("json/parties/"+str(ctx.author.id)+".json") as f_obj:
+            party = json.load(f_obj)
+        return party.get("7") != None
     
     def battleBox(self, party):
         battle = pokeparty.pokemon(party.get("7"))
@@ -37,16 +37,14 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
         return [embed, file, file2]
     
     def is_not_dead(ctx):
-        with open("json/parties.json") as f_obj:
-            dic = json.load(f_obj)
-        party = dic.get(str(ctx.author.id))
+        with open("json/parties/"+str(ctx.author.id)+".json") as f_obj:
+            party = json.load(f_obj)
         poke = pokeparty.pokemon(party.get("1"))
         return poke.curhp!=0
     
     def fainted_run(ctx):
-        with open("json/parties.json") as f_obj:
-            dic = json.load(f_obj)
-        party = dic.get(str(ctx.author.id))
+        with open("json/parties/"+str(ctx.author.id)+".json") as f_obj:
+            party = json.load(f_obj)
         poke1 = pokeparty.pokemon(party.get("1"))
         poke2 = party.get("7")
         if poke1.curhp!=0:
@@ -71,9 +69,8 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
     @commands.command()
     @commands.check(is_not_dead)
     async def fight(self, ctx):
-        with open("json/parties.json") as f_obj:
-            dic = json.load(f_obj)
-        party = dic.get(str(ctx.author.id))
+        with open("json/parties/"+str(ctx.author.id)+".json") as f_obj:
+            party = json.load(f_obj)
         poke1 = pokeparty.pokemon(party["1"])
         poke2 = pokeparty.pokemon(party["7"])
         battle = pokeparty.battle(poke1, poke2)
@@ -157,17 +154,16 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
                     await ctx.send(poke1.species+" used "+move.title()+". "+effective1+"\n"+poke2.species+" used "+omove.title()+effective2, files=[result[1], result[2]], embed=result[0])
                 else:
                     await ctx.send(poke2.species+" used "+omove.title()+". "+effective1+"\n"+poke1.species+" used "+move.title()+effective2, files=[result[1], result[2]], embed=result[0])
-        with open("json/parties.json") as f_obj:
-            dic = json.load(f_obj)
-        dic[str(ctx.author.id)] = party
-        with open("json/parties.json", "w") as f_obj:
-            json.dump(dic, f_obj, indent=4)
+        with open("json/parties/"+str(ctx.author.id)+".json") as f_obj:
+            party1 = json.load(f_obj)
+        party1 = party
+        with open("json/parties/"+str(ctx.author.id)+".json", "w") as f_obj:
+            json.dump(party1, f_obj, indent=4)
         
     @commands.command()
     async def pokemon(self, ctx):
-        with open("json/parties.json") as f_obj:
-            dic = json.load(f_obj)
-        party = dic.get(str(ctx.author.id))
+        with open("json/parties/"+str(ctx.author.id)+".json") as f_obj:
+            party = json.load(f_obj)
         embed=discord.Embed(title="Switch to", color=discord.Color.blue())
         i=1
         while i<7:
@@ -228,19 +224,18 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
                     await ctx.send(poke2.species+" used "+omove.title())
                 party["1"]=battle.user.export()
             result = self.battleBox(party)
-            with open("json/parties.json") as f_obj:
-                dic = json.load(f_obj)
-            dic[(str(ctx.author.id))] = party
-            with open("json/parties.json", "w") as f_obj:
-                json.dump(dic, f_obj, indent=4)
+            with open("json/parties/"+str(ctx.author.id)+".json") as f_obj:
+                party2 = json.load(f_obj)
+            party2 = party
+            with open("json/parties/"+str(ctx.author.id)+".json", "w") as f_obj:
+                json.dump(party2, f_obj, indent=4)
             await ctx.send(files=[result[1], result[2]], embed=result[0])
     
     @commands.command()
     @commands.check(is_not_dead)
     async def catch(self, ctx):
-        with open("json/parties.json") as f_obj:
-            parties = json.load(f_obj)
-        party = parties.get(str(ctx.author.id))
+        with open("json/parties/"+str(ctx.author.id)+".json") as f_obj:
+            party = json.load(f_obj)
         if party.get("6")!=None:
             result = self.battleBox(party)
             await ctx.send("Can't have more than 6 pokemon", files=[result[1], result[2]], embed=result[0])
@@ -279,9 +274,8 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
             party.add(add)
             party = party.recon()
             del party["7"]
-            parties[str(ctx.author.id)]=party
-            with open("json/parties.json", "w") as f_obj:
-                json.dump(parties, f_obj, indent=4)
+            with open("json/parties/"+str(ctx.author.id)+".json", "w") as f_obj:
+                json.dump(party, f_obj, indent=4)
         else:
             w = math.floor(100*poke2.catch/255)
             w = math.floor(w*f/255)
@@ -317,31 +311,27 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
             else:
                 await ctx.send(poke2.species+" used "+omove.title())
             party["1"]=battle.user.export()
-            parties[str(ctx.author.id)]=party
-            with open("json/parties.json", "w") as f_obj:
-                json.dump(parties, f_obj, indent=4)
+            with open("json/parties/"+str(ctx.author.id)+".json", "w") as f_obj:
+                json.dump(party, f_obj, indent=4)
             result = self.battleBox(party)
             await ctx.send(files=[result[1], result[2]], embed=result[0])
         
     @commands.command()
     @commands.check(fainted_run)
     async def run(self, ctx):
-        with open("json/parties.json") as f_obj:
-            parties = json.load(f_obj)
-        party = parties.get(str(ctx.author.id))
+        with open("json/parties/"+str(ctx.author.id)+".json") as f_obj:
+            party = json.load(f_obj)
         poke1 = pokeparty.pokemon(party.get("1"))
         poke2 = pokeparty.pokemon(party.get("7"))
         f = poke1.speed*32/(poke2.speed/4)%256+30*party.get("7").get("run")
         g = random.randint(0,255)
         if f>g:
             del party["7"]
-            parties[str(ctx.author.id)]=party
-            with open("json/parties.json", "w") as f_obj:
-                json.dump(parties, f_obj, indent=4)
+            with open("json/parties/"+str(ctx.author.id)+".json", "w") as f_obj:
+                json.dump(party, f_obj, indent=4)
             await ctx.send("Got away safely")
         else:
             party.get("7")["run"]+=1
-            parties[str(ctx.author.id)]=party
             await ctx.send("Can't escape")
             if poke1.curhp !=0:
                 battle = pokeparty.battle(poke1,poke2)
@@ -356,7 +346,6 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
                     await ctx.send(poke2.species+" used "+omove.title()+". "+poke1.species+" fainted")
                 else:
                     await ctx.send(poke2.species+" used "+omove.title())
-                print("got here")
                 party["1"]=battle.user.export()
                 result = self.battleBox(party)
                 await ctx.send(files=[result[1], result[2]], embed=result[0])
@@ -364,9 +353,8 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
                 party.get("7")["run2"]=1
                 result = self.battleBox(party)
                 await ctx.send(files=[result[1], result[2]], embed=result[0]) 
-            parties[str(ctx.author.id)]=party
-            with open("json/parties.json", "w") as f_obj:
-                json.dump(parties, f_obj, indent=4)
+            with open("json/parties/"+str(ctx.author.id)+".json", "w") as f_obj:
+                json.dump(party, f_obj, indent=4)
     
 def setup(bot):
     bot.add_cog(Fight(bot))
