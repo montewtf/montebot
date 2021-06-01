@@ -1,73 +1,86 @@
 {
     "1": {
-        "id": "007",
+        "id": "004",
         "name": null,
-        "species": "Squirtle",
-        "level": 5,
+        "species": "Charmander",
+        "level": 6,
         "types": [
-            "Water"
+            "Fire"
         ],
         "status": null,
         "stats": {
-            "CurHP": 0,
-            "HP": 22,
-            "Attack": 13,
-            "Defense": 15,
-            "Speed": 13,
-            "Special": 13
+            "CurHP": 26,
+            "HP": 26,
+            "Attack": 15,
+            "Defense": 14,
+            "Speed": 16,
+            "Special": 15
         },
         "moves": {
-            "move1": "Tackle",
-            "move2": "Tail Whip",
+            "move1": {
+                "name": "growl",
+                "pp": 1
+            },
+            "move2": {
+                "name": "scratch",
+                "pp": 1
+            },
             "move3": null,
             "move4": null
         },
         "iv": {
-            "HP": 0,
-            "Attack": 10,
-            "Defense": 8,
-            "Speed": 12,
-            "Special": 4
+            "HP": 13,
+            "Attack": 3,
+            "Defense": 7,
+            "Speed": 0,
+            "Special": 7
         },
         "base": {
-            "HP": 44,
-            "Attack": 48,
-            "Defense": 65,
-            "Speed": 43,
+            "HP": 39,
+            "Attack": 52,
+            "Defense": 43,
+            "Speed": 65,
             "Special": 50
         },
-        "xptype": "MedSlow"
+        "xp": {
+            "xptype": "MedSlow",
+            "cur": 206,
+            "next": 236
+        }
     },
     "2": {
         "id": "016",
         "name": null,
         "species": "Pidgey",
-        "level": 8,
+        "level": 2,
         "types": [
             "Normal",
             "Flying"
         ],
         "status": null,
         "stats": {
-            "CurHP": 25,
-            "HP": 31,
-            "Attack": 19,
-            "Defense": 17,
-            "Speed": 19,
-            "Special": 16
+            "CurHP": 14,
+            "HP": 14,
+            "Attack": 8,
+            "Defense": 8,
+            "Speed": 8,
+            "Special": 7
         },
         "moves": {
-            "move1": "Sand Attack",
-            "move2": "Gust",
+            "move1": {
+                "name": "gust",
+                "pp": 1.0
+            },
+            "move2": null,
             "move3": null,
             "move4": null
         },
         "iv": {
-            "HP": 10,
-            "Attack": 13,
-            "Defense": 8,
-            "Speed": 5,
-            "Special": 6
+            "HP": 2,
+            "Attack": 12,
+            "Defense": 14,
+            "Speed": 7,
+            "Special": 0
         },
         "base": {
             "HP": 40,
@@ -76,49 +89,16 @@
             "Speed": 56,
             "Special": 35
         },
-        "xptype": "MedSlow",
+        "xp": {
+            "xptype": "MedSlow",
+            "cur": 9,
+            "next": 57
+        },
+        "catch": 255,
+        "run": 1,
         "xpyield": 55
     },
-    "3": {
-        "id": "125",
-        "name": null,
-        "species": "Electabuzz",
-        "level": 7,
-        "types": [
-            "Electric"
-        ],
-        "status": null,
-        "stats": {
-            "CurHP": 15,
-            "HP": 31,
-            "Attack": 22,
-            "Defense": 19,
-            "Speed": 24,
-            "Special": 23
-        },
-        "moves": {
-            "move1": "Leer",
-            "move2": "Quick Attack",
-            "move3": null,
-            "move4": null
-        },
-        "iv": {
-            "HP": 7,
-            "Attack": 12,
-            "Defense": 15,
-            "Speed": 5,
-            "Special": 13
-        },
-        "base": {
-            "HP": 65,
-            "Attack": 83,
-            "Defense": 57,
-            "Speed": 105,
-            "Special": 85
-        },
-        "xptype": "MedFast",
-        "xpyield": 156
-    },
+    "3": null,
     "4": null,
     "5": null,
     "6": null
