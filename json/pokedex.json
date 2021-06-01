@@ -15,7 +15,9 @@
         },
         "catch": 45,
         "xpyield": 64,
-        "xptype": "MedSlow"
+        "xptype": "MedSlow",
+        "evolvesat": 16,
+        "evolvesto": "002"
     },
     {
         "id": "002",
@@ -33,7 +35,9 @@
         },
         "catch": 45,
         "xpyield": 141,
-        "xptype": "MedSlow"
+        "xptype": "MedSlow",
+        "evolvesat": 32,
+        "evolvesto": "003"
     },
     {
         "id": "003",
@@ -68,7 +72,9 @@
         },
         "catch": 45,
         "xpyield": 65,
-        "xptype": "MedSlow"
+        "xptype": "MedSlow",
+        "evolvesat": 16,
+        "evolvesto": "005"
     },
     {
         "id": "005",
@@ -85,7 +91,9 @@
         },
         "catch": 45,
         "xpyield": 142,
-        "xptype": "MedSlow"
+        "xptype": "MedSlow",
+        "evolvesat": 36,
+        "evolvesto": "006"
     },
     {
         "id": "006",
@@ -120,7 +128,9 @@
         },
         "catch": 45,
         "xpyield": 66,
-        "xptype": "MedSlow"
+        "xptype": "MedSlow",
+        "evolvesat": 16,
+        "evolvesto": "008"
     },
     {
         "id": "008",
@@ -137,7 +147,9 @@
         },
         "catch": 45,
         "xpyield": 143,
-        "xptype": "MedSlow"
+        "xptype": "MedSlow",
+        "evolvesat": 36,
+        "evolvesto": "009"
     },
     {
         "id": "009",
@@ -171,7 +183,9 @@
         },
         "catch": 255,
         "xpyield": 53,
-        "xptype": "MedFast"
+        "xptype": "MedFast",
+        "evolvesat": 7,
+        "evolvesto": "011"
     },
     {
         "id": "011",
@@ -188,7 +202,9 @@
         },
         "catch": 120,
         "xpyield": 72,
-        "xptype": "MedFast"
+        "xptype": "MedFast",
+        "evolvesat": 10,
+        "evolvesto": "012"
     },
     {
         "id": "012",
@@ -224,7 +240,9 @@
         },
         "catch": 255,
         "xpyield": 52,
-        "xptype": "MedFast"
+        "xptype": "MedFast",
+        "evolvesat": 7,
+        "evolvesto": "014"
     },
     {
         "id": "014",
@@ -242,7 +260,9 @@
         },
         "catch": 120,
         "xpyield": 71,
-        "xptype": "MedFast"
+        "xptype": "MedFast",
+        "evolvesat": 10,
+        "evolvesto": "015"
     },
     {
         "id": "015",
@@ -278,7 +298,9 @@
         },
         "catch": 255,
         "xpyield": 55,
-        "xptype": "MedSlow"
+        "xptype": "MedSlow",
+        "evolvesat": 18,
+        "evolvesto": "017"
     },
     {
         "id": "017",
@@ -296,7 +318,9 @@
         },
         "catch": 120,
         "xpyield": 113,
-        "xptype": "MedSlow"
+        "xptype": "MedSlow",
+        "evolvesat": 36,
+        "evolvesto": "018"
     },
     {
         "id": "018",
@@ -331,7 +355,9 @@
         },
         "catch": 255,
         "xpyield": 57,
-        "xptype": "MedFast"
+        "xptype": "MedFast",
+        "evolvesat": 20,
+        "evolvesto": "020"
     },
     {
         "id": "020",
@@ -366,7 +392,9 @@
         },
         "catch": 255,
         "xpyield": 58,
-        "xptype": "MedFast"
+        "xptype": "MedFast",
+        "evolvesat": 20,
+        "evolvesto": "022"
     },
     {
         "id": "022",
@@ -401,7 +429,9 @@
         },
         "catch": 255,
         "xpyield": 62,
-        "xptype": "MedFast"
+        "xptype": "MedFast",
+        "evolvesat": 22,
+        "evolvesto": "024"
     },
     {
         "id": "024",
@@ -469,7 +499,9 @@
         },
         "catch": 255,
         "xpyield": 93,
-        "xptype": "MedFast"
+        "xptype": "MedFast",
+        "evolvesat": 22,
+        "evolvesto": "028"
     },
     {
         "id": "028",
@@ -503,7 +535,9 @@
         },
         "catch": 235,
         "xpyield": 59,
-        "xptype": "MedSlow"
+        "xptype": "MedSlow",
+        "evolvesat": 16,
+        "evolvesto": "030"
     },
     {
         "id": "030",
@@ -555,7 +589,9 @@
         },
         "catch": 235,
         "xpyield": 60,
-        "xptype": "MedSlow"
+        "xptype": "MedSlow",
+        "evolvesat": 16,
+        "evolvesto": "033"
     },
     {
         "id": "033",
@@ -712,7 +748,9 @@
         },
         "catch": 255,
         "xpyield": 54,
-        "xptype": "MedFast"
+        "xptype": "MedFast",
+        "evolvesat": 22,
+        "evolvesto": "042"
     },
     {
         "id": "042",
@@ -748,7 +786,9 @@
         },
         "catch": 255,
         "xpyield": 78,
-        "xptype": "MedSlow"
+        "xptype": "MedSlow",
+        "evolvesat": 21,
+        "evolvesto": "044"
     },
     {
         "id": "044",
@@ -802,7 +842,9 @@
         },
         "catch": 190,
         "xpyield": 70,
-        "xptype": "MedFast"
+        "xptype": "MedFast",
+        "evolvesat": 24,
+        "evolvesto": "047"
     },
     {
         "id": "047",
@@ -838,7 +880,9 @@
         },
         "catch": 190,
         "xpyield": 75,
-        "xptype": "MedFast"
+        "xptype": "MedFast",
+        "evolvesat": 31,
+        "evolvesto": "049"
     },
     {
         "id": "049",
@@ -873,7 +917,9 @@
         },
         "catch": 255,
         "xpyield": 81,
-        "xptype": "MedFast"
+        "xptype": "MedFast",
+        "evolvesat": 26,
+        "evolvesto": "051"
     },
     {
         "id": "051",
@@ -907,7 +953,9 @@
         },
         "catch": 255,
         "xpyield": 69,
-        "xptype": "MedFast"
+        "xptype": "MedFast",
+        "evolvesat": 28,
+        "evolvesto": "053"
     },
     {
         "id": "053",
@@ -941,7 +989,9 @@
         },
         "catch": 190,
         "xpyield": 80,
-        "xptype": "MedFast"
+        "xptype": "MedFast",
+        "evolvesat": 33,
+        "evolvesto": "055"
     },
     {
         "id": "055",
@@ -975,7 +1025,9 @@
         },
         "catch": 190,
         "xpyield": 74,
-        "xptype": "MedFast"
+        "xptype": "MedFast",
+        "evolvesat": 28,
+        "evolvesto": "057"
     },
     {
         "id": "057",
@@ -1043,7 +1095,9 @@
         },
         "catch": 255,
         "xpyield": 77,
-        "xptype": "MedSlow"
+        "xptype": "MedSlow",
+        "evolvesat": 25,
+        "evolvesto": "061"
     },
     {
         "id": "061",
@@ -1095,7 +1149,9 @@
         },
         "catch": 200,
         "xpyield": 73,
-        "xptype": "MedSlow"
+        "xptype": "MedSlow",
+        "evolvesat": 16,
+        "evolvesto": "064"
     },
     {
         "id": "064",
@@ -1146,7 +1202,9 @@
         },
         "catch": 180,
         "xpyield": 88,
-        "xptype": "MedSlow"
+        "xptype": "MedSlow",
+        "evolvesat": 28,
+        "evolvesto": "067"
     },
     {
         "id": "067",
@@ -1198,7 +1256,9 @@
         },
         "catch": 255,
         "xpyield": 84,
-        "xptype": "MedSlow"
+        "xptype": "MedSlow",
+        "evolvesat": 21,
+        "evolvesto": "070"
     },
     {
         "id": "070",
@@ -1252,7 +1312,9 @@
         },
         "catch": 190,
         "xpyield": 105,
-        "xptype": "Slow"
+        "xptype": "Slow",
+        "evolvesat": 30,
+        "evolvesto": "073"
     },
     {
         "id": "073",
@@ -1288,7 +1350,9 @@
         },
         "catch": 255,
         "xpyield": 86,
-        "xptype": "MedSlow"
+        "xptype": "MedSlow",
+        "evolvesat": 25,
+        "evolvesto": "075"
     },
     {
         "id": "075",
@@ -1341,7 +1405,9 @@
         },
         "catch": 190,
         "xpyield": 152,
-        "xptype": "MedFast"
+        "xptype": "MedFast",
+        "evolvesat": 40,
+        "evolvesto": "078"
     },
     {
         "id": "078",
@@ -1376,7 +1442,9 @@
         },
         "catch": 190,
         "xpyield": 99,
-        "xptype": "MedFast"
+        "xptype": "MedFast",
+        "evolvesat": 37,
+        "evolvesto": "080"
     },
     {
         "id": "080",
@@ -1412,7 +1480,9 @@
         },
         "catch": 190,
         "xpyield": 89,
-        "xptype": "MedFast"
+        "xptype": "MedFast",
+        "evolvesat": 30,
+        "evolvesto": "082"
     },
     {
         "id": "082",
@@ -1466,7 +1536,9 @@
         },
         "catch": 190,
         "xpyield": 96,
-        "xptype": "MedFast"
+        "xptype": "MedFast",
+        "evolvesat": 31,
+        "evolvesto": "085"
     },
     {
         "id": "085",
@@ -1501,7 +1573,9 @@
         },
         "catch": 190,
         "xpyield": 100,
-        "xptype": "MedFast"
+        "xptype": "MedFast",
+        "evolvesat": 34,
+        "evolvesto": "087"
     },
     {
         "id": "087",
@@ -1536,7 +1610,9 @@
         },
         "catch": 190,
         "xpyield": 90,
-        "xptype": "MedFast"
+        "xptype": "MedFast",
+        "evolvesat": 38,
+        "evolvesto": "089"
     },
     {
         "id": "089",
@@ -1606,7 +1682,9 @@
         },
         "catch": 190,
         "xpyield": 95,
-        "xptype": "MedSlow"
+        "xptype": "MedSlow",
+        "evolvesat": 25,
+        "evolvesto": "093"
     },
     {
         "id": "093",
@@ -1677,7 +1755,9 @@
         },
         "catch": 190,
         "xpyield": 102,
-        "xptype": "MedFast"
+        "xptype": "MedFast",
+        "evolvesat": 26,
+        "evolvesto": "097"
     },
     {
         "id": "097",
@@ -1711,7 +1791,9 @@
         },
         "catch": 225,
         "xpyield": 115,
-        "xptype": "MedFast"
+        "xptype": "MedFast",
+        "evolvesat": 2,
+        "evolvesto": "099"
     },
     {
         "id": "099",
@@ -1745,7 +1827,9 @@
         },
         "catch": 190,
         "xpyield": 103,
-        "xptype": "MedFast"
+        "xptype": "MedFast",
+        "evolvesat": 30,
+        "evolvesto": "101"
     },
     {
         "id": "101",
@@ -1815,7 +1899,9 @@
         },
         "catch": 190,
         "xpyield": 87,
-        "xptype": "MedFast"
+        "xptype": "MedFast",
+        "evolvesat": 28,
+        "evolvesto": "105"
     },
     {
         "id": "105",
@@ -1900,7 +1986,9 @@
         },
         "catch": 190,
         "xpyield": 114,
-        "xptype": "MedFast"
+        "xptype": "MedFast",
+        "evolvesat": 35,
+        "evolvesto": "110"
     },
     {
         "id": "110",
@@ -1935,7 +2023,9 @@
         },
         "catch": 120,
         "xpyield": 135,
-        "xptype": "Slow"
+        "xptype": "Slow",
+        "evolvesat": 42,
+        "evolvesto": "112"
     },
     {
         "id": "112",
@@ -2021,7 +2111,9 @@
         },
         "catch": 225,
         "xpyield": 83,
-        "xptype": "MedFast"
+        "xptype": "MedFast",
+        "evolvesat": 32,
+        "evolvesto": "117"
     },
     {
         "id": "117",
@@ -2055,7 +2147,9 @@
         },
         "catch": 225,
         "xpyield": 111,
-        "xptype": "MedFast"
+        "xptype": "MedFast",
+        "evolvesat": 33,
+        "evolvesto": "119"
     },
     {
         "id": "119",
@@ -2246,7 +2340,9 @@
         },
         "catch": 255,
         "xpyield": 20,
-        "xptype": "Slow"
+        "xptype": "Slow",
+        "evolvesat": 20,
+        "evolvesto": "130"
     },
     {
         "id": "130",
@@ -2402,7 +2498,9 @@
         },
         "catch": 45,
         "xpyield": 120,
-        "xptype": "MedFast"
+        "xptype": "MedFast",
+        "evolvesat": 40,
+        "evolvesto": "139"
     },
     {
         "id": "139",
@@ -2438,7 +2536,9 @@
         },
         "catch": 45,
         "xpyield": 119,
-        "xptype": "MedFast"
+        "xptype": "MedFast",
+        "evolvesat": 40,
+        "evolvesto": "141"
     },
     {
         "id": "141",
@@ -2562,7 +2662,9 @@
         },
         "catch": 45,
         "xpyield": 67,
-        "xptype": "Slow"
+        "xptype": "Slow",
+        "evolvesat": 30,
+        "evolvesto": "148"
     },
     {
         "id": "148",
@@ -2579,7 +2681,9 @@
         },
         "catch": 45,
         "xpyield": 144,
-        "xptype": "Slow"
+        "xptype": "Slow",
+        "evolvesat": 55,
+        "evolvesto": "149"
     },
     {
         "id": "149",
