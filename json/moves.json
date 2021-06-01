@@ -1346,7 +1346,7 @@
         "category": "physical",
         "power": 50,
         "accuracy": 1.0,
-        "pp": null,
+        "pp": 1,
         "effect": {
             "recoil": -0.5
         }
