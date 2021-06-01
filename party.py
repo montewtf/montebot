@@ -18,17 +18,20 @@ class Pokemon(commands.Cog):
         return "7" not in party
     
     async def cog_command_error(self, ctx, error):
-        if isinstance(error, commands.errors.CheckFailure):
-            await ctx.send("You can't do that during a battle")
+        try:
+            with open("json/parties/"+str(ctx.author.id)+".json") as f_obj:
+                party = json.load(f_obj)
+            if isinstance(error, commands.errors.CheckFailure):
+                await ctx.send("You can't do that right now")
+            else: raise error
+        except FileNotFoundError:
+            await ctx.send("You have to pick a starter first")
             
     @commands.command(brief="Display's your party of Pokemon", description="Display's your party of Pokemon", help="Can't be used during battle")
     @commands.check(in_fight)
     async def party(self, ctx):
-        try:
-            with open("json/parties/"+str(ctx.author.id)+".json") as f_obj:
-                party = json.load(f_obj)
-        except FileNotFoundError:
-            return await ctx.send("You have to pick a starter first")
+        with open("json/parties/"+str(ctx.author.id)+".json") as f_obj:
+            party = json.load(f_obj)
         embed=discord.Embed(title="Party", color=discord.Color.blue())
         i=1
         while i<7:
@@ -46,11 +49,8 @@ class Pokemon(commands.Cog):
 
     @commands.command(brief="Checks your Pokemon's summary", description="Checks your Pokemon's summary", help="slot has to be 1-6 and has to have a Pokemon in it. Can be used during battles.")
     async def summary(self, ctx, slot):
-        try:
-            with open("json/parties/"+str(ctx.author.id)+".json") as f_obj:
-                party = json.load(f_obj)
-        except FileNotFoundError:
-            return await ctx.send("You have to pick a starter first")
+        with open("json/parties/"+str(ctx.author.id)+".json") as f_obj:
+            party = json.load(f_obj)
         if int(slot)>6 or party.get(str(slot))==None:
             await ctx.send("Invalid slot")
             return
@@ -74,19 +74,13 @@ class Pokemon(commands.Cog):
         embed.add_field(name="Defense", value=poke.defense, inline=True)
         embed.add_field(name="Special", value=poke.special, inline=True)
         embed.add_field(name="Speed", value=poke.speed, inline=True)
-        with open("json/moves.json") as f_obj:
-            moves = json.load(f_obj)
-        move1=moves[poke.move1.lower()]
-        if poke.move2 != None: move2=moves[poke.move2.lower()]
-        if poke.move3 != None: move3=moves[poke.move3.lower()]
-        if poke.move4 != None: move4=moves[poke.move4.lower()]
         embed2=discord.Embed(title="Moves", color=discord.Color.blue())
-        embed2.add_field(name=poke.move1+" ("+move1["type"].capitalize()+")", value="Power: "+str(move1["power"]), inline=False)
-        if poke.move2 != None: embed2.add_field(name=poke.move2+" ("+move2["type"].capitalize()+")", value="Power: "+str(move2["power"]), inline=False)
+        embed2.add_field(name=poke.move1.name.title()+" ("+poke.move1.type.capitalize()+")", value="Power: "+str(poke.move1.power)+" PP: "+str(poke.move1.curpp)+"/"+str(poke.move1.maxpp), inline=False)
+        if poke.move2 != None: embed2.add_field(name=poke.move2.name.title()+" ("+poke.move2.type.capitalize()+")", value="Power: "+str(poke.move2.power)+" PP: "+str(poke.move2.curpp)+"/"+str(poke.move2.maxpp), inline=False)
         else: embed2.add_field(name="Empty", value="\u200B", inline=False)
-        if poke.move3 != None: embed2.add_field(name=poke.move3+" ("+move3["type"].capitalize()+")", value="Power: "+str(move3["power"]), inline=False)
+        if poke.move3 != None: embed2.add_field(name=poke.move3.name.title()+" ("+poke.move3.type.capitalize()+")", value="Power: "+str(poke.move3.power)+" PP: "+str(poke.move3.curpp)+"/"+str(poke.move3.maxpp), inline=False)
         else: embed2.add_field(name="Empty", value="\u200B", inline=False)
-        if poke.move4 != None: embed2.add_field(name=poke.move4+" ("+move4["type"].capitalize()+")", value="Power: "+str(move4["power"]), inline=False)
+        if poke.move4 != None: embed2.add_field(name=poke.move4.name.title()+" ("+poke.move4.type.capitalize()+")", value="Power: "+str(poke.move4.power)+" PP: "+str(poke.move4.curpp)+"/"+str(poke.move4.maxpp), inline=False)
         else: embed2.add_field(name="Empty", value="\u200B", inline=False)
         await ctx.send(file=file, embed=embed)
         await ctx.send(embed=embed2)
@@ -107,11 +101,8 @@ class Pokemon(commands.Cog):
             i+=1
         new = pokeparty.pokemon(species=poke, level=level, name=name)
         poke = new.export()
-        try:
-            with open("json/parties/"+str(ctx.author.id)+".json") as f_obj:
-                party = json.load(f_obj)
-        except FileNotFoundError:
-            return await ctx.send("You have to pick a starter first")
+        with open("json/parties/"+str(ctx.author.id)+".json") as f_obj:
+            party = json.load(f_obj)
         currentp = pokeparty.party(party)
         add=currentp.add(poke)
         if not add:
@@ -125,11 +116,8 @@ class Pokemon(commands.Cog):
     @commands.command(brief="Releases Pokemon", description="Releases Pokemon", help="Slot has to be 1-6 and have a pokemon in it. Gives you a chance to confirm before it releases. Can't be used in battle")
     @commands.check(in_fight)
     async def release(self, ctx, slot):
-        try:
-            with open("json/parties/"+str(ctx.author.id)+".json") as f_obj:
-                party = json.load(f_obj)
-        except FileNotFoundError:
-            return await ctx.send("You have to pick a starter first")
+        with open("json/parties/"+str(ctx.author.id)+".json") as f_obj:
+            party = json.load(f_obj)
         currentp = pokeparty.party(party)
         if currentp.remove(int(slot)):
             await ctx.send("Invalid slot")
@@ -154,11 +142,8 @@ class Pokemon(commands.Cog):
     @commands.command(brief="Swaps Pokemon", description="Swaps Pokemon", help="Slot1 and slot2 has to be 1-6 and have pokemon in them. Slot1 and slot2 can be in any order. Can't be used in battle")
     @commands.check(in_fight)
     async def swap(self, ctx, slot1, slot2="1"):
-        try:
-            with open("json/parties/"+str(ctx.author.id)+".json") as f_obj:
-                party = json.load(f_obj)
-        except FileNotFoundError:
-            return await ctx.send("You have to pick a starter first")
+        with open("json/parties/"+str(ctx.author.id)+".json") as f_obj:
+            party = json.load(f_obj)
         currentp = pokeparty.party(party)
         if currentp.swap(int(slot1), int(slot2)):
             await ctx.send("Invalid slots")
@@ -193,6 +178,7 @@ class Pokemon(commands.Cog):
                 await ctx.send("You have obtained "+str(starter).capitalize()+"!")
             else:
                 await ctx.send("Invalid starter")
+                
     @commands.command(brief="Heals Pokemon", description="Heals Pokemon", help="Can't be used in battle")
     @commands.check(in_fight)
     async def heal(self, ctx):
@@ -202,9 +188,14 @@ class Pokemon(commands.Cog):
             if party[key]!=None:
                 poke = party[key]
                 stats = poke["stats"]
+                moves = poke["moves"]
+                for key2 in moves:
+                    if moves[key2]!=None:
+                        moves[key2]["pp"]=1
                 poke["status"] = None
                 stats["CurHP"] = stats["HP"]
                 poke["stats"] = stats
+                poke["moves"] = moves
                 party[key] = poke
         await ctx.send("We hope to see you again")
         with open("json/parties/"+str(ctx.author.id)+".json", "w") as f_obj:
@@ -212,30 +203,28 @@ class Pokemon(commands.Cog):
             
     @commands.command(brief="Generates a wild pokemon battle", description="Generates a wild pokemon battle", help="Wild pokemon can be any of 151 and a random level 1-100")
     async def wild(self, ctx):
-        try:
-            with open("json/parties/"+str(ctx.author.id)+".json") as f_obj:
-                party = json.load(f_obj)
-        except FileNotFoundError:
-            return await ctx.send("You have to pick a starter first")
+        with open("json/parties/"+str(ctx.author.id)+".json") as f_obj:
+            party = json.load(f_obj)
         checker = False
         if "7" not in party:
             checker = True
+            party=pokeparty.party(party)
+            i=2
+            while party.p1["status"]=="fainted":
+                if i==7:
+                    return await ctx.send("All your pokemon are fainted")
+                party.swap(1,i)
+                i+=1
+            party=party.recon()
             with open("json/pokedex.json") as f_obj:
                 dex = json.load(f_obj)
             
             poke=dex[random.randint(0, 150)]
-            '''
-            i=0
-            while i<151:
-                poke = dex[i]
-                if "Electrode" == poke["name"]:
-                    break
-                i+=1
-            '''
             level=random.randint(2,10)
             battle = pokeparty.pokemon(species=poke, level=level)
             wild = battle.export()
             party["7"] = wild
+            party["1"]["participated"] = True
             with open("json/parties/"+str(ctx.author.id)+".json", "w") as f_obj:
                 json.dump(party, f_obj, indent=4)
         with open("json/parties/"+str(ctx.author.id)+".json") as f_obj:
