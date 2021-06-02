@@ -93,10 +93,7 @@
             "xptype": "MedSlow",
             "cur": 9,
             "next": 57
-        },
-        "catch": 255,
-        "run": 1,
-        "xpyield": 55
+        }
     },
     "3": null,
     "4": null,
