@@ -68,7 +68,6 @@ class Pokemon(commands.Cog):
             embed.add_field(name="Types", value=poke.types[0]+", "+poke.types[1], inline=False)
         else:
             embed.add_field(name="Type", value=poke.types[0], inline=False)
-        
         embed.add_field(name="HP", value=str(poke.curhp)+"/"+str(poke.hp), inline=False)
         embed.add_field(name="Attack", value=poke.attack, inline=True)
         embed.add_field(name="Defense", value=poke.defense, inline=True)
@@ -101,6 +100,9 @@ class Pokemon(commands.Cog):
             i+=1
         new = pokeparty.pokemon(species=poke, level=level, name=name)
         poke = new.export()
+        del poke["catch"]
+        del poke["run"]
+        del poke["xpyield"]
         with open("json/parties/"+str(ctx.author.id)+".json") as f_obj:
             party = json.load(f_obj)
         currentp = pokeparty.party(party)
@@ -219,7 +221,7 @@ class Pokemon(commands.Cog):
             with open("json/pokedex.json") as f_obj:
                 dex = json.load(f_obj)
             
-            poke=dex[random.randint(0, 150)]
+            poke=dex[random.randint(0, 149)]
             level=random.randint(2,10)
             battle = pokeparty.pokemon(species=poke, level=level)
             wild = battle.export()
