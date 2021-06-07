@@ -9,7 +9,7 @@ Features
     IV's
     Battling wild pokemon (only damaging moves and no effects)
     Catching and releasing pokemon (unlimited pokeballs)
-    Leveling up and learning new moves
+    Leveling up, learning new moves, and evolving
     PP loss and struggle when out
     Type effectiveness
     Pokecenter command
