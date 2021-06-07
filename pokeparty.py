@@ -82,7 +82,7 @@ class pokemon:
             self.name = name
             self.status = None
             self.__genIV()
-            self.__getStats()
+            self.getStats()
             self.curhp = self.hp
             self.move1 = None
             self.move2 = None
@@ -104,8 +104,12 @@ class pokemon:
             self.ivspeed = iv["Speed"]
             self.ivspecial = iv["Special"]
             self.ivhp = iv["HP"]
-            self.__getStats()
-            self.curhp = poke["stats"].get("CurHP")
+            self.curhp = poke["stats"]["CurHP"]
+            self.hp = poke["stats"]["HP"]
+            self.attack = poke["stats"]["Attack"]
+            self.defense = poke["stats"]["Defense"]
+            self.speed = poke["stats"]["Speed"]
+            self.special = poke["stats"]["Special"]
             moves = poke["moves"]
             self.move1 = move(moves["move1"]["name"],moves["move1"]["pp"])
             if moves["move2"]!=None:self.move2 = move(moves["move2"]["name"],moves["move2"]["pp"])
@@ -135,7 +139,7 @@ class pokemon:
         self.ivspecial = random.randint(0,15)
         self.ivhp = (self.ivattack%2)*8+(self.ivdefense%2)*4+(self.ivspeed%2)*2+(self.ivspecial%2)*1
 
-    def __getStats(self):
+    def getStats(self):
         self.hp = math.floor((((self.base["HP"]+self.ivhp)*2+(math.sqrt(65535)/4))*(self.level/100))+self.level+10)
         self.attack = math.floor((((self.base["Attack"]+self.ivattack)*2+(math.sqrt(65535)/4))*(self.level/100))+5)
         self.defense = math.floor((((self.base["Defense"]+self.ivdefense)*2+(math.sqrt(65535)/4))*(self.level/100))+5)
@@ -151,17 +155,17 @@ class pokemon:
             if i==1 and isinstance(moves.get("1"), list):
                 level1 = moves.get("1")
                 if self.move1!=None:
-                    if self.move1.name in level1:
-                        level1.pop(level1.index(self.move1.name))
+                    if self.move1.name.title() in level1:
+                        level1.pop(level1.index(self.move1.name.title()))
                 if self.move2!=None:
-                    if self.move2.name in level1:
-                        level1.pop(level1.index(self.move2.name))
+                    if self.move2.name.title() in level1:
+                        level1.pop(level1.index(self.move2.name.title()))
                 if self.move3!=None:
-                    if self.move3.name in level1:
-                        level1.pop(level1.index(self.move3.name))
+                    if self.move3.name.title() in level1:
+                        level1.pop(level1.index(self.move3.name.title()))
                 if self.move4!=None:
-                    if self.move4.name in level1:
-                        level1.pop(level1.index(self.move4.name))
+                    if self.move4.name.title() in level1:
+                        level1.pop(level1.index(self.move4.name.title()))
                 while len(level1)>0:
                     if self.addMove(level1.pop(0)):
                         break                    
@@ -170,6 +174,48 @@ class pokemon:
                     break
             i-=1
     
+    def addMove(self, nmove, slot=None):
+        if slot == None:
+            if self.move1 == None:
+                self.move1 = move(nmove.lower())
+                return 0
+            else:
+                if self.move1.name == nmove.lower():
+                    return 3
+            if self.move2 == None:
+                self.move2 = move(nmove.lower())
+                return 0
+            else:
+                if self.move2.name == nmove.lower():
+                    return 3
+            if self.move3 == None:
+                self.move3 = move(nmove.lower())
+                return 0
+            else:
+                if self.move3.name == nmove.lower():
+                    return 3
+            if self.move4 == None:
+                self.move4 = move(nmove.lower())
+                return 0
+            else:
+                if self.move4.name == nmove.lower():
+                    return 3
+                else:
+                    return 1
+        else:
+            if slot==1:
+                self.move1 = move(nmove.lower())
+                return 2
+            elif slot==2:
+                self.move2 = move(nmove.lower())
+                return 2
+            elif slot==3:
+                self.move3 = move(nmove.lower())
+                return 2
+            elif slot==4:
+                self.move4 = move(nmove.lower())
+                return 2
+            
     def __getXP(self, level):
         if self.xptype=="Slow":
             xp=math.floor(level**3*5/4)
@@ -191,44 +237,31 @@ class pokemon:
             dex = json.load(f_obj)
         movedex=dex.get(self.species)
         if result==1:
+            stats=[self.hp, self.attack, self.defense, self.speed, self.special]
+            self.getStats()
+            nstats=[self.hp, self.attack, self.defense, self.speed, self.special]
+            statdif=[]
+            i=0
+            while i<5:
+                statdif.append(nstats[i]-stats[i])
+                i+=1
+            self.curhp+=statdif[0]
             if str(self.level) in movedex:
-                if not self.addMove(movedex.get(str(self.level))):
-                    return [result,1,movedex.get(str(self.level))]
+                if self.addMove(movedex.get(str(self.level)))==0:
+                    return [result,1,movedex.get(str(self.level)),statdif]
                 else:
-                    return [result,2,movedex.get(str(self.level))]
-            else: return [result,0]
+                    return [result,2,movedex.get(str(self.level)),statdif]
+                
+            else: return [result,0,None,statdif]
         else: return [0]
-        
-    def addMove(self, nmove, slot=None):
-        if slot == None:
-            if self.move1 == None:
-                self.move1 = move(nmove.lower())
-                return 0
-            elif self.move2 == None:
-                self.move2 = move(nmove.lower())
-                return 0
-            elif self.move3 == None:
-                self.move3 = move(nmove.lower())
-                return 0
-            elif self.move4 == None:
-                self.move4 = move(nmove.lower())
-                return 0
-            else:
-                return 1
-        else:
-            if slot==1:
-                self.move1 = move(nmove.lower())
-                return 2
-            elif slot==2:
-                self.move2 = move(nmove.lower())
-                return 2
-            elif slot==3:
-                self.move3 = move(nmove.lower())
-                return 2
-            elif slot==4:
-                self.move4 = move(nmove.lower())
-                return 2
-        
+
+    def evolve(self, nspecies):
+        self.id = nspecies["id"]
+        self.species = nspecies["name"]
+        self.types = nspecies["type"]
+        self.base = nspecies["base"]
+        self.getStats()
+    
     def export(self):
         moves={}
         moves["move1"]=self.move1.export()

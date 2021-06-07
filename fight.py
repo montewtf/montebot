@@ -78,7 +78,7 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
         
     @commands.command()
     @commands.check(is_not_dead)
-    async def fight(self, ctx):
+    async def fight(self, ctx, slot=0):
         with open("json/parties/"+str(ctx.author.id)+".json") as f_obj:
             party = json.load(f_obj)
         poke1 = pokeparty.pokemon(party["1"])
@@ -100,37 +100,43 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
                     break
                 else:
                     bool1=True
+        def yes(m):
+            return m.author == ctx.author
         if bool1:
             move=pokeparty.move("struggle")
+        elif int(slot) in [1,2,3,4]:
+            if int(slot)==1: movenum=1
+            elif int(slot)==2: movenum=2
+            elif int(slot)==3: movenum=3
+            elif int(slot)==4: movenum=4  
         else:
             await ctx.send("Type a move number", embed=embed)
-            def yes(m):
-                return m.author == ctx.author
             try:
                 answer = await self.bot.wait_for("message", check=yes, timeout=10.0)
             except asyncio.TimeoutError:
                 return await ctx.send("Timed out", files=[result[1], result[2]], embed=result[0])
-            if int(answer.content)==1:
-                if poke1.move1.curpp==0: return await ctx.send("That move has no pp", files=[result[1], result[2]], embed=result[0])
-                move=poke1.move1
-                poke1.move1.curpp-=1
-            elif int(answer.content)==2:
-                if poke1.move2==None: return await ctx.send("Invalid move", files=[result[1], result[2]], embed=result[0])
-                elif poke1.move2.curpp==0: return await ctx.send("That move has no pp", files=[result[1], result[2]], embed=result[0])
-                move=poke1.move2
-                poke1.move2.curpp-=1
-            elif int(answer.content)==3:
-                if poke1.move3==None: return await ctx.send("Invalid move", files=[result[1], result[2]], embed=result[0])
-                elif poke1.move3.curpp==0: return await ctx.send("That move has no pp", files=[result[1], result[2]], embed=result[0])
-                move=poke1.move
-                poke1.move3.curpp-=1
-            elif int(answer.content)==4:
-                if poke1.move4==None: return await ctx.send("Invalid move", files=[result[1], result[2]], embed=result[0])
-                elif poke1.move4.curpp==0: return await ctx.send("That move has no pp", files=[result[1], result[2]], embed=result[0])
-                move=poke1.move4
-                poke1.move4.curpp-=1
-            else:   
-                return await ctx.send("Invalid move", files=[result[1], result[2]], embed=result[0])
+            movenum=int(answer.content)
+        if movenum==1:
+            if poke1.move1.curpp==0: return await ctx.send("That move has no pp", files=[result[1], result[2]], embed=result[0])
+            move=poke1.move1
+            poke1.move1.curpp-=1
+        elif movenum==2:
+            if poke1.move2==None: return await ctx.send("Invalid move", files=[result[1], result[2]], embed=result[0])
+            elif poke1.move2.curpp==0: return await ctx.send("That move has no pp", files=[result[1], result[2]], embed=result[0])
+            move=poke1.move2
+            poke1.move2.curpp-=1
+        elif movenum==3:
+            if poke1.move3==None: return await ctx.send("Invalid move", files=[result[1], result[2]], embed=result[0])
+            elif poke1.move3.curpp==0: return await ctx.send("That move has no pp", files=[result[1], result[2]], embed=result[0])
+            move=poke1.move3
+            poke1.move3.curpp-=1
+        elif movenum==4:
+            if poke1.move4==None: return await ctx.send("Invalid move", files=[result[1], result[2]], embed=result[0])
+            elif poke1.move4.curpp==0: return await ctx.send("That move has no pp", files=[result[1], result[2]], embed=result[0])
+            move=poke1.move4
+            poke1.move4.curpp-=1
+        else:   
+            return await ctx.send("Invalid move", files=[result[1], result[2]], embed=result[0])
         if poke2.move4 != None:omove=random.choice([poke2.move1,poke2.move2,poke2.move3,poke2.move4])
         elif poke2.move3 != None:omove=random.choice([poke2.move1,poke2.move2,poke2.move3])
         elif poke2.move2 != None:omove=random.choice([poke2.move1,poke2.move2])
@@ -181,7 +187,7 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
                     i=1
                     while i<7:
                         if party[str(i)] != None:
-                            del party[str(i)]["participated"]
+                            if "participated" in party[str(i)]: del party[str(i)]["participated"]
                         i+=1
                     del party["7"]
                 else:
@@ -202,6 +208,7 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
             xp = math.floor(poke2.xpyield*poke2.level/(7*part))
             i=1
             part=0
+            levelled={}
             while i<7:
                 if party[str(i)]!=None:
                     if "participated" in party[str(i)]:
@@ -209,12 +216,26 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
                         tpoke.curxp+=xp
                         await ctx.send(tpoke.species+" earned "+str(xp)+" xp")
                         result2=tpoke.levelup()
+                        tpoke.part=None
                         if result2[0]:
-                            await ctx.send(tpoke.species+" grew to level "+str(tpoke.level))
+                            result3=result2[3]
+                            embed=discord.Embed(title=tpoke.species, color=discord.Color.blue())
+                            embed.add_field(name="HP", value="+"+str(result3[0]), inline=False)
+                            embed.add_field(name="Attack", value="+"+str(result3[1]), inline=False)
+                            embed.add_field(name="Defense", value="+"+str(result3[2]), inline=False)
+                            embed.add_field(name="Speed", value="+"+str(result3[3]), inline=False)
+                            embed.add_field(name="Special", value="+"+str(result3[4]), inline=False)
+                            await ctx.send(tpoke.species+" grew to level "+str(tpoke.level), embed=embed)
+                            levelled[str(i)]=tpoke
                             if result2[1]>0:
-                                if result2[1]==1:
+                                already = False
+                                for element in [tpoke.move1,tpoke.move2,tpoke.move3,tpoke.move4]:
+                                    if element != None:
+                                        if result2[2]==element.name.title():
+                                            already = True
+                                if result2[1]==1 and not already:
                                     await ctx.send(tpoke.species+" learned "+result2[2].title())
-                                if result2[1]==2:
+                                if result2[1]==2 and not already:
                                     embed=discord.Embed(title="Moves", color=discord.Color.blue())
                                     embed.add_field(name="1", value=tpoke.move1.name.title(), inline=False)
                                     embed.add_field(name="2", value=tpoke.move2.name.title(), inline=False)
@@ -241,9 +262,26 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
                                         tpoke.addMove(result2[2],4)
                                     else:
                                         await ctx.send(tpoke.species+" did not learn "+result2[2])
-                                    
                         party[str(i)] = tpoke.export()
                 i+=1
+            with open("json/pokedex.json") as f_obj:
+                pokedex = json.load(f_obj)
+            for key in levelled:
+                epoke = levelled[key]
+                dex = pokedex[int(epoke.id)-1]
+                if dex.get("evolvesat")!=None and int(dex.get("evolvesat"))<=epoke.level:
+                    answer=None
+                    await ctx.send(epoke.species+" is trying to evolve. (Type anything in the next 15 seconds to cancel)")
+                    try:
+                        answer = await self.bot.wait_for("message", check=yes, timeout=10.0)
+                    except asyncio.TimeoutError:
+                        oldpoke=epoke.species
+                        epoke.evolve(pokedex[int(dex["evolvesto"])-1])
+                        await ctx.send(oldpoke+" evolved into "+epoke.species)
+                    if answer!=None:
+                        await ctx.send(epoke.species+" stopped evolving")
+                    party[key] = epoke.export()
+
         with open("json/parties/"+str(ctx.author.id)+".json", "w") as f_obj:
             json.dump(party, f_obj, indent=4)
         
@@ -272,9 +310,9 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
             answer = await self.bot.wait_for("message", check=yes, timeout=10.0)
         except asyncio.TimeoutError:
             return await ctx.send("Timed out", files=[result[1], result[2]], embed=result[0])
-        if int(answer.content)>6:
+        if int(answer.content)>6 or party[answer.content]==None:
             await ctx.send("Invalid slot", files=[result[1], result[2]], embed=result[0])
-        elif party.get(answer.content).get("stats").get("CurHP")==0:
+        elif party[answer.content]["stats"]["CurHP"]==0:
             await ctx.send("Pokemon is fainted", files=[result[1], result[2]], embed=result[0])
         else:
             party1=pokeparty.party(party)
@@ -304,7 +342,7 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
                 elif poke2.move3 != None:omove=random.choice([poke2.move1,poke2.move2,poke2.move3])
                 elif poke2.move2 != None:omove=random.choice([poke2.move1,poke2.move2])
                 else: omove=poke2.move1
-                battle.attacks1(move2=omove.lower)
+                battle.attacks1(move2=omove)
                 if poke1.curhp==0:
                     battle.user.status="fainted"
                     if self.whited(party):
@@ -313,7 +351,7 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
                         i=1
                         while i<7:
                             if party[str(i)] != None:
-                                del party[str(i)]["participated"]
+                                if "participated" in party[str(i)]: del party[str(i)]["participated"]
                             i+=1
                         del party["7"]
                     else:
@@ -377,7 +415,7 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
             i=1
             while i<7:
                 if party[str(i)] != None:
-                    del party[str(i)]["participated"]
+                    if "participated" in party[str(i)]: del party[str(i)]["participated"]
                 i+=1
             with open("json/parties/"+str(ctx.author.id)+".json", "w") as f_obj:
                 json.dump(party, f_obj, indent=4)
@@ -417,7 +455,7 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
                     i=1
                     while i<7:
                         if party[str(i)] != None:
-                            del party[str(i)]["participated"]
+                            if "participated" in party[str(i)]: del party[str(i)]["participated"]
                         i+=1
                     del party["7"]
                 else:
@@ -444,7 +482,7 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
             i=1
             while i<7:
                 if party[str(i)] != None:
-                    del party[str(i)]["participated"]
+                    if "participated" in party[str(i)]: del party[str(i)]["participated"]
                 i+=1
             with open("json/parties/"+str(ctx.author.id)+".json", "w") as f_obj:
                 json.dump(party, f_obj, indent=4)
