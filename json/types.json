@@ -3,7 +3,7 @@
         "rock": 0.5,
         "ghost": 0
     },
-    "fight": {
+    "fighting": {
         "normal": 2,
         "flying": 0.5,
         "poison": 0.5,
@@ -14,7 +14,7 @@
         "ice": 2
     },
     "flying": {
-        "fight": 2,
+        "fighting": 2,
         "rock": 0.5,
         "bug": 2,
         "grass": 2,
@@ -38,7 +38,7 @@
         "electric": 2
     },
     "rock": {
-        "fight": 0.5,
+        "fighting": 0.5,
         "flying": 2,
         "ground": 0.5,
         "bug": 2,
@@ -46,7 +46,7 @@
         "ice": 2
     },
     "bug": {
-        "fight": 0.5,
+        "fighting": 0.5,
         "flying": 0.5,
         "poison": 2,
         "ghost": 0.5,
@@ -96,7 +96,7 @@
         "dragon": 0.5
     },
     "psychic": {
-        "fight": 2,
+        "fighting": 2,
         "poison": 2,
         "psychic": 0.5
     },
