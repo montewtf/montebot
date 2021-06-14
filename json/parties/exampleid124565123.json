@@ -1,51 +1,68 @@
 {
+    "0": {
+        "order": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ]
+    },
     "1": {
-        "id": "004",
+        "id": "007",
         "name": null,
-        "species": "Charmander",
-        "level": 6,
+        "species": "Squirtle",
+        "level": 5,
         "types": [
-            "Fire"
+            "Water"
         ],
         "status": null,
         "stats": {
-            "CurHP": 26,
-            "HP": 26,
-            "Attack": 15,
-            "Defense": 14,
-            "Speed": 16,
-            "Special": 15
+            "CurHP": 20,
+            "HP": 20,
+            "Attack": 10,
+            "Defense": 12,
+            "Speed": 10,
+            "Special": 11
         },
         "moves": {
             "move1": {
-                "name": "growl",
-                "pp": 1
+                "name": "tackle",
+                "pp": 1.0
             },
             "move2": {
-                "name": "scratch",
-                "pp": 1
+                "name": "tail whip",
+                "pp": 1.0
             },
             "move3": null,
             "move4": null
         },
         "iv": {
-            "HP": 13,
-            "Attack": 3,
-            "Defense": 7,
+            "HP": 14,
+            "Attack": 7,
+            "Defense": 13,
+            "Speed": 13,
+            "Special": 10
+        },
+        "ev": {
+            "HP": 0,
+            "Attack": 0,
+            "Defense": 0,
             "Speed": 0,
-            "Special": 7
+            "Special": 0
         },
         "base": {
-            "HP": 39,
-            "Attack": 52,
-            "Defense": 43,
-            "Speed": 65,
+            "HP": 44,
+            "Attack": 48,
+            "Defense": 65,
+            "Speed": 43,
             "Special": 50
         },
         "xp": {
             "xptype": "MedSlow",
-            "cur": 206,
-            "next": 236
+            "cur": 135,
+            "next": 179
         }
     },
     "2": {
@@ -59,12 +76,12 @@
         ],
         "status": null,
         "stats": {
-            "CurHP": 14,
-            "HP": 14,
-            "Attack": 8,
-            "Defense": 8,
-            "Speed": 8,
-            "Special": 7
+            "CurHP": 13,
+            "HP": 13,
+            "Attack": 6,
+            "Defense": 7,
+            "Speed": 7,
+            "Special": 6
         },
         "moves": {
             "move1": {
@@ -76,10 +93,17 @@
             "move4": null
         },
         "iv": {
-            "HP": 2,
-            "Attack": 12,
-            "Defense": 14,
-            "Speed": 7,
+            "HP": 4,
+            "Attack": 2,
+            "Defense": 15,
+            "Speed": 4,
+            "Special": 6
+        },
+        "ev": {
+            "HP": 0,
+            "Attack": 0,
+            "Defense": 0,
+            "Speed": 0,
             "Special": 0
         },
         "base": {
