@@ -4,67 +4,103 @@ import json
 
 class party:
     def __init__(self, party):
-        self.decon(party)
-        
-    def decon(self, party):
-        self.p1 = party["1"]
-        self.p2 = party["2"]
-        self.p3 = party["3"]
-        self.p4 = party["4"]
-        self.p5 = party["5"]
-        self.p6 = party["6"]
+        self.tdata = party["0"]
+        self.order = self.tdata["order"]
+        self.p1 = pokemon(party["1"])
+        if party["2"]!=None: self.p2 = pokemon(party["2"])
+        else: self.p2=None
+        if party["3"]!=None: self.p3 = pokemon(party["3"])
+        else: self.p3=None
+        if party["4"]!=None: self.p4 = pokemon(party["4"])
+        else: self.p4=None
+        if party["5"]!=None: self.p5 = pokemon(party["5"])
+        else: self.p5=None
+        if party["6"]!=None: self.p6 = pokemon(party["6"])
+        else: self.p6=None
         if "7" in party:
-            self.p7 = party["7"]
+            self.p7 = pokemon(party["7"])
         else: self.p7 = None
         
     def recon(self):
-        party = {"1":self.p1,
-                 "2":self.p2,
-                 "3":self.p3,
-                 "4":self.p4,
-                 "5":self.p5,
-                 "6":self.p6,
-                 }
-        if self.p7 != None:
-            party["7"] = self.p7
+        self.tdata = {"order":self.order}
+        party = {"0":self.tdata,
+                 "1":self.p1.export()}
+        if self.p2 != None: party["2"] = self.p2.export()
+        else: party["2"]=None
+        if self.p3 != None: party["3"] = self.p3.export()
+        else: party["3"]=None
+        if self.p4 != None: party["4"] = self.p4.export()
+        else: party["4"]=None
+        if self.p5 != None: party["5"] = self.p5.export()
+        else: party["5"]=None
+        if self.p6 != None: party["6"] = self.p6.export()
+        else: party["6"]=None
+        if self.p7 != None: party["7"] = self.p7.export()
         return party
     
-    def swap(self, s1:int, s2:int):
+    def get(self, slot:int):
+        if slot==1: return self.p1
+        elif slot==2: return self.p2
+        elif slot==3: return self.p3
+        elif slot==4: return self.p4
+        elif slot==5: return self.p5
+        elif slot==6: return self.p6
+        elif slot==7: return self.p7
+        else: return None
+        
+    def setp(self, slot:int, p):
+        if slot==1: self.p1=p
+        elif slot==2: self.p2=p
+        elif slot==3: self.p3=p
+        elif slot==4: self.p4=p
+        elif slot==5: self.p5=p
+        elif slot==6: self.p6=p
+        elif slot==7: self.p7=p
+        else: return None
+    
+    def swap(self, s1, s2=1):
         if s1>6 or s2>6:
             return 1
-        party = self.recon()
-        if not party.get(str(s1)) or not party.get(str(s2)):
+        array=[self.p1,self.p2,self.p3,self.p4,self.p5,self.p6]
+        t1=self.get(s1)
+        t2=self.get(s2)
+        if t1==None or t2==None:
             return 1
-        swap = party.get(str(s1))
-        party[str(s1)] = party[str(s2)]
-        party[str(s2)] = swap
-        self.decon(party)
+        self.setp(s1,t2)
+        self.setp(s2,t1)
+        self.order[s1-1], self.order[s2-1] = self.order[s2-1], self.order[s1-1]
         return 0
     
     def remove(self, r1):
-        if r1>6:
-            return 1
         i=r1
-        while i<6:
+        while i<7:
             if self.swap(i, i+1):
                 break
             i+=1
-        party=self.recon()
-        party[str(i)] = None
-        self.decon(party)
-        return 0
+        self.setp(i,None)
     
     def add(self, a1):
-        party = self.recon()
-        if party["6"]!=None:
+        if self.p6!=None:
             return 0
         i=1
         while i<7:
-            if party[str(i)] == None:
-                party[str(i)] = a1
-                self.decon(party)
+            if self.get(i) == None:
+                self.setp(i,a1)
                 return i
             i+=1
+            
+    def unswap(self):
+        i=1
+        while i<6:
+            j=i
+            while j>0 and self.order[j-1]>self.order[j]:
+                self.swap(j+1,j)
+                j-=1
+            i+=1
+        self.reorder()
+    
+    def reorder(self):
+        self.order = [1,2,3,4,5,6]
 
 class pokemon:
     def __init__(self, poke={}, species={}, level=0, name=None):
@@ -76,19 +112,22 @@ class pokemon:
             self.catch = species["catch"]
             self.xptype = species["xptype"]
             self.xpyield = species["xpyield"]
+            self.run=1
+            self.run2=None
             self.level = int(level)
             self.curxp = self.__getXP(self.level)
             self.nextxp = self.__getXP(self.level+1)
             self.name = name
             self.status = None
             self.__genIV()
+            self.evhp = self.evattack = self.evdefense = self.evspeed = self.evspecial = 0
             self.getStats()
             self.curhp = self.hp
             self.move1 = None
             self.move2 = None
             self.move3 = None
             self.move4 = None
-            self.__getMoves()
+            self.__genMoves()
             self.part = None
         else:
             self.id = poke["id"]
@@ -104,6 +143,12 @@ class pokemon:
             self.ivspeed = iv["Speed"]
             self.ivspecial = iv["Special"]
             self.ivhp = iv["HP"]
+            ev = poke["ev"]
+            self.evattack = ev["Attack"]
+            self.evdefense = ev["Defense"]
+            self.evspeed = ev["Speed"]
+            self.evspecial = ev["Special"]
+            self.evhp = ev["HP"]
             self.curhp = poke["stats"]["CurHP"]
             self.hp = poke["stats"]["HP"]
             self.attack = poke["stats"]["Attack"]
@@ -131,6 +176,12 @@ class pokemon:
             if "participated" in poke:
                 self.part=poke["participated"]
             else: self.part = None
+            if "run" in poke:
+                self.run=poke["run"]
+            else: self.run = None
+            if "run2" in poke:
+                self.run2 = True
+            else: self.run2 = None
             
     def __genIV(self):
         self.ivattack = random.randint(0,15)
@@ -139,14 +190,28 @@ class pokemon:
         self.ivspecial = random.randint(0,15)
         self.ivhp = (self.ivattack%2)*8+(self.ivdefense%2)*4+(self.ivspeed%2)*2+(self.ivspecial%2)*1
 
+    def getEV(self):
+        return {"HP":self.evhp,
+                "Attack":self.evattack,
+                "Defense":self.evdefense,
+                "Speed":self.evspeed,
+                "Special":self.evspecial}
+    
+    def setEV(self, dic):
+        self.evhp=dic["HP"]
+        self.evattack=dic["Attack"]
+        self.evdefense=dic["Defense"]
+        self.evspeed=dic["Speed"]
+        self.evspecial=dic["Special"]
+    
     def getStats(self):
-        self.hp = math.floor((((self.base["HP"]+self.ivhp)*2+(math.sqrt(65535)/4))*(self.level/100))+self.level+10)
-        self.attack = math.floor((((self.base["Attack"]+self.ivattack)*2+(math.sqrt(65535)/4))*(self.level/100))+5)
-        self.defense = math.floor((((self.base["Defense"]+self.ivdefense)*2+(math.sqrt(65535)/4))*(self.level/100))+5)
-        self.speed = math.floor((((self.base["Speed"]+self.ivspeed)*2+(math.sqrt(65535)/4))*(self.level/100))+5)
-        self.special = math.floor((((self.base["Special"]+self.ivspecial)*2+(math.sqrt(65535)/4))*(self.level/100))+5)
+        self.hp = math.floor((((self.base["HP"]+self.ivhp)*2+(math.sqrt(self.evhp)/4))*(self.level/100))+self.level+10)
+        self.attack = math.floor((((self.base["Attack"]+self.ivattack)*2+(math.sqrt(self.evattack)/4))*(self.level/100))+5)
+        self.defense = math.floor((((self.base["Defense"]+self.ivdefense)*2+(math.sqrt(self.evdefense)/4))*(self.level/100))+5)
+        self.speed = math.floor((((self.base["Speed"]+self.ivspeed)*2+(math.sqrt(self.evspeed)/4))*(self.level/100))+5)
+        self.special = math.floor((((self.base["Special"]+self.ivspecial)*2+(math.sqrt(self.evspecial)/4))*(self.level/100))+5)
         
-    def __getMoves(self):
+    def __genMoves(self):
         with open("json/movedex.json") as f_obj:
             dex = json.load(f_obj)
         moves=dex.get(self.species)
@@ -167,11 +232,9 @@ class pokemon:
                     if self.move4.name.title() in level1:
                         level1.pop(level1.index(self.move4.name.title()))
                 while len(level1)>0:
-                    if self.addMove(level1.pop(0)):
-                        break                    
+                    if self.addMove(level1.pop(0)): break                    
             elif str(i) in moves:
-                if self.addMove(moves.get(str(i))):
-                    break
+                if self.addMove(moves.get(str(i))):  break
             i-=1
     
     def addMove(self, nmove, slot=None):
@@ -180,41 +243,39 @@ class pokemon:
                 self.move1 = move(nmove.lower())
                 return 0
             else:
-                if self.move1.name == nmove.lower():
-                    return 3
+                if self.move1.name == nmove.lower(): return 3
             if self.move2 == None:
                 self.move2 = move(nmove.lower())
                 return 0
             else:
-                if self.move2.name == nmove.lower():
-                    return 3
+                if self.move2.name == nmove.lower(): return 3
             if self.move3 == None:
                 self.move3 = move(nmove.lower())
                 return 0
             else:
-                if self.move3.name == nmove.lower():
-                    return 3
+                if self.move3.name == nmove.lower(): return 3
             if self.move4 == None:
                 self.move4 = move(nmove.lower())
                 return 0
             else:
-                if self.move4.name == nmove.lower():
-                    return 3
-                else:
-                    return 1
+                if self.move4.name == nmove.lower(): return 3
+                else: return 1
         else:
-            if slot==1:
-                self.move1 = move(nmove.lower())
+            if slot>0 and slot<=4:
+                self.setMove(slot, move(nmove.lower()))
                 return 2
-            elif slot==2:
-                self.move2 = move(nmove.lower())
-                return 2
-            elif slot==3:
-                self.move3 = move(nmove.lower())
-                return 2
-            elif slot==4:
-                self.move4 = move(nmove.lower())
-                return 2
+            
+    def getMove(self, slot):
+        if slot==1:return self.move1
+        elif slot==2:return self.move2
+        elif slot==3:return self.move3
+        elif slot==4:return self.move4
+        
+    def setMove(self, slot, move):
+        if slot==1:self.move1=move
+        elif slot==2:self.move2=move
+        elif slot==3:self.move3=move
+        elif slot==4:self.move4=move
             
     def __getXP(self, level):
         if self.xptype=="Slow":
@@ -260,7 +321,9 @@ class pokemon:
         self.species = nspecies["name"]
         self.types = nspecies["type"]
         self.base = nspecies["base"]
+        oldhp=self.hp
         self.getStats()
+        self.curhp+=(self.hp-oldhp)
     
     def export(self):
         moves={}
@@ -294,6 +357,13 @@ class pokemon:
             "Speed" : self.ivspeed,
             "Special" : self.ivspecial,
             },
+         "ev" : {
+            "HP" : self.evhp,
+            "Attack" : self.evattack,
+            "Defense" : self.evdefense,
+            "Speed" : self.evspeed,
+            "Special" : self.evspecial,
+            },
         "base" : self.base,
         "xp" : {
             "xptype" : self.xptype,
@@ -301,49 +371,70 @@ class pokemon:
             "next" : self.nextxp,
             },
         }
-        if self.catch != None:
-            summary["catch"] = self.catch
-            summary["run"] = 1
-        if self.xpyield != None:
-            summary["xpyield"] = self.xpyield
-        if self.part != None:
-            summary["participated"] = self.part
+        if self.catch != None: summary["catch"] = self.catch
+        if self.xpyield != None: summary["xpyield"] = self.xpyield
+        if self.part != None: summary["participated"] = self.part
+        if self.run != None: summary["run"] = self.run
+        if self.run2 != None: summary["run2"] = self.run2
         return summary
     
 class battle:
     def __init__(self, poke1, poke2):
         self.user = poke1
         self.target = poke2
+        self.case = 0
+        self.typee1 = ""
+        self.typee2 = ""
+        self.miss1 = False
+        self.miss2 = False
         
-    def attacks2(self, move1, move2):
-        if self.user.speed > self.target.speed:
-            t1=self.attacks1(move1=move1)
-            if self.target.curhp==0: return [0, t1]
-            t2=self.attacks1(move2=move2)
-            return [1, t1, t2]
-        elif self.user.speed < self.target.speed:
-            t1=self.attacks1(move2=move2)
-            if self.user.curhp==0: return [0, t1]
-            t2=self.attacks1(move1=move1)
-            return [2, t1, t2]
+    def turn(self, move1=None, move2=None):
+        if move1==None:
+            self.target.setMove(move2, self.attack(move2=self.target.getMove(move2)))
+            self.case = 0
+            return self.returnstring(move2=self.target.getMove(move2))
+        elif move2==None:
+            self.user.setMove(move1, self.attack(move1=self.user.getMove(move1)))
+            self.case = 0
+            return self.returnstring(move1=self.user.getMove(move1))
         else:
-            if random.randint(0,1):
-                t1=self.attacks1(move1=move1)
-                if self.target.curhp==0: return [0, t1]
-                t2=self.attacks1(move2=move2)
-                return [1, t1, t2]
+            if self.user.speed > self.target.speed:
+                self.user.setMove(move1, self.attack(move1=self.user.getMove(move1)))
+                if self.target.curhp==0: self.case = 3
+                self.target.setMove(move2, self.attack(move2=self.target.getMove(move2)))
+                self.case = 1
+            elif self.user.speed < self.target.speed:
+                self.target.setMove(move2, self.attack(move2=self.target.getMove(move2)))
+                if self.user.curhp==0: self.case = 4
+                self.user.setMove(move1, self.attack(move1=self.user.getMove(move1)))
+                self.case = 2
             else:
-                t1=self.attacks1(move2=move2)
-                if self.user.curhp==0: return [0, t1]
-                t2=self.attacks1(move1=move1)
-                return [2, t1, t2]
+                if random.randint(0,1):
+                    self.user.setMove(move1, self.attack(move1=self.user.getMove(move1)))
+                    if self.target.curhp==0: self.case = 3
+                    self.target.setMove(move2, self.attack(move2=self.target.getMove(move2)))
+                    self.case = 1
+                else:
+                    self.target.setMove(move2, self.attack(move2=self.target.getMove(move2)))
+                    if self.user.curhp==0: self.case = 4
+                    self.user.setMove(move1, self.attack(move1=self.user.getMove(move1)))
+                    self.case = 2
+        return self.returnstring(self.user.getMove(move1),self.target.getMove(move2))
     
-    def attacks1(self, move1=None, move2=None):
+    def attack(self, move1=None, move2=None):
         if move1 != None:
+            move1.curpp-=1
+            if self.accuracy(move1)=="miss":
+                self.miss1 = True
+                return
+            else: self.miss1 = False
             if move1.type in self.user.types:stab=1.5
             else:stab=1
-            typee=self.types(move1.type,self.target.types)
-            modifier=stab*typee*(random.randint(85,100)/100)
+            t1=self.types(move1.type,self.target.types)
+            if t1==0:self.typee1="It's not effective. "
+            elif t1<1:self.typee1="It's not very effective. "
+            elif t1>1:self.typee1="It's super effective. "
+            modifier=stab*t1*(random.randint(85,100)/100)
             if move1.category=="special":
                 damage=math.floor(((2*self.user.level/5+2)*move1.power*self.user.special/self.target.special/50+2)*modifier)
                 if damage==0: damage=1
@@ -353,12 +444,20 @@ class battle:
             else: damage=0
             self.target.curhp-=damage
             if self.target.curhp<0:self.target.curhp=0
-            return typee
+            return move1
         elif move2 != None:
+            move2.curpp-=1
+            if self.accuracy(move2)=="miss":
+                self.miss2 = True
+                return
+            else: self.miss2 = False
             if move2.type in self.target.types:stab=1.5
             else:stab=1
-            typee=self.types(move2.type,self.user.types)
-            modifier=stab*typee*(random.randint(85,100)/100)
+            t2=self.types(move2.type,self.user.types)
+            if t2==0:self.typee2="It's not effective. "
+            elif t2<1:self.typee2="It's not very effective. "
+            elif t2>1:self.typee2="It's super effective. "
+            modifier=stab*t2*(random.randint(85,100)/100)
             if move2.category=="special":
                 damage=math.floor(((2*self.target.level/5+2)*move2.power*self.target.special/self.user.special/50+2)*modifier)
                 if damage==0 and typee!=0: damage=1
@@ -368,7 +467,14 @@ class battle:
             else: damage=0
             self.user.curhp-=damage
             if self.user.curhp<0:self.user.curhp=0
-            return typee
+            return move2
+    
+    def accuracy(self, move):
+        if move.accuracy==None: return "hits"
+        a=round(move.accuracy*255)
+        r=random.randint(0,255)
+        if r<a: return "hits"
+        else: return "miss"
     
     def types(self, atype, dtypes):
         with open("json/types.json") as f_obj:
@@ -379,9 +485,41 @@ class battle:
                 typee*=types[atype][dtype.lower()]
         return typee
     
-    def xp(self):
-        pass
-    
+    def returnstring(self, move1=None, move2=None):
+        string=""
+        if self.case%2==1:
+            string+=self.user.species+" used "+move1.name.title()+". "
+            if self.miss1: string+="The attack missed.\n"
+            else:
+                string+=self.typee1+"\n"
+                if self.target.curhp==0:
+                    string+=self.target.species+" fainted"
+                    return string
+            string+=self.target.species+" used "+move2.name.title()+". "
+            if self.miss2: string+="The attack missed."
+            else:
+                string+=self.typee2
+                if self.user.curhp==0:
+                    string+=self.user.species+" fainted"
+                    return string
+        else:
+            string+=self.target.species+" used "+move2.name.title()+". "
+            if self.miss2: string+="The attack missed.\n"
+            else:
+                string+=self.typee2+"\n"
+                if self.user.curhp==0:
+                    string+=self.user.species+" fainted"
+                    return string
+                if self.case==0: return string
+            string+=self.user.species+" used "+move1.name.title()+". "
+            if self.miss1: string+="The attack missed."
+            else:
+                string+=self.typee1
+                if self.target.curhp==0:
+                    string+=self.target.species+" fainted"
+                    return string
+        return string
+            
 class move:
     def __init__(self, name, pp=1):
         with open("json/moves.json") as f_obj:
