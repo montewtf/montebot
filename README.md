@@ -7,6 +7,7 @@ Features
 
     Picking a starter
     IV's
+    EV's
     Battling wild pokemon (only damaging moves and no effects)
     Catching and releasing pokemon (unlimited pokeballs)
     Leveling up, learning new moves, and evolving
@@ -17,8 +18,10 @@ Features
 Planned
 
     Pokemon evolutions
-    EV's
     Status moves and move effects
     Better wild pokemon generation
+    PC Storage
+    Pokedex
+    Items
     AI trainers
     PvP interaction and trading
