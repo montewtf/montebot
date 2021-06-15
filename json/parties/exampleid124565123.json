@@ -7,7 +7,8 @@
             4,
             5,
             6
-        ]
+        ],
+        "level": 5
     },
     "1": {
         "id": "007",
@@ -35,7 +36,10 @@
                 "name": "tail whip",
                 "pp": 1.0
             },
-            "move3": null,
+            "move3": {
+                "name": "acid",
+                "pp": 1.0
+            },
             "move4": null
         },
         "iv": {
@@ -46,11 +50,19 @@
             "Special": 10
         },
         "ev": {
-            "HP": 0,
+            "HP": 50,
+            "Attack": 20,
+            "Defense": 55,
+            "Speed": 30,
+            "Special": 25
+        },
+        "mod": {
             "Attack": 0,
             "Defense": 0,
             "Speed": 0,
-            "Special": 0
+            "Special": 0,
+            "Accuracy": 0,
+            "Evasion": 0
         },
         "base": {
             "HP": 44,
@@ -61,7 +73,7 @@
         },
         "xp": {
             "xptype": "MedSlow",
-            "cur": 135,
+            "cur": 150,
             "next": 179
         }
     },
@@ -100,11 +112,19 @@
             "Special": 6
         },
         "ev": {
-            "HP": 0,
+            "HP": 50,
+            "Attack": 20,
+            "Defense": 55,
+            "Speed": 30,
+            "Special": 25
+        },
+        "mod": {
             "Attack": 0,
             "Defense": 0,
             "Speed": 0,
-            "Special": 0
+            "Special": 0,
+            "Accuracy": 0,
+            "Evasion": 0
         },
         "base": {
             "HP": 40,
@@ -115,7 +135,7 @@
         },
         "xp": {
             "xptype": "MedSlow",
-            "cur": 9,
+            "cur": 24,
             "next": 57
         }
     },
