@@ -140,6 +140,8 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
                                     embed.add_field(name="4", value=tpoke.move4.name.title(), inline=False)
                                     embed.add_field(name="5", value=result2[2], inline=False)
                                     await ctx.send(tpoke.species+" is trying to learn "+result2[2]+", but it already knows 4 moves. Which move should be replaced?", embed=embed)
+                                    def yes(m):
+                                        return m.author == ctx.author
                                     answer2 = await self.bot.wait_for("message", check=yes)
                                     if answer2.content in ["1","2","3","4"]:
                                         answer2.content=int(answer2.content)
@@ -202,8 +204,6 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
                     break
                 else:
                     struggle=True
-        def yes(m):
-            return m.author == ctx.author
         if struggle:
             move=pokeparty.move("struggle")
         elif int(slot) in [1,2,3,4]:
@@ -212,6 +212,8 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
             elif int(slot)==3: movenum=3
             elif int(slot)==4: movenum=4  
         else:
+            def yes(m):
+                return m.author == ctx.author
             await ctx.send("Type a move number", embed=embed)
             try:
                 answer = await self.bot.wait_for("message", check=yes, timeout=10.0)
@@ -239,7 +241,7 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
         await self.turn(ctx, party, string)
         
     @commands.command()
-    async def pokemon(self, ctx):
+    async def pokemon(self, ctx, slot=0):
         with open("json/parties/"+str(ctx.author.id)+".json") as f_obj:
             party = pokeparty.party(json.load(f_obj))
         embed=discord.Embed(title="Switch to", color=discord.Color.blue())
@@ -255,25 +257,31 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
                     embed.add_field(name=str(i), value=p.name+" ("+p.species+") Lvl: "+str(p.level), inline=False)
             i+=1
         result = self.battleBox(party)
-        await ctx.send("Type a slot number", embed=embed)
-        def yes(m):
-            return m.author == ctx.author
-        try:
-            answer = await self.bot.wait_for("message", check=yes, timeout=10.0)
-        except asyncio.TimeoutError:
-            return await ctx.send("Timed out", files=[result[1], result[2]], embed=result[0])
-        try:
-            test=int(answer.content)
-        except ValueError:
-            if answer.content.startswith("!"): return
-            return await ctx.send("Invalid slot", files=[result[1], result[2]], embed=result[0])
-        if int(answer.content)>6 or party.get(int(answer.content))==None:
+        if int(slot) in [1,2,3,4]:
+            if int(slot)==1: pokenum=1
+            elif int(slot)==2: pokenum=2
+            elif int(slot)==3: pokenum=3
+            elif int(slot)==4: pokenum=4  
+        else:
+            def yes(m):
+                return m.author == ctx.author
+            await ctx.send("Type a slot number", embed=embed)
+            try:
+                answer = await self.bot.wait_for("message", check=yes, timeout=10.0)
+            except asyncio.TimeoutError:
+                return await ctx.send("Timed out", files=[result[1], result[2]], embed=result[0])
+            try:
+                pokenum=int(answer.content)
+            except ValueError:
+                if answer.content.startswith("!"): return
+                return await ctx.send("Invalid slot", files=[result[1], result[2]], embed=result[0])
+        if pokenum>6 or party.get(pokenum)==None:
             await ctx.send("Invalid slot", files=[result[1], result[2]], embed=result[0])
-        elif party.get(int(answer.content)).curhp==0:
+        elif party.get(pokenum).curhp==0:
             await ctx.send("Pokemon is fainted", files=[result[1], result[2]], embed=result[0])
         else:
-            party.swap(int(answer.content))
-            outgoing = party.get(int(answer.content))
+            party.swap(pokenum)
+            outgoing = party.get(pokenum)
             party.p1.part=True
             if outgoing.curhp!=0:
                 if outgoing.name==None:

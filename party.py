@@ -44,6 +44,8 @@ class Pokemon(commands.Cog):
                     embed.add_field(name=str(i), value=p.name+" ("+p.species+") Lvl: "+str(p.level), inline=False)
             i+=1
         await ctx.send(embed=embed)
+        with open("json/parties/"+str(ctx.author.id)+".json", "w") as f_obj:
+            json.dump(party.recon(), f_obj, indent=4)
 
     @commands.command(brief="Checks your Pokemon's summary", description="Checks your Pokemon's summary", help="slot has to be 1-6 and has to have a Pokemon in it. Can be used during battles.")
     async def summary(self, ctx, slot:int):
@@ -108,6 +110,7 @@ class Pokemon(commands.Cog):
         await ctx.send("Pokemon added to slot: "+str(add))     
         with open("json/parties/"+str(ctx.author.id)+".json", "w") as f_obj:
             json.dump(party.recon(), f_obj, indent=4)
+            
     @commands.command(brief="Releases Pokemon", description="Releases Pokemon", help="Slot has to be 1-6 and have a pokemon in it. Gives you a chance to confirm before it releases. Can't be used in battle")
     @commands.check(in_fight)
     async def release(self, ctx, slot):
