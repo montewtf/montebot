@@ -20,9 +20,14 @@ class party:
         if "7" in party:
             self.p7 = pokemon(party["7"])
         else: self.p7 = None
+        if "level" in self.tdata:
+            self.setlevel(self.tdata["level"])
+        else:
+            self.setlevel()
         
     def recon(self):
-        self.tdata = {"order":self.order}
+        self.tdata = {"order":self.order,
+                      "level":self.level}
         party = {"0":self.tdata,
                  "1":self.p1.export()}
         if self.p2 != None: party["2"] = self.p2.export()
@@ -57,6 +62,15 @@ class party:
         elif slot==6: self.p6=p
         elif slot==7: self.p7=p
         else: return None
+        
+    def setlevel(self, level=0):
+        self.level=level
+        i=1
+        while i<7:
+            if self.get(i)==None:
+                break
+            if self.level<self.get(i).level: self.level=self.get(i).level
+            i+=1
     
     def swap(self, s1, s2=1):
         if s1>6 or s2>6:
@@ -121,6 +135,7 @@ class pokemon:
             self.status = None
             self.__genIV()
             self.evhp = self.evattack = self.evdefense = self.evspeed = self.evspecial = 0
+            self.modaccuracy = self.modevasion = self.modattack = self.moddefense = self.modspeed = self.modspecial = 0
             self.getStats()
             self.curhp = self.hp
             self.move1 = None
@@ -149,6 +164,16 @@ class pokemon:
             self.evspeed = ev["Speed"]
             self.evspecial = ev["Special"]
             self.evhp = ev["HP"]
+            if "mod" in poke:
+                mod = poke["mod"]
+                self.modattack = mod["Attack"]
+                self.moddefense = mod["Defense"]
+                self.modspeed = mod["Speed"]
+                self.modspecial = mod["Special"]
+                self.modaccuracy = mod["Accuracy"]
+                self.modevasion = mod["Evasion"]
+            else:
+                self.modaccuracy = self.modevasion = self.modattack = self.moddefense = self.modspeed = self.modspecial = 0
             self.curhp = poke["stats"]["CurHP"]
             self.hp = poke["stats"]["HP"]
             self.attack = poke["stats"]["Attack"]
@@ -198,11 +223,80 @@ class pokemon:
                 "Special":self.evspecial}
     
     def setEV(self, dic):
+        for key in dic:
+            if dic[key]>65535: dic[key]=65535
         self.evhp=dic["HP"]
         self.evattack=dic["Attack"]
         self.evdefense=dic["Defense"]
         self.evspeed=dic["Speed"]
         self.evspecial=dic["Special"]
+        
+    def getMod(self, para):
+        if para=="moddic":
+            return {"Attack" : self.modattack,
+                    "Defense" : self.moddefense,
+                    "Speed" : self.modspeed,
+                    "Special" : self.modspecial,
+                    "Accuracy" : self.modaccuracy,
+                    "Evasion" : self.modevasion}
+        elif para=="modstat":
+            return {"Attack" : self.attack*max(2, 2+self.modattack)/max(2, 2-self.modattack),
+                    "Defense" : self.defense*max(2, 2+self.moddefense)/max(2, 2-self.moddefense),
+                    "Special" : self.special*max(2, 2+self.modspecial)/max(2, 2-self.modspecial),
+                    }
+        elif para=="modspeed": return round(self.speed*max(2, 2+self.modspeed)/max(2, 2-self.modspeed))
+        elif para=="accuracy": return max(2, 2+self.modaccuracy)/max(2, 2-self.modaccuracy)*max(2, 2-self.modevasion)/max(2, 2+self.modevasion)
+    
+    def setMod(self, stat, stages):
+        if stat=="attack":
+            self.modattack+=stages
+            if self.modattack>6:
+                self.modattack=6
+                return "toohigh"
+            elif self.modattack<-6:
+                self.modattack=-6
+                return "toolow"
+        elif stat=="defense":
+            self.moddefense+=stages
+            if self.moddefense>6:
+                self.moddefense=6
+                return "toohigh"
+            elif self.moddefense<-6:
+                self.moddefense=-6
+                return "toolow"
+        elif stat=="speed":
+            self.modspeed+=stages
+            if self.modspeed>6:
+                self.modspeed=6
+                return "toohigh"
+            elif self.modspeed<-6:
+                self.modspeed=-6
+                return "toolow"
+        elif stat=="special":
+            self.modspecial+=stages
+            if self.modspecial>6:
+                self.modspecial=6
+                return "toohigh"
+            elif self.modspecial<-6:
+                self.modspecial=-6
+                return "toolow"
+        elif stat=="evasiveness":
+            self.modevasion+=stages
+            if self.modevasion>6:
+                self.modevasion=6
+                return "toohigh"
+            elif self.modevasion<-6:
+                self.modevasion=-6
+                return "toolow"
+        elif stat=="accuracy":
+            self.modaccuracy+=stages
+            if self.modaccuracy>6:
+                self.modaccuracy=6
+                return "toohigh"
+            elif self.modaccuracy<-6:
+                self.modaccuracy=-6
+                return "toolow"
+        return ""
     
     def getStats(self):
         self.hp = math.floor((((self.base["HP"]+self.ivhp)*2+(math.sqrt(self.evhp)/4))*(self.level/100))+self.level+10)
@@ -364,6 +458,14 @@ class pokemon:
             "Speed" : self.evspeed,
             "Special" : self.evspecial,
             },
+        "mod" : {
+            "Attack" : self.modattack,
+            "Defense" : self.moddefense,
+            "Speed" : self.modspeed,
+            "Special" : self.modspecial,
+            "Accuracy" : self.modaccuracy,
+            "Evasion" : self.modevasion,
+            },
         "base" : self.base,
         "xp" : {
             "xptype" : self.xptype,
@@ -387,6 +489,8 @@ class battle:
         self.typee2 = ""
         self.miss1 = False
         self.miss2 = False
+        self.effect1 = ""
+        self.effect2 = ""
         
     def turn(self, move1=None, move2=None):
         if move1==None:
@@ -398,83 +502,156 @@ class battle:
             self.case = 0
             return self.returnstring(move1=self.user.getMove(move1))
         else:
-            if self.user.speed > self.target.speed:
+            userspeed=self.user.getMod("modspeed")
+            targetspeed=self.target.getMod("modspeed")
+            if userspeed > targetspeed:
                 self.user.setMove(move1, self.attack(move1=self.user.getMove(move1)))
                 if self.target.curhp==0: self.case = 3
-                self.target.setMove(move2, self.attack(move2=self.target.getMove(move2)))
-                self.case = 1
-            elif self.user.speed < self.target.speed:
+                else:
+                    self.target.setMove(move2, self.attack(move2=self.target.getMove(move2)))
+                    self.case = 1
+            elif userspeed < targetspeed:
                 self.target.setMove(move2, self.attack(move2=self.target.getMove(move2)))
                 if self.user.curhp==0: self.case = 4
-                self.user.setMove(move1, self.attack(move1=self.user.getMove(move1)))
-                self.case = 2
+                else:
+                    self.user.setMove(move1, self.attack(move1=self.user.getMove(move1)))
+                    self.case = 2
             else:
                 if random.randint(0,1):
                     self.user.setMove(move1, self.attack(move1=self.user.getMove(move1)))
                     if self.target.curhp==0: self.case = 3
-                    self.target.setMove(move2, self.attack(move2=self.target.getMove(move2)))
-                    self.case = 1
+                    else:
+                        self.target.setMove(move2, self.attack(move2=self.target.getMove(move2)))
+                        self.case = 1
                 else:
                     self.target.setMove(move2, self.attack(move2=self.target.getMove(move2)))
                     if self.user.curhp==0: self.case = 4
-                    self.user.setMove(move1, self.attack(move1=self.user.getMove(move1)))
-                    self.case = 2
+                    else:
+                        self.user.setMove(move1, self.attack(move1=self.user.getMove(move1)))
+                        self.case = 2
         return self.returnstring(self.user.getMove(move1),self.target.getMove(move2))
     
     def attack(self, move1=None, move2=None):
+        targetres=self.target.getMod("modstat")
+        targetattack, targetdefense, targetspecial = targetres["Attack"], targetres["Defense"], targetres["Special"]
+        userres=self.user.getMod("modstat")
+        userattack, userdefense, userspecial = userres["Attack"], userres["Defense"], userres["Special"]
         if move1 != None:
             move1.curpp-=1
-            if self.accuracy(move1)=="miss":
+            if self.accuracy(move1, self.user.getMod("accuracy"))=="miss":
                 self.miss1 = True
                 return
             else: self.miss1 = False
             if move1.type in self.user.types:stab=1.5
             else:stab=1
-            t1=self.types(move1.type,self.target.types)
-            if t1==0:self.typee1="It's not effective. "
-            elif t1<1:self.typee1="It's not very effective. "
-            elif t1>1:self.typee1="It's super effective. "
+            if move1.category!="status":
+                t1=self.types(move1.type,self.target.types)
+                if t1==0:self.typee1="It's not effective. "
+                elif t1<1:self.typee1="It's not very effective. "
+                elif t1>1:self.typee1="It's super effective. "
+            else:
+                t1=1
             modifier=stab*t1*(random.randint(85,100)/100)
             if move1.category=="special":
-                damage=math.floor(((2*self.user.level/5+2)*move1.power*self.user.special/self.target.special/50+2)*modifier)
+                damage=math.floor(((2*self.user.level/5+2)*move1.power*userspecial/targetspecial/50+2)*modifier)
                 if damage==0: damage=1
             elif move1.category=="physical":
-                damage=math.floor(((2*self.user.level/5+2)*move1.power*self.user.attack/self.target.defense/50+2)*modifier)
+                damage=math.floor(((2*self.user.level/5+2)*move1.power*userattack/targetdefense/50+2)*modifier)
                 if damage==0: damage=1
             else: damage=0
             self.target.curhp-=damage
-            if self.target.curhp<0:self.target.curhp=0
+            if self.target.curhp<=0:
+                self.target.curhp=0
+            else: self.effects(move1=move1)
             return move1
         elif move2 != None:
             move2.curpp-=1
-            if self.accuracy(move2)=="miss":
+            if self.accuracy(move2, self.target.getMod("accuracy"))=="miss":
                 self.miss2 = True
                 return
             else: self.miss2 = False
             if move2.type in self.target.types:stab=1.5
             else:stab=1
-            t2=self.types(move2.type,self.user.types)
-            if t2==0:self.typee2="It's not effective. "
-            elif t2<1:self.typee2="It's not very effective. "
-            elif t2>1:self.typee2="It's super effective. "
+            if move2.category!="status":
+                t2=self.types(move2.type,self.user.types)
+                if t2==0:self.typee2="It's not effective. "
+                elif t2<1:self.typee2="It's not very effective. "
+                elif t2>1:self.typee2="It's super effective. "
+            else:
+                t2=1
             modifier=stab*t2*(random.randint(85,100)/100)
             if move2.category=="special":
-                damage=math.floor(((2*self.target.level/5+2)*move2.power*self.target.special/self.user.special/50+2)*modifier)
+                damage=math.floor(((2*self.target.level/5+2)*move2.power*targetspecial/userspecial/50+2)*modifier)
                 if damage==0 and typee!=0: damage=1
             elif move2.category=="physical":
-                damage=math.floor(((2*self.target.level/5+2)*move2.power*self.target.attack/self.user.defense/50+2)*modifier)
+                damage=math.floor(((2*self.target.level/5+2)*move2.power*targetattack/userdefense/50+2)*modifier)
                 if damage==0 and typee!=0: damage=1
             else: damage=0
             self.user.curhp-=damage
-            if self.user.curhp<0:self.user.curhp=0
+            if self.user.curhp<=0:
+                self.user.curhp=0
+            else: self.effects(move2=move2)
             return move2
     
-    def accuracy(self, move):
+    def accuracy(self, move, a2):
         if move.accuracy==None: return "hits"
-        a=round(move.accuracy*255)
+        a=round(move.accuracy*255*a2)
         r=random.randint(0,255)
         if r<a: return "hits"
         else: return "miss"
+        
+    def effects(self, move1=None, move2=None):
+        if move1!=None:
+            effect=move1.effect
+            poke=poke2="user"
+        elif move2!=None:
+            effect=move2.effect
+            poke=poke2="target"
+        if effect==None: return
+        if "chance" in effect:
+            if effect["chance"]<random.random():return
+        if "stat" in effect:
+            stat=effect["stat"]
+            if poke=="user":
+                if stat.startswith("o"):
+                    poke2="target"
+                    ostat=stat[1:]
+                    result=self.target.setMod(ostat, effect["stages"])
+                else: result=self.user.setMod(stat, effect["stages"])
+                if poke2=="target":
+                    if effect["stages"]==2: self.effect1=self.target.species+"'s "+ostat+" greatly rose! "
+                    elif effect["stages"]==1: self.effect1=self.target.species+"'s "+ostat+" rose! "
+                    elif effect["stages"]==-1: self.effect1=self.target.species+"'s "+ostat+" fell! "
+                    elif effect["stages"]==-2: self.effect1=self.target.species+"'s "+ostat+" greatly fell! "
+                elif poke2=="user":
+                    if effect["stages"]==2: self.effect1=self.user.species+"'s "+stat+" greatly rose! "
+                    elif effect["stages"]==1: self.effect1=self.user.species+"'s "+stat+" rose! "
+                    elif effect["stages"]==-1: self.effect1=self.user.species+"'s "+stat+" fell! "
+                    elif effect["stages"]==-2: self.effect1=self.user.species+"'s "+stat+" greatly fell! "
+                if result.startswith("too") and move1.category=="status":
+                    self.effect1="Nothing happened! "
+                elif result.startswith("too"):
+                    self.effect1=""
+            elif poke=="target":
+                if stat.startswith("o"):
+                    poke2="user"
+                    ostat=stat[1:]
+                    result=self.user.setMod(ostat, effect["stages"])
+                else: result=self.target.setMod(stat, effect["stages"])
+                if poke2=="target":
+                    if effect["stages"]==2: self.effect2=self.target.species+"'s "+stat+" greatly rose! "
+                    elif effect["stages"]==1: self.effect2=self.target.species+"'s "+stat+" rose! "
+                    elif effect["stages"]==-1: self.effect2=self.target.species+"'s "+stat+" fell! "
+                    elif effect["stages"]==-2: self.effect2=self.target.species+"'s "+stat+" greatly fell! "
+                elif poke2=="user":
+                    if effect["stages"]==2: self.effect2=self.user.species+"'s "+ostat+" greatly rose! "
+                    elif effect["stages"]==1: self.effect2=self.user.species+"'s "+ostat+" rose! "
+                    elif effect["stages"]==-1: self.effect2=self.user.species+"'s "+ostat+" fell! "
+                    elif effect["stages"]==-2: self.effect2=self.user.species+"'s "+ostat+" greatly fell! "
+                if result.startswith("too") and move2.category=="status":
+                    self.effect2="Nothing happened! "
+                elif result.startswith("too"):
+                    self.effect2=""
     
     def types(self, atype, dtypes):
         with open("json/types.json") as f_obj:
@@ -491,14 +668,14 @@ class battle:
             string+=self.user.species+" used "+move1.name.title()+". "
             if self.miss1: string+="The attack missed.\n"
             else:
-                string+=self.typee1+"\n"
+                string+=self.typee1+self.effect1+"\n"
                 if self.target.curhp==0:
                     string+=self.target.species+" fainted"
                     return string
             string+=self.target.species+" used "+move2.name.title()+". "
             if self.miss2: string+="The attack missed."
             else:
-                string+=self.typee2
+                string+=self.typee2+self.effect2
                 if self.user.curhp==0:
                     string+=self.user.species+" fainted"
                     return string
@@ -506,7 +683,7 @@ class battle:
             string+=self.target.species+" used "+move2.name.title()+". "
             if self.miss2: string+="The attack missed.\n"
             else:
-                string+=self.typee2+"\n"
+                string+=self.typee2+self.effect2+"\n"
                 if self.user.curhp==0:
                     string+=self.user.species+" fainted"
                     return string
@@ -514,7 +691,7 @@ class battle:
             string+=self.user.species+" used "+move1.name.title()+". "
             if self.miss1: string+="The attack missed."
             else:
-                string+=self.typee1
+                string+=self.typee1+self.effect1
                 if self.target.curhp==0:
                     string+=self.target.species+" fainted"
                     return string
@@ -534,6 +711,7 @@ class move:
         self.curpp=round(self.maxpp*pp)
         if "effect" in move:
             self.effect=move["effect"]
+        else: self.effect=None
     
     def export(self):
         dic={
