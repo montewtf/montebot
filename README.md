@@ -8,19 +8,18 @@ Features
     Picking a starter
     IV's
     EV's
-    Battling wild pokemon (only damaging moves and no effects)
+    Picking an area to spawn wild pokemon
+    Battling wild pokemon (missing some moves)
     Catching and releasing pokemon (unlimited pokeballs)
     Leveling up, learning new moves, and evolving
     PP loss and struggle when out
     Type effectiveness
     Pokecenter command
+    PC Storage
     
 Planned
 
-    Pokemon evolutions
-    Status moves and move effects
-    Better wild pokemon generation
-    PC Storage
+    remaining move effects
     Pokedex
     Items
     AI trainers
