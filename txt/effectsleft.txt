@@ -1,0 +1,27 @@
+broken effects:
+    bound - 4
+    duration - 7
+    fixed - 6
+    ohko - 3
+    missrecoil - 2
+    seeded - 1
+    reflect - 2
+    outrage - 3
+    priority - 1
+
+broken moves:
+    bide
+    convserion
+    counter
+    disable
+    dream eater
+    focus energy
+    haze
+    metronome
+    mimic
+    mirror move
+    mist
+    roar/whirlwind
+    substitute
+    teleport
+    transform

@@ -1,0 +1,192 @@
+*5*
+field 1:
+    pidgey 2-8
+    rattata 2-7
+    spearow 2-8
+    nidoran-f 2-6
+    nidoran-m 2-6
+    jigglypuff 3-9
+    
+forest:
+    caterpie 3-9
+    weedle 3-9
+    metapod 4-10
+    kakuna 4-10
+    pikachu 3-8
+
+*10* Badge1
+cave 1:
+    clefairy 6-12
+    zubat 6-12
+    paras 7-12
+    geodude 7-11
+    sandshrew 6-12
+
+*15* Badge2
+field 2:
+    rattata 8-16
+    spearow 8-16
+    ekans 6-14
+    pidgey 8-12
+    oddish 12-16
+    bellsprout 12-16
+    abra 8-12
+    mankey 10-16
+    meowth 10-16
+    drowzee 9-15
+
+old rod:
+    magikarp 5
+
+*20* Badge3
+diglett:
+    diglett 15-22
+    dugtrio 30
+    
+cave 2:
+    zubat 16-20
+    geodude 16-20
+    machop 15-19
+    onix 15-19
+    
+field 3:
+    ekans 16-20
+    sandshrew 16-20
+    vulpix 15-19
+    growlithe 15-19
+    meowth 17-21
+    mankey 17-21
+    oddish 18-22
+    bellsprout 18-22
+    doduo 18-22
+
+good rod:
+    poliwag 10
+    goldeen 10
+    
+*25* Badge4
+tower:
+    gastly 19-24
+    haunter 25-30
+    cubone 20-24
+    
+field 4:
+    pidgey 23-27
+    oddish 22-26
+    bellsprout 22-26
+    gloom 28-30
+    weepinbell 28-30
+    venonat 24-28
+    farfetchd 24-28
+    doduo 24-28
+    ditto 23-25
+    tangela 24-28
+    
+*30* Badge5
+surfing:
+    slowpoke 10-15
+    slowbro 20-25
+    tentacool 5-30
+    staryu 30
+    
+powerplant:
+    pikachu 26-30
+    magnemite 26-30
+    magneton 29-33
+    voltorb 26-30
+    electrode 35
+    electabuzz 30-34
+
+safari1:
+    nidoran-f 26-29
+    nidorina 30-33
+    nidoran-m 26-29
+    nidorino 30-33
+    chansey 26-30
+    doduo 26-28
+    kangaskhan 28-30
+    tauros 28-30
+    
+safari2:
+    paras 27-29
+    parasect 29-32
+    venonat 27-29
+    venomoth 29-32
+    scyther 26-30
+    pinsir 26-30
+    rhyhorn 28-32
+    exeggcute 26-30
+
+super rod:
+    tentacool 15
+    krabby 15
+    goldeen 15
+    magikarp 15
+    shellder 15
+    horsea 15
+    staryu 15
+    dratini 15
+    
+*35* Badge6
+mansion:
+    raticate 35
+    vulpix 28-34
+    growlithe 28-34
+    ponyta 28-34
+    grimer 30-34
+    muk 37
+    koffing 30-34
+    weezing 37
+    magmar 35
+
+*40* Badge7
+islands:
+    psyduck 35-38
+    golduck 42
+    slowpoke 35-38
+    slowbro 42
+    shellder 35-38
+    krabby 35-38
+    kingler 42
+    horsea 35-38
+    seadra 42
+    staryu 35-38
+    seel 35-38
+    dewgong 42
+    jynx 42
+
+*45* Badge8
+victory:
+    zubat 30-35
+    golbat 40-45
+    machop 30-35
+    machoke 40-45
+    geodude 30-35
+    graveler 40-45
+    onix 40-45
+    marowak 40-45
+
+*50* Elite4
+cave3:
+    alakazam 50
+    machamp 50
+    golem 50
+    gengar 50
+
+*extra*
+starters
+hitmonlee
+hitmonchan
+lickitung
+mr mime
+lapras
+eevee
+porygon
+omanyte
+kabuto
+aerodactyl
+snorlax
+articuno
+zapdos
+moltres
+mewtwo
