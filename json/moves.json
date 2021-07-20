@@ -104,7 +104,7 @@
         "accuracy": 0.85,
         "pp": 20,
         "effect": {
-            "wrap": 1
+            "status": "bound"
         }
     },
     "bite": {
@@ -137,9 +137,7 @@
         "pp": 15,
         "effect": {
             "chance": 0.3,
-            "not": {
-                "type": "normal"
-            },
+            "not": "normal",
             "status": "paralysis"
         }
     },
@@ -195,7 +193,7 @@
         "accuracy": 0.85,
         "pp": 10,
         "effect": {
-            "wrap": 1
+            "status": "bound"
         }
     },
     "comet punch": {
@@ -408,7 +406,8 @@
         "pp": 25,
         "effect": {
             "chance": 0.1,
-            "statu": "burn"
+            "not": "fire",
+            "status": "burn"
         }
     },
     "explosion": {
@@ -429,6 +428,7 @@
         "pp": 5,
         "effect": {
             "chance": 0.3,
+            "not": "fire",
             "status": "burn"
         }
     },
@@ -440,6 +440,7 @@
         "pp": 15,
         "effect": {
             "chance": 0.1,
+            "not": "fire",
             "status": "burn"
         }
     },
@@ -450,7 +451,7 @@
         "accuracy": 0.85,
         "pp": 15,
         "effect": {
-            "wrap": 1
+            "status": "bound"
         }
     },
     "fissure": {
@@ -471,6 +472,7 @@
         "pp": 15,
         "effect": {
             "chance": 0.1,
+            "not": "fire",
             "status": "burn"
         }
     },
@@ -679,6 +681,7 @@
         "pp": 10,
         "effect": {
             "chance": 0.1,
+            "not": "ice",
             "status": "freeze"
         }
     },
@@ -741,6 +744,7 @@
         "accuracy": 0.9,
         "pp": 10,
         "effect": {
+            "not": "grass",
             "status": "seeded"
         }
     },
@@ -763,9 +767,7 @@
         "pp": 30,
         "effect": {
             "chance": 0.3,
-            "not": {
-                "type": "ghost"
-            },
+            "not": "ghost",
             "status": "paralysis"
         }
     },
@@ -937,6 +939,7 @@
         "accuracy": 0.55,
         "pp": 40,
         "effect": {
+            "not": "poison",
             "status": "poison"
         }
     },
@@ -947,6 +950,7 @@
         "accuracy": 0.75,
         "pp": 35,
         "effect": {
+            "not": "poison",
             "status": "poison"
         }
     },
@@ -958,6 +962,7 @@
         "pp": 35,
         "effect": {
             "chance": 0.3,
+            "not": "poison",
             "status": "poison"
         }
     },
@@ -1066,7 +1071,7 @@
         "accuracy": null,
         "pp": 10,
         "effect": {
-            "ustatus": "sleep",
+            "rest": null,
             "heal": 1
         }
     },
@@ -1077,7 +1082,7 @@
         "accuracy": 1.0,
         "pp": 20,
         "effect": {
-            "roar": 1
+            "roar": null
         }
     },
     "rock slide": {
@@ -1230,6 +1235,7 @@
         "pp": 20,
         "effect": {
             "chance": 0.4,
+            "not": "poison",
             "status": "poison"
         }
     },
@@ -1241,6 +1247,7 @@
         "pp": 20,
         "effect": {
             "chance": 0.4,
+            "not": "poison",
             "status": "poison"
         }
     },
@@ -1482,9 +1489,6 @@
         "pp": 10,
         "effect": {
             "chance": 0.1,
-            "not": {
-                "type": "electric"
-            },
             "status": "paralysis"
         }
     },
@@ -1496,9 +1500,6 @@
         "pp": 15,
         "effect": {
             "chance": 0.1,
-            "not": {
-                "type": "electric"
-            },
             "status": "paralysis"
         }
     },
@@ -1510,9 +1511,6 @@
         "pp": 30,
         "effect": {
             "chance": 0.1,
-            "not": {
-                "type": "electric"
-            },
             "status": "paralysis"
         }
     },
@@ -1523,9 +1521,7 @@
         "accuracy": 1.0,
         "pp": 20,
         "effect": {
-            "not": {
-                "type": "ground"
-            },
+            "not": "ground",
             "status": "paralysis"
         }
     },
@@ -1537,9 +1533,6 @@
         "pp": 15,
         "effect": {
             "chance": 0.1,
-            "not": {
-                "type": "electric"
-            },
             "status": "paralysis"
         }
     },
@@ -1643,7 +1636,7 @@
         "accuracy": 0.9,
         "pp": 20,
         "effect": {
-            "wrap": 1
+            "status": "bound"
         }
     }
 }
