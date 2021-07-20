@@ -8,7 +8,8 @@
             5,
             6
         ],
-        "level": 5
+        "level": 5,
+        "box": 1
     },
     "1": {
         "id": "007",
@@ -18,7 +19,7 @@
         "types": [
             "Water"
         ],
-        "status": null,
+        "status": {},
         "stats": {
             "CurHP": 20,
             "HP": 20,
@@ -86,7 +87,7 @@
             "Normal",
             "Flying"
         ],
-        "status": null,
+        "status": {},
         "stats": {
             "CurHP": 13,
             "HP": 13,
