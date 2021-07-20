@@ -19,8 +19,10 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
             return 0
     
     def battleBox(self, party):
+        ustatus=party.p1.getvolstatus()
+        tstatus=party.p7.getvolstatus()
         file=discord.File("thumbnails/"+party.p7.id+".png", filename="image.png")
-        embed=discord.Embed(title=party.p7.species+" Lv."+str(party.p7.level), description=str(party.p7.curhp)+"/"+str(party.p7.hp))
+        embed=discord.Embed(title=party.p7.species+" Lv."+str(party.p7.level), description=str(party.p7.curhp)+"/"+str(party.p7.hp)+tstatus)
         embed.set_thumbnail(url="attachment://image.png")
         if party.p1.curhp!=0:
             embed.add_field(name="!fight", value="\u200B", inline=False)
@@ -32,9 +34,9 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
         file2=discord.File("thumbnails/"+party.p1.id+".png", filename="image2.png")
         embed.set_image(url="attachment://image2.png")
         if party.p1.name==None:
-            embed.set_footer(text=party.p1.species+" Lv."+str(party.p1.level)+" "+str(party.p1.curhp)+"/"+str(party.p1.hp))
+            embed.set_footer(text=party.p1.species+" Lv."+str(party.p1.level)+" "+str(party.p1.curhp)+"/"+str(party.p1.hp)+ustatus)
         else:
-            embed.set_footer(text=party.p1.name+" Lv."+str(party.p1.level)+" "+str(party.p1.curhp)+"/"+str(party.p1.hp))
+            embed.set_footer(text=party.p1.name+" Lv."+str(party.p1.level)+" "+str(party.p1.curhp)+"/"+str(party.p1.hp)+ustatus)
         return [embed, file, file2]
     
     def is_not_dead(ctx):
@@ -65,8 +67,10 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
         result=self.battleBox(party)
         win = 0
         if party.p1.curhp==0:
-            party.p1.status="fainted"
+            party.p1.status={"fainted": None}
+            result=self.battleBox(party)
             party.p1.part=None
+            party.p1.resetMod()
             if self.whited(party):
                 await ctx.send(string)
                 await ctx.send("You blacked out")
@@ -80,10 +84,8 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
                     i+=1
                 party.unswap()
                 party.p7=None
-            else:
-                await ctx.send(string, files=[result[1], result[2]], embed=result[0])
-        else:
-            if party.p7.curhp == 0:
+        if party.p7 !=None:
+            if party.p7.curhp == 0 and not self.whited(party):
                 await ctx.send(string)
                 win = 1
             else:
@@ -96,6 +98,7 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
                     if party.get(i).part!=None:
                        part+=1
                 i+=1
+            if part == 0: part = 1
             xp = math.floor(party.p7.xpyield*party.p7.level/(7*part))
             evgain = party.p7.base
             party.p7=None
@@ -104,8 +107,17 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
             levelled={}
             while i<7:
                 if party.get(i)!=None:
+                    tpoke = party.get(i)
+                    if "toxic" in party.get(i).status:
+                        del tpoke.status["toxic"]
+                        tpoke.status["poison"] = None
+                    for key in party.p1.status:
+                        if key == "fainted": break
+                        if key in ["freeze", "paralysis", "burn", "sleep", "poison"]:
+                            party.p1.status = {key: party.p1.status[key]}
+                            break
                     if party.get(i).part!=None:
-                        tpoke = party.get(i)
+                        tpoke.resetMod()
                         tpoke.curxp+=xp
                         curev=tpoke.getEV()
                         for key in evgain:
@@ -150,7 +162,7 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
                                         tpoke.addMove(result2[2],answer2.content)
                                     else:
                                         await ctx.send(tpoke.species+" did not learn "+result2[2])
-                        party.setp(i,tpoke)
+                    party.setp(i,tpoke)
                 i+=1
             with open("json/pokedex.json") as f_obj:
                 pokedex = json.load(f_obj)
@@ -171,7 +183,7 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
                     party.set(int(key),epoke)
             party.unswap()
         with open("json/parties/"+str(ctx.author.id)+".json", "w") as f_obj:
-            json.dump(party.recon(), f_obj, indent=4)
+            json.dump(party.export(), f_obj, indent=4)
             
     async def cog_command_error(self, ctx, error):
         try:
@@ -205,7 +217,7 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
                 else:
                     struggle=True
         if struggle:
-            move=pokeparty.move("struggle")
+            movenum=0
         elif int(slot) in [1,2,3,4]:
             if int(slot)==1: movenum=1
             elif int(slot)==2: movenum=2
@@ -224,19 +236,18 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
             except ValueError:
                 if answer.content.startswith("!"): return
                 return await ctx.send("Invalid move", files=[result[1], result[2]], embed=result[0])
-        if movenum<=4 and movenum>0:
-            if party.p1.getMove(movenum)==None: return await ctx.send("Invalid move", files=[result[1], result[2]], embed=result[0])
-            elif party.p1.getMove(movenum).curpp==0: return await ctx.send("That move has no pp", files=[result[1], result[2]], embed=result[0])
-            move=movenum
-        else:   
-            return await ctx.send("Invalid move", files=[result[1], result[2]], embed=result[0])
+            if movenum<=4 and movenum>0:
+                if party.p1.getMove(movenum)==None: return await ctx.send("Invalid move", files=[result[1], result[2]], embed=result[0])
+                elif party.p1.getMove(movenum).curpp==0: return await ctx.send("That move has no pp", files=[result[1], result[2]], embed=result[0])
+            else:   
+                return await ctx.send("Invalid move", files=[result[1], result[2]], embed=result[0])
         if party.p7.move4 != None:omove=random.randint(1,4)
         elif party.p7.move3 != None:omove=random.randint(1,3)
         elif party.p7.move2 != None:omove=random.randint(1,2)
         else: omove=1
         party.p7.run=1
         battle = pokeparty.battle(party.p1, party.p7)
-        string=battle.turn(move,omove)
+        string=battle.turn(movenum,omove)
         party.p1, party.p7 = battle.user, battle.target
         await self.turn(ctx, party, string)
         
@@ -280,6 +291,15 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
         elif party.get(pokenum).curhp==0:
             await ctx.send("Pokemon is fainted", files=[result[1], result[2]], embed=result[0])
         else:
+            party.p1.resetMod()
+            if "toxic" in party.p1.status:
+                del party.p1.status["toxic"]
+                party.p1.status["poison"] = None
+            for key in party.p1.status:
+                if key == "fainted": break
+                if key in ["freeze", "paralysis", "burn", "sleep", "poison"]:
+                    party.p1.status = {key: party.p1.status[key]}
+                    break
             party.swap(pokenum)
             outgoing = party.get(pokenum)
             party.p1.part=True
@@ -305,17 +325,18 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
                 result=self.battleBox(party)
                 await ctx.send(files=[result[1], result[2]], embed=result[0])
                 with open("json/parties/"+str(ctx.author.id)+".json", "w") as f_obj:
-                    json.dump(party.recon(), f_obj, indent=4)
+                    json.dump(party.export(), f_obj, indent=4)
     
     @commands.command()
     @commands.check(is_not_dead)
     async def catch(self, ctx):
         with open("json/parties/"+str(ctx.author.id)+".json") as f_obj:
             party = pokeparty.party(json.load(f_obj))
-        if party.p6!=None:
+        with open("json/pc/"+str(ctx.author.id)+".json") as f_obj:
+            pc = pokeparty.pc(json.load(f_obj))
+        if party.p6!=None and len(pc.get_box()) > 30:
             result = self.battleBox(party)
-            await ctx.send("Can't have more than 6 pokemon", files=[result[1], result[2]], embed=result[0])
-            return
+            return await ctx.send("Party and current box full", files=[result[1], result[2]], embed=result[0])
         r1 = random.randint(0,255)
         if party.p7.status in ["sleep", "freeze"]:
             s=25
@@ -347,18 +368,25 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
             party.p7.run2=None
             party.p7.xpyield=None
             party.unswap()
-            party.add(party.p7)
+            if party.p6 == None:
+                party.add(party.p7)
+            else:
+                pc.deposit(party.p7.export())
+                await ctx.send("Your party was full. "+party.p7.species+" was added to Box "+str(pc.main))
             party.p7=None
             i=1
             while i<7:
                 if party.get(i)!=None:
                     if party.get(i).part!=None:
                         p=party.get(i)
+                        p.resetMod()
                         p.part=None
                         party.setp(i,p)
                 i+=1
+            with open("json/pc/"+str(ctx.author.id)+".json", "w") as f_obj:
+                json.dump(pc.export(), f_obj)
             with open("json/parties/"+str(ctx.author.id)+".json", "w") as f_obj:
-                json.dump(party.recon(), f_obj, indent=4)
+                json.dump(party.export(), f_obj, indent=4)
         else:
             w = math.floor(100*party.p7.catch/255)
             w = math.floor(w*f/255)
@@ -402,13 +430,14 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
                 if party.get(i)!=None:
                     if party.get(i).part!=None:
                         p=party.get(i)
+                        p.resetMod()
                         p.part=None
                         party.setp(i,p)
                 i+=1
             party.p7=None
             party.unswap()
             with open("json/parties/"+str(ctx.author.id)+".json", "w") as f_obj:
-                json.dump(party.recon(), f_obj, indent=4)
+                json.dump(party.export(), f_obj, indent=4)
             await ctx.send("Got away safely")
         else:
             party.p7.run+=1
@@ -427,7 +456,7 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
                 result=self.battleBox(party)
                 await ctx.send(files=[result[1], result[2]], embed=result[0])
                 with open("json/parties/"+str(ctx.author.id)+".json", "w") as f_obj:
-                    json.dump(party.recon(), f_obj, indent=4)
+                    json.dump(party.export(), f_obj, indent=4)
 
 def setup(bot):
     bot.add_cog(Fight(bot))
