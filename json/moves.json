@@ -254,7 +254,7 @@
         "category": "physical",
         "power": null,
         "accuracy": 1.0,
-        "pp": 20
+        "pp": 20,
         "effect": {
             "priority": -1,
             "counter": "physical"
