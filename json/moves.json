@@ -254,9 +254,9 @@
         "category": "physical",
         "power": null,
         "accuracy": 1.0,
-        "pp": 20,
-        "priority": -1,
+        "pp": 20
         "effect": {
+            "priority": -1,
             "counter": "physical"
         }
     },
@@ -458,7 +458,7 @@
         "type": "ground",
         "category": "physical",
         "power": null,
-        "accuracy": 30,
+        "accuracy": 0.3,
         "pp": 5,
         "effect": {
             "ohko": 1
@@ -563,7 +563,7 @@
         "type": "normal",
         "category": "physical",
         "power": null,
-        "accuracy": 30,
+        "accuracy": 0.3,
         "pp": 5,
         "effect": {
             "ohko": 1
@@ -629,7 +629,7 @@
         "type": "normal",
         "category": "physical",
         "power": null,
-        "accuracy": null,
+        "accuracy": 0.3,
         "pp": 5,
         "effect": {
             "ohko": 1
@@ -1012,7 +1012,9 @@
         "power": 40,
         "accuracy": 1.0,
         "pp": 30,
-        "priority": 1
+        "effect": {
+            "priority": 1
+        }
     },
     "rage": {
         "type": "normal",
