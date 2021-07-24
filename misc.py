@@ -37,6 +37,13 @@ class Misc(commands.Cog):
                 j+=1
         winner = raffle[random.randint(0,len(raffle)-1)]
         await ctx.send("Congrats! "+winner+" has won the raffle")
+        
+    @commands.command()
+    async def ask(self, ctx, *search):
+        search1 = ""
+        for string in search:
+            search1 += string+"+"
+        await ctx.send("https://letmegooglethat.com/?q="+search1)
 
 def setup(bot):
     bot.add_cog(Misc(bot))
