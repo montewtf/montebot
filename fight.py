@@ -172,6 +172,8 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
                 if dex.get("evolvesat")!=None and int(dex.get("evolvesat"))<=epoke.level:
                     answer=None
                     await ctx.send(epoke.species+" is trying to evolve. (Type anything in the next 15 seconds to cancel)")
+                    def yes(m):
+                        return m.author == ctx.author
                     try:
                         answer = await self.bot.wait_for("message", check=yes, timeout=10.0)
                     except asyncio.TimeoutError:
@@ -180,7 +182,7 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
                         await ctx.send(oldpoke+" evolved into "+epoke.species)
                     if answer!=None:
                         await ctx.send(epoke.species+" stopped evolving")
-                    party.set(int(key),epoke)
+                    party.setp(int(key),epoke)
             party.unswap()
         with open("json/parties/"+str(ctx.author.id)+".json", "w") as f_obj:
             json.dump(party.export(), f_obj, indent=4)
@@ -383,6 +385,11 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
                         p.part=None
                         party.setp(i,p)
                 i+=1
+            for key in party.p1.status:
+                if key == "fainted": break
+                if key in ["freeze", "paralysis", "burn", "sleep", "poison"]:
+                    party.p1.status = {key: party.p1.status[key]}
+                    break
             with open("json/pc/"+str(ctx.author.id)+".json", "w") as f_obj:
                 json.dump(pc.export(), f_obj)
             with open("json/parties/"+str(ctx.author.id)+".json", "w") as f_obj:
@@ -413,7 +420,7 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
             elif party.p7.move2 != None:omove=random.randint(1,2)
             else: omove=1
             battle = pokeparty.battle(party.p1, party.p7)
-            string=battle.turn(move2=omove)
+            string=battle.turn(movenum2=omove)
             party.p1, party.p7 = battle.user, battle.target
             await self.turn(ctx, party, string)
         
@@ -436,6 +443,11 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
                 i+=1
             party.p7=None
             party.unswap()
+            for key in party.p1.status:
+                if key == "fainted": break
+                if key in ["freeze", "paralysis", "burn", "sleep", "poison"]:
+                    party.p1.status = {key: party.p1.status[key]}
+                    break
             with open("json/parties/"+str(ctx.author.id)+".json", "w") as f_obj:
                 json.dump(party.export(), f_obj, indent=4)
             await ctx.send("Got away safely")
@@ -448,7 +460,7 @@ class Fight(commands.Cog, command_attrs=dict(hidden=True)):
                 elif party.p7.move2 != None:omove=random.randint(1,2)
                 else: omove=1
                 battle = pokeparty.battle(party.p1, party.p7)
-                string=battle.turn(move2=omove)
+                string=battle.turn(movenum2=omove)
                 party.p1, party.p7 = battle.user, battle.target
                 await self.turn(ctx, party, string)
             else:

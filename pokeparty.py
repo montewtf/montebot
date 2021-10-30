@@ -323,7 +323,11 @@ class pokemon:
                     "Defense" : self.defense*max(2, 2+self.moddefense)/max(2, 2-self.moddefense),
                     "Special" : self.special*max(2, 2+self.modspecial)/max(2, 2-self.modspecial),
                     }
-        elif para=="modspeed": return round(self.speed*max(2, 2+self.modspeed)/max(2, 2-self.modspeed))
+        elif para=="modspeed":
+            if "paralysis" in self.status:
+                return round(self.speed/4*max(2, 2+self.modspeed)/max(2, 2-self.modspeed))
+            else:
+                return round(self.speed*max(2, 2+self.modspeed)/max(2, 2-self.modspeed))
         elif para=="accuracy": return max(2, 2+self.modaccuracy)/max(2, 2-self.modaccuracy)*max(2, 2-self.modevasion)/max(2, 2+self.modevasion)
     
     def resetMod(self):
@@ -545,43 +549,54 @@ class battle:
         self.returnstring = ""
         self.end = False
         
-    def turn(self, move1=None, move2=None):
-        if move1==None:
-            self.target, self.user, string = self.attack(move2, self.target, self.user)
+    def turn(self, movenum1=None, movenum2=None):
+        if movenum1==None:
+            self.target, self.user, string = self.attack(movenum2, self.target, self.user)
             return string
-        elif move2==None:
-            self.user, self.target, string = self.attack(move1, self.user, self.target)
+        elif movenum2==None:
+            self.user, self.target, string = self.attack(movenum1, self.user, self.target)
             return string
         else:
+            if movenum1 == 0: move1 = pokeparty.move("struggle")
+            else: move1 = self.user.getMove(movenum1)
+            if movenum2 == 0: move2 = pokeparty.move("struggle")
+            else: move2 = self.target.getMove(movenum2)
+            first=""
             userspeed=self.user.getMod("modspeed")
-            if "paralysis" in self.user.status: userspeed/=4
             targetspeed=self.target.getMod("modspeed")
-            if "paralysis" in self.target.status: targetspeed/=4
             if userspeed > targetspeed:
-                self.user, self.target, string = self.attack(move1, self.user, self.target)
-                returnstring = string
-                if not self.end:
-                    self.target, self.user, string = self.attack(move2, self.target, self.user, turn=1)
-                    returnstring += "\n" + string
+                first = "user"
             elif userspeed < targetspeed:
-                self.target, self.user, string = self.attack(move2, self.target, self.user, turn=1)
-                returnstring = string
-                if not self.end:
-                    self.user, self.target, string = self.attack(move1, self.user, self.target)
-                    returnstring += "\n" + string
+                first = "target"
             else:
                 if random.randint(0,1):
-                    self.user, self.target, string = self.attack(move1, self.user, self.target)
-                    returnstring = string
-                    if not self.end:
-                        self.target, self.user, string = self.attack(move2, self.target, self.user, turn=1)
-                        returnstring += "\n" + string
+                    first = "user"
                 else:
-                    self.target, self.user, string = self.attack(move2, self.target, self.user, turn=1)
-                    returnstring = string
-                    if not self.end:
-                        self.user, self.target, string = self.attack(move1, self.user, self.target)
-                        returnstring += "\n" + string
+                    first = "target"
+            if "priority" in move1.effect or "priority" in move2.effect:
+                if "priority" in move1.effect:
+                    priority1 = move1.effect["priority"]
+                else: priority1 = 0
+                if "priority" in move2.effect:
+                    priority2 = move2.effect["priority"]
+                else: priority2 = 0
+                if priority1 == priority2: pass
+                elif priority1 > priority2:
+                    first = "user"
+                else:
+                    first = "target"
+            if first == "user":
+                self.user, self.target, string = self.attack(movenum1, self.user, self.target)
+                returnstring = string
+                if not self.end:
+                    self.target, self.user, string = self.attack(movenum2, self.target, self.user, turn=1)
+                    returnstring += "\n" + string
+            elif first == "target":
+                self.target, self.user, string = self.attack(movenum2, self.target, self.user, turn=1)
+                returnstring = string
+                if not self.end:
+                    self.user, self.target, string = self.attack(movenum1, self.user, self.target)
+                    returnstring += "\n" + string
         return returnstring
     
     def attack(self, movenum, attacking, defending, turn=0):
@@ -591,7 +606,9 @@ class battle:
         targetdefense, targetspecial = targetres["Defense"], targetres["Special"]
         userres=attacking.getMod("modstat")
         userattack, userdefense, userspecial = userres["Attack"], userres["Defense"],userres["Special"]
-        if "burn" in attacking.status: userattack/=2
+        if "reflect" in defending.status: userattack /= 2
+        if "light screen" in defending.status: userspecial /= 2
+        if "burn" in attacking.status: userattack /= 2
         attacks = True
         if "sleep" in attacking.status:
             attacks = False
@@ -632,52 +649,82 @@ class battle:
             move.curpp-=1
             attacking.setMove(movenum, move)
             string = attacking.species+" used "+move.name.title()+". "
-            if self.accuracy(move, attacking.getMod("accuracy"))=="miss":
-                string += "The attack missed."
+            if "ohko" in move.effect:
+                if attacking.getMod("modspeed") < defending.getMod("modspeed"):
+                    string += "But it failed. "
+                    attacks = False
+            if "dream" in move.effect and "sleep" not in defending.status:
+                string += "But it failed. "
+                attacks = False
+            if attacks and self.accuracy(move, attacking.getMod("accuracy"))=="miss":
+                string += "The attack missed. "
                 attacks = False
                 if move.name in ["self-destruct","explosion"]:
                     attacking.curhp = 0
                     string += attacking.species+" fainted!"
                     self.end = True
+                if crash in move.effect:
+                    attacking.curhp -= 1
+                    string += attacking.species+" kept going and crashed! "
         if attacks:
-            if move.type in attacking.types:stab=1.5
-            else:stab=1
-            if move.category!="status":
-                t=self.types(move.type,defending.types)
-                if self.crit(attacking, move):
-                    string+="Critical hit! "
-                    crit = True
-                if t==0:string+="It's not effective. "
-                elif t<1:string+="It's not very effective. "
-                elif t>1:string+="It's super effective. "
+            if "fixed" in move.effect:
+                fixed = move.effect["fixed"]
+                if isinstance(fixed, int):
+                    damage = fixed
+                elif isinstance(fixed, float):
+                    damage = math.floor(fixed * defending.curhp)
+                    if damage == 0: damage = 1
+                elif fixed == "level":
+                    damage = attacking.level
+                elif fixed == "psywave":
+                    damage = random.randint(1,math.floor(1.5*attacking.level))
             else:
-                t=1
-            modifier=stab*t*(random.randint(85,100)/100)
-            if move.category=="special":
-                if self.crit:
-                    damage=math.floor(((4*attacking.level/5+2)*move.power*attacking.special/defending.special/50+2)*modifier)
+                if move.type in attacking.types:stab=1.5
+                else:stab=1
+                if move.category!="status":
+                    t=self.types(move.type,defending.types)
+                    if self.crit(attacking, move) and t!=0:
+                        string+="Critical hit! "
+                        crit = True
+                    else: crit = False
+                    if t==0:string+="It's not effective. "
+                    elif t<1:string+="It's not very effective. "
+                    elif t>1:string+="It's super effective. "
                 else:
-                    damage=math.floor(((2*attacking.level/5+2)*move.power*userspecial/targetspecial/50+2)*modifier)
-                if damage==0 and t!=0: damage=1
-            elif move.category=="physical":
-                if self.crit:
-                    damage=math.floor(((4*attacking.level/5+2)*move.power*attacking.attack/defending.defense/50+2)*modifier)
+                    t=1
+                if "ohko" in move.effect:
+                    if t == 0: damage = 0
+                    else:
+                        damage = defending.hp
+                        string += "One-hit KO! "
                 else:
-                    damage=math.floor(((2*attacking.level/5+2)*move.power*userattack/targetdefense/50+2)*modifier)
-                if damage==0 and t!=0: damage=1
-            else: damage=0
+                    modifier=stab*t*(random.randint(85,100)/100)
+                    if move.category=="special":
+                        if crit:
+                            damage=math.floor((((4*attacking.level/5+2)*move.power*attacking.special/defending.special)/50+2)*modifier)
+                        else:
+                            damage=math.floor((((2*attacking.level/5+2)*move.power*userspecial/targetspecial)/50+2)*modifier)
+                        if damage==0 and t!=0: damage=1
+                    elif move.category=="physical":
+                        if crit:
+                            damage=math.floor((((4*attacking.level/5+2)*move.power*attacking.attack/defending.defense)/50+2)*modifier)
+                        else:
+                            damage=math.floor((((2*attacking.level/5+2)*move.power*userattack/targetdefense)/50+2)*modifier)
+                        if damage==0 and t!=0: damage=1
+                    else: damage=0
+            if damage > defending.curhp:
+                damage = defending.curhp
             defending.curhp-=damage
-            if move.effect != None:
-                if "multi" in move.effect and t!=0:
-                    if move.effect["multi"]==2:
-                        multi = 2
-                    elif move.effect["multi"]==5:
-                        multi = random.choice((2,2,2,3,3,3,4,5))
-                    i = 1
-                    while defending.curhp > 0 and i < multi:
-                        defending.curhp-=damage
-                        i+=1
-                    string += "Hit the enemy "+str(i)+" times. "
+            if "multi" in move.effect and t!=0:
+                if move.effect["multi"]==2:
+                    multi = 2
+                elif move.effect["multi"]==5:
+                    multi = random.choice((2,2,2,3,3,3,4,5))
+                i = 1
+                while defending.curhp > 0 and i < multi:
+                    defending.curhp-=damage
+                    i+=1
+                string += "Hit the enemy "+str(i)+" times. "
             attacking, defending, effectstring = self.effects(move, attacking, defending, turn, damage)
             string += effectstring
         if defending.curhp<=0:
@@ -689,7 +736,7 @@ class battle:
                 if move.type == "fire" and move.name != "fire spin":
                     del defending.status["freeze"]
                     string += defending.species+" was thawed! "
-            if "burn" in attacking.status:
+            elif "burn" in attacking.status:
                 burn_damage=math.floor(attacking.hp/16)
                 if burn_damage == 0: burn_damage = 1
                 attacking.curhp -= burn_damage
@@ -705,6 +752,14 @@ class battle:
                 if pois_damage == 0: pois_damage = 1
                 attacking.curhp -= pois_damage
                 string += attacking.species+" is hurt by poison. "
+            if "seeded" in attacking.status:
+                seed_damage = math.floor(attacking.hp/16)
+                if seed_damage == 0: seed_damage = 1
+                if seed_damage > attacking.curhp:
+                    seed_damage = attacking.curhp
+                attacking.curhp -= seed_damage
+                defending.curhp += seed_damage
+                string += "Leech Seed saps "+attacking.species+"! "
             if attacking.curhp<=0:
                 attacking.curhp=0
                 string += attacking.species+" fainted!"
@@ -719,7 +774,10 @@ class battle:
         else: return "miss"
         
     def crit(self, user, move):
-        threshold = user.base["Speed"]/2
+        if "focus" in user.status:
+            threshold = math.floor(user.base["Speed"]+236/4)*2
+        else:
+            threshold = math.floor(user.base["Speed"]+76/4)
         if move.effect != None:
             if "crit" in move.effect:
                 threshold *= 8
@@ -732,32 +790,34 @@ class battle:
     def effects(self, move, attacking, defending, turn, damage):
         effect=move.effect
         tpoke="user"
-        if effect==None: return attacking, defending, ""
         if "chance" in effect:
             if effect["chance"]<random.random():return attacking, defending, ""
         effectstring = ""
         if "stat" in effect and not self.end:
-            realstat=effect["stat"]
-            if realstat.startswith("o"):
-                tpoke="target"
-                poke2=defending
-                realstat=realstat[1:]
+            if "mist" in defending.status and move.category=="status":
+                effectstring += "But it failed. "
             else:
-                poke2=attacking
-            oldmod=poke2.getMod("moddic")[realstat.title()]
-            poke2.setMod(realstat, effect["stages"])
-            realstage=poke2.getMod("moddic")[realstat.title()]-oldmod
-            effectstring = poke2.species+"'s "+realstat
-            if realstage==2: effectstring+=" greatly rose! "
-            elif realstage==1: effectstring+=" rose! "
-            elif realstage==-1: effectstring+=" fell! "
-            elif realstage==-2: effectstring+=" greatly fell! "
-            elif realstage==0 and move.category=="status":
-                effectstring="Nothing happened! "
-            elif realstage==0:
-                effectstring=""
-            if tpoke=="user": attacking=poke2
-            elif tpoke=="target": defending=poke2
+                realstat=effect["stat"]
+                if realstat.startswith("o"):
+                    tpoke="target"
+                    poke2=defending
+                    realstat=realstat[1:]
+                else:
+                    poke2=attacking
+                oldmod=poke2.getMod("moddic")[realstat.title()]
+                poke2.setMod(realstat, effect["stages"])
+                realstage=poke2.getMod("moddic")[realstat.title()]-oldmod
+                effectstring = poke2.species+"'s "+realstat
+                if realstage==2: effectstring+=" greatly rose! "
+                elif realstage==1: effectstring+=" rose! "
+                elif realstage==-1: effectstring+=" fell! "
+                elif realstage==-2: effectstring+=" greatly fell! "
+                elif realstage==0 and move.category=="status":
+                    effectstring="Nothing happened! "
+                elif realstage==0:
+                    effectstring=""
+                if tpoke=="user": attacking=poke2
+                elif tpoke=="target": defending=poke2
         elif "status" in effect and not self.end:
             status=effect["status"]
             if "not" in effect:
@@ -765,9 +825,9 @@ class battle:
             nonvolatile = ["freeze", "paralysis", "burn", "sleep", "poison", "toxic"]
             if status in nonvolatile:
                 curstatus=set(defending.status.keys()).intersection(nonvolatile)
-                if curstatus != None:
+                if curstatus != set():
                     if move.category != "status": effectstring = ""
-                    else: effectstring = "But it failed. "
+                    else: effectstring += "But it failed. "
                 else:
                     if status == "freeze":
                         defending.status["freeze"] = None
@@ -787,15 +847,33 @@ class battle:
                     elif status == "toxic":
                         defending.status["toxic"] = 1
                         effectstring += defending.species+" was badly posioned! "
-            elif status in ["flinch", "confused", "seeded", "bound"]:
+            elif status in ["flinch", "confused", "seeded", "bound", "reflect", "light screen"]:
                 if status == "flinch":
                     defending.status["flinch"] = None
-                if status == "confused":
+                elif status == "confused":
                     if "confused" in defending.status:
                         effectstring += "But it failed. "
                     else:
                         defending.status["confused"] = random.randint(2,5)
                         effectstring += defending.species+" was confused! "
+                elif status == "seeded":
+                    if "seeded" in defending.status:
+                        effectstring += "But it failed. "
+                    else:
+                        defending.status["seeded"] = None
+                        effectstring += defending.species+" was seeded! "
+                elif status == "reflect":
+                    if "reflect" in attacking.status:
+                        effectstring += "But it failed. "
+                    else:
+                        attacking.status["reflect"] = None
+                        effectstring += attacking.species+" gained armor! "
+                elif status == "light screen":
+                    if "light screen" in attacking.status:
+                        effectstring += "But it failed. "
+                    else:
+                        attacking.status["light screen"] = None
+                        effectstring += attacking.species+" is protected against special attacks! "
         elif "recoil" in effect:
             recoil = effect["recoil"]
             recoil_damage = math.floor(damage * recoil)
@@ -832,6 +910,12 @@ class battle:
                 effectstring += attacking.species+" regained healthl! "
             elif heal < 0:
                 effectstring += attacking.species+" fainted! "
+        if "focus" in effect:
+            attacking.status["focus"] = None
+            effectstring += attacking.species+" is getting pumped! "
+        if "mist" in effect:
+            attacking.status["mist"] = None
+            effectstring += attacking.species+" is shrouded in mist! "
         return attacking, defending, effectstring
     
     def types(self, atype, dtypes):
@@ -857,7 +941,7 @@ class move:
         self.curpp=round(self.maxpp*pp)
         if "effect" in move:
             self.effect=move["effect"]
-        else: self.effect=None
+        else: self.effect={}
     
     def export(self):
         dic={

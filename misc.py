@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 import random
+import monte
 
 class Misc(commands.Cog):
     def __init__(self, bot):
@@ -21,7 +22,7 @@ class Misc(commands.Cog):
     @commands.command()
     async def burn(self, ctx):
         await ctx.send("https://en.wikipedia.org/wiki/List_of_burn_centers_in_the_United_States")
-
+        
     @commands.command()
     async def raffle(self, ctx, *slist):
         raffle = list()
