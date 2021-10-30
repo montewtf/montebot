@@ -1,27 +1,21 @@
-broken effects:
+Continuous moves:
     bound - 4
     duration - 7
-    fixed - 6
-    ohko - 3
-    missrecoil - 2
-    seeded - 1
-    reflect - 2
     outrage - 3
-    priority - 1
-
-broken moves:
     bide
-    convserion
-    counter
+Ending battle:
+    roar
+    whirlwind
+    teleport
+Temporary changes:
+    conversion
     disable
-    dream eater
-    focus energy
+    mimic
+    transform
+Remebering past moves:
+    counter
+    mirror move
+Other:
     haze
     metronome
-    mimic
-    mirror move
-    mist
-    roar/whirlwind
     substitute
-    teleport
-    transform
