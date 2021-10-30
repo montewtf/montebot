@@ -190,5 +190,3 @@ articuno
 zapdos
 moltres
 mewtwo
-
-test
